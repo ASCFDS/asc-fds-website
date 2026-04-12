@@ -381,12 +381,15 @@ h3 {
 .results-table-wrap {
   overflow-x: auto;
   border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
 }
 
 .results-table {
   width: 100%;
-  border-collapse: collapse;
-  background: #fff;
+  min-width: 760px;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #ffffff;
   color: var(--color-text);
   border-radius: var(--radius);
   overflow: hidden;
@@ -394,14 +397,37 @@ h3 {
 
 .results-table th,
 .results-table td {
-  padding: 1rem;
+  padding: 1.15rem 1.2rem;
   text-align: left;
+  vertical-align: middle;
+}
+
+.results-table thead th {
+  background: #f3f3f3;
+  color: #111;
+  font-weight: 800;
+  font-size: 0.98rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.results-table tbody tr {
+  transition: background-color var(--transition);
+}
+
+.results-table tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+.results-table tbody tr:hover {
+  background: #fff6f5;
+}
+
+.results-table tbody td {
   border-bottom: 1px solid #ececec;
 }
 
-.results-table th {
-  background: #f6f6f6;
-  font-weight: 700;
+.results-table tbody tr:last-child td {
+  border-bottom: none;
 }
 
 .map-embed {

@@ -14,16 +14,20 @@
 <body>
   <header class="site-header">
     <div class="container nav">
-      <a class="brand" href="index.html"><img src="assets/img/logo-light.png" alt="ASC Freudenstadt Logo" /></a>
+      <a class="brand" href="index.html" aria-label="Zur Startseite">
+        <img src="assets/img/logo-light.png" alt="Logo des ASC Freudenstadt e.V." />
+      </a>
+
       <button class="nav-toggle" aria-expanded="false" aria-label="Navigation öffnen">
         <span></span><span></span><span></span>
       </button>
+
       <nav class="site-nav">
         <a href="index.html">Startseite</a>
         <a href="ueber-uns.html">Über uns</a>
-        <a href="termine.html">Termine</a>
-        <a href="sportbetrieb.html">Sportbetrieb</a>
+        <a href="events_sportbetrieb.html">Events & Sportbetrieb</a>
         <a class="active" href="kontakt.html">Kontakt &amp; Anfahrt</a>
+        <a class="nav-cta" href="mitglied-werden.html">Mitglied werden!</a>
       </nav>
     </div>
   </header>
@@ -33,7 +37,7 @@
       <div class="container">
         <p class="eyebrow">Kontakt</p>
         <h1>Kontakt &amp; Anfahrt</h1>
-        <p class="lead">Fragen zum Training, zum Verein oder zur Mitgliedschaft beantworten wir gerne.</p>
+        <p class="lead">Fragen zum Training, zum Verein oder zur Anfahrt beantworten wir gerne.</p>
       </div>
     </section>
 
@@ -82,18 +86,27 @@
         <div class="section-head">
           <p class="eyebrow">Anfrage</p>
           <h2>Nachricht an den Verein</h2>
-          <p>Dieses Formular ist für GitHub Pages als statisches Frontend vorbereitet und kann später an einen Formdienst angebunden werden.</p>
+          <p>Pflichtfelder werden direkt geprüft. Die Nachricht wird direkt ueber die Website an info@asc-fds.de uebermittelt.</p>
         </div>
 
-        <form class="contact-form" action="#" method="post">
+        <form
+          class="contact-form"
+          data-contact-form
+          action="https://formsubmit.co/ajax/info@asc-fds.de"
+          method="POST"
+        >
+          <input type="hidden" name="_subject" value="Neue Nachricht ueber die ASC-Website" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off" />
+
           <div class="form-grid">
             <div class="form-group">
-              <label for="name">Name</label>
-              <input id="name" name="name" type="text" autocomplete="name" />
+              <label for="name">Name *</label>
+              <input id="name" name="name" type="text" autocomplete="name" required />
             </div>
             <div class="form-group">
-              <label for="email">E-Mail</label>
-              <input id="email" name="email" type="email" autocomplete="email" />
+              <label for="email">E-Mail *</label>
+              <input id="email" name="email" type="email" autocomplete="email" required />
             </div>
           </div>
 
@@ -103,14 +116,14 @@
               <input id="telefon" name="telefon" type="tel" autocomplete="tel" />
             </div>
             <div class="form-group">
-              <label for="betreff">Betreff</label>
-              <input id="betreff" name="betreff" type="text" />
+              <label for="betreff">Betreff *</label>
+              <input id="betreff" name="betreff" type="text" required />
             </div>
           </div>
 
           <div class="form-group">
-            <label for="nachricht">Nachricht</label>
-            <textarea id="nachricht" name="nachricht" rows="6"></textarea>
+            <label for="nachricht">Nachricht *</label>
+            <textarea id="nachricht" name="nachricht" rows="6" required></textarea>
           </div>
 
           <div class="form-checkbox">
@@ -120,34 +133,16 @@
             </label>
           </div>
 
+          <p class="form-status" data-form-status aria-live="polite"></p>
           <button class="btn btn-primary" type="submit">Nachricht senden</button>
         </form>
-      </div>
-    </section>
-
-    <section class="section section-dark">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">Mitgliedschaft</p>
-          <h2>Beitragssätze</h2>
-        </div>
-        <div class="cards-grid two">
-          <article class="info-card">
-            <h3>Erwachsene</h3>
-            <p class="price-tag">50,00 € p.a.</p>
-          </article>
-          <article class="info-card">
-            <h3>Minderjährige</h3>
-            <p class="price-tag">25,00 € p.a.</p>
-          </article>
-        </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container footer-grid">
-      <div>
+      <div class="footer-brand">
         <img class="footer-logo" src="assets/img/logo-light.png" alt="ASC Freudenstadt Logo" />
         <p>Armbrust-Sport-Club Freudenstadt e.V.<br></p>
       </div>
@@ -155,7 +150,7 @@
         <h3>Navigation</h3>
         <a href="ueber-uns.html">Über uns</a>
         <a href="termine.html">Termine</a>
-        <a href="sportbetrieb.html">Sportbetrieb</a>
+        <a href="events_sportbetrieb.html">Events &amp; Sportbetrieb</a>
         <a href="kontakt.html">Kontakt &amp; Anfahrt</a>
       </div>
       <div>

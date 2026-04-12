@@ -665,10 +665,7 @@ h3 {
   color: #999;
 }
 
-/* optional: durchgestrichen */
-.timeline-item.is-past h2 {
-  text-decoration: line-through;
-}.timeline-item.is-past::after {
+.timeline-item.is-past::after {
   content: "vergangen";
   position: absolute;
   top: 10px;

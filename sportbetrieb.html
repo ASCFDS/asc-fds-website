@@ -75,36 +75,42 @@
         </div>
 
         <div class="results-table-wrap">
-          <table class="results-table">
-            <thead>
-              <tr>
-                <th>Datum</th>
-                <th>Wettkampf</th>
-                <th>Disziplin</th>
-                <th>Ergebnis</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>07.04.2026</td>
-                <td>2. Rundenwettkampf</td>
-                <td>Luftgewehr Auflage</td>
-                <td><a class="btn btn-light" href="https://www.sk-fds.de/lg-auflage/aktuell/2.%20RWK%20LG-Auflage%202026.pdf" target="_blank" rel="noopener noreferrer">
-          Ergebnisse
-        </a></td>
-              </tr>
-              <tr>
-                <td>10.04.2026</td>
-                <td>2. Rundenwettkampf</td>
-                <td>Luftpistole Auflage</td>
-                <td><a class="btn btn-light" href="https://www.sk-fds.de/lupi-auflage/aktuell/2.%20RWK%20LuPi-Auflage%202026.pdf" target="_blank" rel="noopener noreferrer">
-          Ergebnisse
-        </a></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+  <table class="results-table results-table--enhanced">
+    <thead>
+      <tr>
+        <th>Datum</th>
+        <th>Wettkampf</th>
+        <th>Disziplin</th>
+        <th>Status</th>
+        <th>Dokument</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>07.04.2026</td>
+        <td>2. Rundenwettkampf</td>
+        <td>Luftgewehr Auflage</td>
+        <td><span class="result-badge result-badge--pending">folgt</span></td>
+        <td>
+          <span class="result-link result-link--disabled">noch nicht verfügbar</span>
+        </td>
+      </tr>
+
+      <tr>
+        <td>10.04.2026</td>
+        <td>2. Rundenwettkampf</td>
+        <td>Luftpistole Auflage</td>
+        <td><span class="result-badge result-badge--live">verfügbar</span></td>
+        <td>
+          <a class="result-link" href="https://www.sk-fds.de/lupi-auflage/aktuell/2.%20RWK%20LuPi-Auflage%202026.pdf" target="_blank" rel="noopener noreferrer">
+            <span class="result-link__icon">↗</span>
+            Ergebnisse ansehen
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
     </section>
 
     <section class="section">

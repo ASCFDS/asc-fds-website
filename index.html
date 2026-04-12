@@ -25,7 +25,11 @@
       </button>
 
       <nav class="site-nav">
-        <a class="active" href="index.html">Startseite</a>
+        <a class="active nav-home-link" href="index.html" aria-label="Startseite" title="Startseite">
+          <svg class="nav-home-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 10.5 12 3l8 7.5V20H4z" />
+          </svg>
+        </a>
         <a href="ueber-uns.html">Über uns</a>
         <a href="events_sportbetrieb.html">Events & Sportbetrieb</a>
         <a href="kontakt.html">Kontakt &amp; Anfahrt</a>
@@ -46,7 +50,7 @@
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="events_sportbetrieb.html">Zum Sportbetrieb</a>
-          <a class="btn btn-secondary" href="kontakt.html">Kontakt aufnehmen</a>
+          <a class="btn btn-secondary" href="kontakt.html#anfrage">Kontakt aufnehmen</a>
         </div>
       </div>
     </section>
@@ -77,23 +81,22 @@
           <p class="eyebrow">Verein</p>
           <h2>Armbrustsport mit Tradition und modernem Anspruch</h2>
           <p>
-            Der ASC Freudenstadt e.V. verbindet leistungsorientierten Schießsport mit einem aktiven, kameradschaftlichen Vereinsleben.
+            Beim ASC Freudenstadt e.V. verbinden wir sportlichen Ehrgeiz mit echtem Teamgeist. Egal ob Einsteiger oder ambitionierter Schütze – bei uns findet jeder seinen Platz.
             Unser Schwerpunkt liegt insbesondere im Armbrustsport, ergänzt durch gängige Gewehr- und Pistolendisziplinen.
           </p>
-          <ul class="feature-list">
-            <li>Mitglied im Schützenkreis Freudenstadt</li>
-            <li>Teil des Württembergischen Schützenverbandes</li>
-            <li>Mitglied im Deutschen Schützenbund</li>
-            <li>Teil des Württembergischen Landessportbundes</li>
-          </ul>
         </div>
         <div class="panel accent-panel">
           <h3>Trainingszeit</h3>
           <p class="big-info">Mittwochs ab 18:30 Uhr</p>
-          <h3>Mitgliedsbeiträge</h3>
-          <p>Erwachsene: <strong>50,00 € / Jahr</strong></p>
-          <p>Minderjährige: <strong>25,00 € / Jahr</strong></p>
-          <a class="text-link" href="kontakt.html">Fragen zur Mitgliedschaft →</a>
+          <h3>Neugierig geworden?</h3>
+          <p>
+            Lerne den ASC Freudenstadt ganz unverbindlich kennen -
+            egal ob Anfänger oder erfahrener Schütze.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="kontakt.html#anfrage">Probetraining vereinbaren</a>
+            <a class="btn btn-secondary" href="ueber-uns.html">Mehr über den Verein</a>
+          </div>
         </div>
       </div>
     </section>
@@ -136,14 +139,16 @@
 
     <section class="section section-accent">
       <div class="container cta-box">
-        <div>
+        <div class="cta-box__content">
           <h2>Kontakt aufnehmen und den ASC kennenlernen</h2>
           <p>
             Ob sportliches Interesse, Fragen zum Training oder zur Mitgliedschaft:
             Wir freuen uns auf deine Nachricht.
           </p>
         </div>
-        <a class="btn btn-light" href="kontakt.html">Jetzt Kontakt aufnehmen</a>
+        <div class="cta-box__action">
+          <a class="btn btn-light cta-box__button" href="kontakt.html#anfrage">Jetzt Kontakt aufnehmen</a>
+        </div>
       </div>
     </section>
   </main>
@@ -157,7 +162,6 @@
       <div>
         <h3>Navigation</h3>
         <a href="ueber-uns.html">Über uns</a>
-        <a href="termine.html">Termine</a>
         <a href="events_sportbetrieb.html">Events &amp; Sportbetrieb</a>
         <a href="kontakt.html">Kontakt &amp; Anfahrt</a>
       </div>
@@ -165,7 +169,6 @@
         <h3>Kontakt</h3>
         <p>Gerhart-Hauptmann-Weg 8<br>72250 Freudenstadt</p>
         <a href="mailto:info@asc-fds.de">info@asc-fds.de</a>
-        <a href="tel:+491743213421">0174 3213421</a>
       </div>
       <div>
         <h3>Rechtliches</h3>

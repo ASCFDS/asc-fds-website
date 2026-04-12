@@ -16,3 +16,21 @@ document.addEventListener("DOMContentLoaded", () => {
     el.textContent = currentYear;
   });
 });
+// Termine automatisch als "vergangen" markieren
+document.addEventListener("DOMContentLoaded", () => {
+  const events = document.querySelectorAll(".timeline-item[data-event-date]");
+  const today = new Date();
+
+  events.forEach((event) => {
+    const dateStr = event.getAttribute("data-event-date");
+    const eventDate = new Date(dateStr);
+
+    // Uhrzeit auf 00:00 setzen für sauberen Vergleich
+    eventDate.setHours(0,0,0,0);
+    today.setHours(0,0,0,0);
+
+    if (eventDate < today) {
+      event.classList.add("is-past");
+    }
+  });
+});

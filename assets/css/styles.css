@@ -651,3 +651,31 @@ h3 {
     padding: 0.95rem 0.9rem;
   }
 }
+/* Vergangene Termine */
+.timeline-item.is-past {
+  opacity: 0.45;
+}
+
+.timeline-item.is-past .timeline-content {
+  background: #f5f5f5;
+  color: #777;
+}
+
+.timeline-item.is-past .timeline-date {
+  color: #999;
+}
+
+/* optional: durchgestrichen */
+.timeline-item.is-past h2 {
+  text-decoration: line-through;
+}.timeline-item.is-past::after {
+  content: "vergangen";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ccc;
+  color: #333;
+  font-size: 0.7rem;
+  padding: 4px 8px;
+  border-radius: 6px;
+}

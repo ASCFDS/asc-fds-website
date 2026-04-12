@@ -642,4 +642,12 @@ h3 {
   .nav-toggle {
     display: block;
   }
+    .results-table {
+    min-width: 680px;
+  }
+
+  .results-table th,
+  .results-table td {
+    padding: 0.95rem 0.9rem;
+  }
 }

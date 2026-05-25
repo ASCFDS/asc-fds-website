@@ -1,7 +1,8 @@
 # Security setup
 
 Das Kontaktformular sendet nicht mehr direkt an FormSubmit, sondern an `/api/contact`.
-Dieser Endpoint ist als Cloudflare-Pages-Function unter `functions/api/contact.js` umgesetzt.
+Das Cloudflare-Projekt ist als Workers Static Assets konfiguriert. `src/worker.js` routet `/api/contact`
+an den gemeinsamen Handler in `functions/api/contact.js` weiter.
 
 ## Pflichtkonfiguration
 
@@ -64,9 +65,8 @@ dass echte Besucher nicht vor jeder Seite eine Challenge sehen.
 
 ## Security Header
 
-Die Datei `_headers` ist fuer Hosts gedacht, die dieses Format unterstuetzen, zum Beispiel Cloudflare Pages oder Netlify.
-Bei GitHub Pages wird diese Datei nicht als Response-Header-Konfiguration angewendet; dort muessen die Header extern,
-zum Beispiel ueber Cloudflare, gesetzt werden.
+Die Datei `_headers` ist fuer Hosts gedacht, die dieses Format unterstuetzen. Die API-Responses setzen ihre wichtigsten
+Security Header zusaetzlich direkt im Worker/Handler.
 
 ## Cloudflare-Projekt
 
@@ -77,5 +77,13 @@ Download der bestehenden Projektkonfiguration:
 npx wrangler pages download config <PROJECT_NAME>
 ```
 
-Ein handgeschriebenes `wrangler.toml` sollte erst committed werden, wenn Projektname, Build-Output-Directory und
-Dashboard-Konfiguration abgeglichen sind, weil die Datei danach als Konfigurationsquelle fuer Pages gilt.
+Das Repository enthaelt inzwischen `wrangler.jsonc` fuer Workers Static Assets. Wichtig sind dort:
+
+```text
+main: src/worker.js
+assets.binding: ASSETS
+assets.run_worker_first: /api/*
+```
+
+Ohne `main` und `run_worker_first` wird `/api/contact` nur als statische Asset-Anfrage behandelt und POST-Anfragen
+enden mit `405 Method Not Allowed`.

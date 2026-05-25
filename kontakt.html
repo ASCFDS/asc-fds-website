@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css" />
   <script defer src="assets/js/main.js"></script>
+  <script defer src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"></script>
 </head>
 <body>
   <header class="site-header">
@@ -97,12 +98,11 @@
         <form
           class="contact-form"
           data-contact-form
-          action="https://formsubmit.co/ajax/info@asc-fds.de"
+          action="/api/contact"
           method="POST"
         >
-          <input type="hidden" name="_subject" value="Neue Nachricht über die ASC-Website" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off" />
+          <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <input type="url" name="website" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
           <div class="form-grid">
             <div class="form-group">
@@ -138,6 +138,10 @@
             </label>
           </div>
 
+          <div class="turnstile-wrap" data-turnstile-widget></div>
+          <noscript>
+            <p class="form-status is-error">Das Formular benötigt JavaScript für die Sicherheitsprüfung.</p>
+          </noscript>
           <p class="form-status" data-form-status aria-live="polite"></p>
           <div class="form-actions">
             <button class="btn btn-primary form-submit-button" type="submit">Nachricht senden</button>

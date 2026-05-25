@@ -23,20 +23,97 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const status = contactForm.querySelector("[data-form-status]");
   const submitButton = contactForm.querySelector("button[type='submit']");
+  const turnstileTarget = contactForm.querySelector("[data-turnstile-widget]");
+  const browserRateLimitKey = "ascContactFormSubmissions";
+  const browserRateLimitWindow = 60 * 1000;
+  const browserRateLimitMax = 3;
+  let turnstileWidgetId = null;
+  let turnstileIsReady = !turnstileTarget;
+
+  const setStatus = (message, state) => {
+    if (!status) return;
+
+    status.textContent = message;
+    status.className = state ? `form-status ${state}` : "form-status";
+  };
+
+  const setSubmitDisabled = (disabled) => {
+    if (submitButton) {
+      submitButton.disabled = disabled;
+    }
+  };
+
+  const loadTurnstile = async () => {
+    if (!turnstileTarget) return;
+
+    setSubmitDisabled(true);
+
+    try {
+      const siteKey = turnstileTarget.dataset.sitekey || await fetchTurnstileSiteKey();
+      const turnstile = await waitForTurnstile();
+
+      turnstileWidgetId = turnstile.render(turnstileTarget, {
+        sitekey: siteKey,
+        action: "contact",
+        theme: "light",
+        size: "flexible",
+        callback: () => {
+          turnstileIsReady = true;
+          setSubmitDisabled(false);
+        },
+        "expired-callback": () => {
+          turnstileIsReady = false;
+          setSubmitDisabled(true);
+          setStatus("Bitte die Sicherheitsprüfung erneut abschließen.", "is-error");
+        },
+        "error-callback": () => {
+          turnstileIsReady = false;
+          setSubmitDisabled(true);
+          setStatus("Die Sicherheitsprüfung konnte nicht geladen werden. Bitte später erneut versuchen.", "is-error");
+        }
+      });
+    } catch (error) {
+      turnstileIsReady = false;
+      setSubmitDisabled(true);
+      setStatus("Die Sicherheitsprüfung konnte nicht geladen werden. Bitte direkt an info@asc-fds.de schreiben.", "is-error");
+    }
+  };
+
+  const resetTurnstile = () => {
+    if (window.turnstile && turnstileWidgetId !== null) {
+      window.turnstile.reset(turnstileWidgetId);
+      turnstileIsReady = false;
+      setSubmitDisabled(true);
+    }
+  };
+
+  loadTurnstile();
 
   contactForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     if (!contactForm.reportValidity()) return;
 
-    if (status) {
-      status.textContent = "Nachricht wird gesendet...";
-      status.className = "form-status is-pending";
+    const formData = new FormData(contactForm);
+
+    if (formData.get("_honey") || formData.get("website")) {
+      contactForm.reset();
+      setStatus("Vielen Dank. Die Nachricht wurde erfolgreich versendet.", "is-success");
+      return;
     }
 
-    if (submitButton) {
-      submitButton.disabled = true;
+    if (isBrowserRateLimited(browserRateLimitKey, browserRateLimitWindow, browserRateLimitMax)) {
+      setStatus("Bitte warte kurz, bevor du eine weitere Nachricht sendest.", "is-error");
+      return;
     }
+
+    if (!turnstileIsReady || !formData.get("cf-turnstile-response")) {
+      setStatus("Bitte die Sicherheitsprüfung abschließen.", "is-error");
+      return;
+    }
+
+    setStatus("Nachricht wird gesendet...", "is-pending");
+    setSubmitDisabled(true);
 
     try {
       const response = await fetch(contactForm.action, {
@@ -44,31 +121,106 @@ document.addEventListener("DOMContentLoaded", () => {
         headers: {
           Accept: "application/json"
         },
-        body: new FormData(contactForm)
+        body: formData
       });
 
       if (!response.ok) {
-        throw new Error("Request failed");
+        const error = await readResponseError(response);
+        throw new Error(error || "Request failed");
       }
 
-      if (status) {
-        status.textContent = "Vielen Dank. Die Nachricht wurde erfolgreich versendet.";
-        status.className = "form-status is-success";
-      }
-
+      rememberBrowserSubmission(browserRateLimitKey, browserRateLimitWindow);
+      setStatus("Vielen Dank. Die Nachricht wurde erfolgreich versendet.", "is-success");
       contactForm.reset();
     } catch (error) {
-      if (status) {
-        status.textContent = "Das Senden hat leider nicht funktioniert. Bitte versucht es erneut oder schreibt direkt an info@asc-fds.de.";
-        status.className = "form-status is-error";
-      }
+      const rateLimitMessage = error.message === "rate_limited"
+        ? "Bitte warte kurz, bevor du eine weitere Nachricht sendest."
+        : "Das Senden hat leider nicht funktioniert. Bitte versucht es erneut oder schreibt direkt an info@asc-fds.de.";
+
+      setStatus(rateLimitMessage, "is-error");
     } finally {
-      if (submitButton) {
-        submitButton.disabled = false;
-      }
+      resetTurnstile();
     }
   });
 });
+
+async function fetchTurnstileSiteKey() {
+  const response = await fetch("/api/contact", {
+    headers: {
+      Accept: "application/json"
+    },
+    credentials: "same-origin"
+  });
+
+  if (!response.ok) {
+    throw new Error("Turnstile configuration failed");
+  }
+
+  const config = await response.json();
+
+  if (!config.siteKey) {
+    throw new Error("Missing Turnstile site key");
+  }
+
+  return config.siteKey;
+}
+
+function waitForTurnstile() {
+  return new Promise((resolve, reject) => {
+    let attempts = 0;
+
+    const check = () => {
+      if (window.turnstile && typeof window.turnstile.render === "function") {
+        window.turnstile.ready(() => resolve(window.turnstile));
+        return;
+      }
+
+      attempts += 1;
+
+      if (attempts > 50) {
+        reject(new Error("Turnstile script unavailable"));
+        return;
+      }
+
+      window.setTimeout(check, 100);
+    };
+
+    check();
+  });
+}
+
+async function readResponseError(response) {
+  try {
+    const payload = await response.json();
+    return payload.error;
+  } catch (error) {
+    return "";
+  }
+}
+
+function getBrowserSubmissions(storageKey, windowMs) {
+  try {
+    const now = Date.now();
+    const timestamps = JSON.parse(window.localStorage.getItem(storageKey) || "[]");
+    return timestamps.filter((timestamp) => now - timestamp < windowMs);
+  } catch (error) {
+    return [];
+  }
+}
+
+function isBrowserRateLimited(storageKey, windowMs, maxSubmissions) {
+  return getBrowserSubmissions(storageKey, windowMs).length >= maxSubmissions;
+}
+
+function rememberBrowserSubmission(storageKey, windowMs) {
+  try {
+    const timestamps = getBrowserSubmissions(storageKey, windowMs);
+    timestamps.push(Date.now());
+    window.localStorage.setItem(storageKey, JSON.stringify(timestamps));
+  } catch (error) {
+    // localStorage can be unavailable in private or restricted browsing contexts.
+  }
+}
 // Termine automatisch als "vergangen" markieren
 document.addEventListener("DOMContentLoaded", () => {
   const events = document.querySelectorAll(".timeline-item[data-event-date]");

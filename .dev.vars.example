@@ -1,0 +1,3 @@
+TURNSTILE_SITE_KEY=your-real-site-key
+TURNSTILE_SECRET_KEY=your-real-secret-key
+FORMSUBMIT_ENDPOINT=https://formsubmit.co/ajax/info@asc-fds.de

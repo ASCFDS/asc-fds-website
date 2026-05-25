@@ -82,8 +82,10 @@ Das Repository enthaelt inzwischen `wrangler.jsonc` fuer Workers Static Assets. 
 ```text
 main: src/worker.js
 assets.binding: ASSETS
-assets.run_worker_first: /api/*
+assets.run_worker_first: true
 ```
 
 Ohne `main` und `run_worker_first` wird `/api/contact` nur als statische Asset-Anfrage behandelt und POST-Anfragen
-enden mit `405 Method Not Allowed`.
+enden mit `405 Method Not Allowed`. `run_worker_first: true` ist hier bewusst gesetzt, weil `assets.directory` auf
+das Repository-Root zeigt. So kann `src/worker.js` Quell- und Konfigurationsdateien wie `wrangler.jsonc`,
+`SECURITY_SETUP.md`, `functions/*` und `src/*` blockieren, bevor die statische Asset-Auslieferung greift.

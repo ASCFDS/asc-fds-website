@@ -9,16 +9,7 @@
   "assets": {
     "directory": ".",
     "binding": "ASSETS",
-    "run_worker_first": [
-      "/api/*",
-      "/functions/*",
-      "/src/*",
-      "/SECURITY_SETUP.md",
-      "/wrangler.jsonc",
-      "/_headers",
-      "/.dev.vars.example",
-      "/.gitignore"
-    ]
+    "run_worker_first": true
   },
   "compatibility_flags": [
     "nodejs_compat"

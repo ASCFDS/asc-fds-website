@@ -81,12 +81,13 @@ Das Repository enthaelt inzwischen `wrangler.jsonc` fuer Workers Static Assets. 
 
 ```text
 main: src/worker.js
+build.command: node scripts/build-assets.js
+assets.directory: dist
 assets.binding: ASSETS
 assets.run_worker_first: /api/*
-.assetsignore: blockiert Quell- und Konfigurationsdateien
 ```
 
 Ohne `main` und `run_worker_first` wird `/api/contact` nur als statische Asset-Anfrage behandelt und POST-Anfragen
-enden mit `405 Method Not Allowed`. Weil `assets.directory` auf das Repository-Root zeigt, muss `.assetsignore`
-Quell- und Konfigurationsdateien wie `wrangler.jsonc`, `SECURITY_SETUP.md`, `functions/*` und `src/*` vom
-Asset-Upload ausschliessen.
+enden mit `405 Method Not Allowed`. Der Build-Schritt erzeugt `dist/` nur aus den oeffentlichen HTML-Dateien,
+`assets/` und `_headers`; Quell- und Konfigurationsdateien wie `wrangler.jsonc`, `SECURITY_SETUP.md`, `functions/*`
+und `src/*` werden nicht als statische Assets hochgeladen.

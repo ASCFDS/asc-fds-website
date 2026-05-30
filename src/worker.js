@@ -12,6 +12,11 @@ const blockedStaticPaths = new Set([
   "/wrangler.jsonc"
 ]);
 
+const prettyStaticPaths = new Map([
+  ["/spende", "/spende/index.html"],
+  ["/spende/", "/spende/index.html"]
+]);
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -32,6 +37,12 @@ export default {
           "X-Content-Type-Options": "nosniff"
         }
       });
+    }
+
+    const prettyPath = prettyStaticPaths.get(url.pathname);
+    if (prettyPath) {
+      url.pathname = prettyPath;
+      return env.ASSETS.fetch(new Request(url, request));
     }
 
     return env.ASSETS.fetch(request);

@@ -164,6 +164,19 @@ a {
   color: var(--color-text-light);
 }
 
+.hero-donation {
+  min-height: clamp(520px, 66vh, 680px);
+  background:
+    radial-gradient(circle at top right, rgba(221, 42, 27, 0.28), transparent 32%),
+    linear-gradient(135deg, rgba(20,21,21,0.98), rgba(20,21,21,0.82)),
+    url("../img/hero-placeholder.jpg") center/cover no-repeat;
+}
+
+.hero-donation .hero-content {
+  padding: 4.5rem 0;
+  max-width: 980px;
+}
+
 .hero-overlay {
   position: absolute;
   inset: 0;
@@ -200,6 +213,10 @@ h1, h2, h3 {
 h1 {
   font-size: clamp(3rem, 7vw, 5.5rem);
   letter-spacing: 0.01em;
+}
+
+.text-nowrap {
+  white-space: nowrap;
 }
 
 h2 {
@@ -278,6 +295,14 @@ h3 {
   color: #fff;
 }
 
+.section-accent .eyebrow {
+  color: rgba(255,255,255,0.78);
+}
+
+.donation-home {
+  padding: 3.5rem 0;
+}
+
 .page-hero {
   padding: 6rem 0 3rem;
   background:
@@ -350,6 +375,50 @@ h3 {
   font-size: 1.35rem;
   font-weight: 800;
   color: var(--color-accent);
+}
+
+.donation-main {
+  align-items: start;
+}
+
+.donation-copy p {
+  max-width: 64ch;
+}
+
+.donation-note {
+  display: grid;
+  gap: 0.25rem;
+  margin-top: 1.5rem;
+  padding: 1.1rem 1.2rem;
+  border-left: 4px solid var(--color-accent);
+  background: #fff6f5;
+}
+
+.donation-widget-panel {
+  justify-self: end;
+  width: min(100%, 520px);
+}
+
+.donation-widget-panel h2 {
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+}
+
+.donation-widget-slot {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.4rem;
+}
+
+.donation-widget-slot .cf-project-widget {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 12px;
+}
+
+.widget-privacy-note {
+  margin: 1rem 0 0;
+  font-size: 0.9rem;
+  color: #666;
 }
 
 .feature-list {
@@ -495,6 +564,10 @@ h3 {
 }
 
 #anfrage {
+  scroll-margin-top: 7rem;
+}
+
+#spendenwidget {
   scroll-margin-top: 7rem;
 }
 
@@ -902,6 +975,11 @@ h3 {
   .cards-grid.two,
   .form-grid {
     grid-template-columns: 1fr;
+  }
+
+  .donation-widget-panel {
+    justify-self: stretch;
+    width: 100%;
   }
 
   .cta-box {

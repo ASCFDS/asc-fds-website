@@ -1034,6 +1034,84 @@ h3 {
   }
 }
 
+@media (min-width: 1200px) {
+  :root {
+    --max-width: 1680px;
+  }
+
+  .nav {
+    min-height: 126px;
+  }
+
+  .brand img {
+    height: 76px;
+  }
+
+  .site-nav {
+    gap: 1.75rem;
+  }
+
+  .site-nav a {
+    font-size: 1.12rem;
+  }
+
+  .site-nav .nav-home-icon {
+    width: 1.45rem;
+    height: 1.45rem;
+  }
+
+  .site-nav .nav-cta {
+    min-height: 66px;
+    padding: 1rem 1.55rem;
+  }
+
+  .hero-content {
+    max-width: min(calc(100% - 2rem), 1400px);
+    padding: 7rem 0;
+  }
+
+  .hero h1 {
+    font-size: clamp(4.75rem, 6.2vw, 7.25rem);
+  }
+
+  .hero .lead {
+    font-size: 1.3rem;
+    max-width: 68ch;
+  }
+
+  .hero .btn {
+    min-height: 64px;
+    padding: 1rem 1.6rem;
+    font-size: 1.1rem;
+  }
+
+  .hero-donation {
+    min-height: clamp(640px, 66vh, 760px);
+  }
+
+  .hero-donation .hero-content {
+    max-width: min(calc(100% - 2rem), 1400px);
+    padding: 6rem 0;
+  }
+
+  .hero-donation h1 {
+    max-width: 1200px;
+  }
+
+  .donation-main {
+    grid-template-columns: minmax(0, 1fr) minmax(520px, 620px);
+    gap: 3rem;
+  }
+
+  .donation-widget-panel {
+    width: min(100%, 620px);
+  }
+
+  .donation-widget-slot .cf-project-widget {
+    max-width: 520px;
+  }
+}
+
 @media (max-width: 720px) {
   h3 {
     font-size: 1.45rem;

@@ -10,6 +10,7 @@
     dateStyle: 'medium', timeStyle: 'short', timeZone: 'Europe/Berlin'
   });
   const dayFormat = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Berlin' });
+  const dateOnlyFormat = new Intl.DateTimeFormat('de-DE', { dateStyle: 'medium', timeZone: 'Europe/Berlin' });
   let busy = false;
   let loaded = false;
   function date(value) {
@@ -54,8 +55,9 @@
       const fragment = document.createDocumentFragment();
       for (const event of events) {
         const article = element('article', 'timeline-item', '');
-        const when = dateFormat.format(event.start) +
-          (event.end > event.start ? ` – ${dateFormat.format(event.end)}` : '');
+        const format = event.hasTime === false ? dateOnlyFormat : dateFormat;
+        const when = format.format(event.start) +
+          (event.end > event.start ? ` – ${format.format(event.end)}` : '');
         article.append(element('div', 'timeline-date', when));
         const content = element('div', 'timeline-content', '');
         content.append(element('h2', '', event.title));

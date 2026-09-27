@@ -1,0 +1,12 @@
+[
+  "Empty live feed preserves two manually published upcoming events",
+  "Mobile menu opens, Escape closes, focus returns",
+  "API text is escaped; homepage capped at three events",
+  "Archive, category filter and live event merge work",
+  "maps: no provider request before consent; activation and withdrawal work",
+  "membership: no provider request before consent; activation and withdrawal work",
+  "donation: no provider request before consent; activation and withdrawal work",
+  "Trial subject preselected; server error preserves input",
+  "Mock successful submission clears form; no real mail sent",
+  "No JavaScript: navigation, upcoming events, archive and results are accessible"
+]

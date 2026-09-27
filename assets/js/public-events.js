@@ -1,94 +1,138 @@
-/* Public endpoint must expose only homepage-approved events and allow CORS. */
 (() => {
-  'use strict';
-  const list = document.getElementById('events-list');
-  const status = document.getElementById('events-status');
-  const retry = document.getElementById('events-retry');
-  if (!list || !status || !retry) return;
-  const endpoint = 'https://europe-west3-asc-app-e25d6.cloudfunctions.net/publicEvents?limit=20';
-  const dateFormat = new Intl.DateTimeFormat('de-DE', {
-    dateStyle: 'medium', timeStyle: 'short', timeZone: 'Europe/Berlin'
+  "use strict";
+  const list = document.getElementById("events-list");
+  if (!list) return;
+  const status = document.getElementById("events-status");
+  const retry = document.getElementById("events-retry");
+  const archive = document.getElementById("events-archive");
+  const filter = document.getElementById("event-category");
+  const limit = Number(list.dataset.limit) || Infinity;
+  const model = globalThis.ASCEvents;
+  const dateOnly = new Intl.DateTimeFormat("de-DE", {
+    dateStyle: "medium",
+    timeZone: "Europe/Berlin",
   });
-  const dayFormat = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Berlin' });
-  const dateOnlyFormat = new Intl.DateTimeFormat('de-DE', { dateStyle: 'medium', timeZone: 'Europe/Berlin' });
-  let busy = false;
-  let loaded = false;
-  function date(value) {
-    if (value == null || value === '') return null;
-    const seconds = typeof value === 'object' ? (value.seconds ?? value._seconds) : undefined;
-    const result = new Date(seconds !== undefined ? seconds * 1000 : value);
-    return Number.isFinite(result.getTime()) ? result : null;
+  const timed = new Intl.DateTimeFormat("de-DE", {
+    dateStyle: "medium",
+    timeStyle: "short",
+    timeZone: "Europe/Berlin",
+  });
+  let manual = [],
+    live = [],
+    busy = false,
+    manualLoaded = false;
+  function node(tag, cls, text) {
+    const n = document.createElement(tag);
+    n.className = cls;
+    n.textContent = text;
+    return n;
   }
-  function element(tag, className, text) {
-    const node = document.createElement(tag);
-    node.className = className;
-    node.textContent = text;
-    return node;
+  function card(event) {
+    const article = node("article", "timeline-item", "");
+    const format = event.hasTime === false ? dateOnly : timed;
+    const date = node(
+      "time",
+      "timeline-date",
+      format.format(new Date(event.startDate)) +
+        (event.endDate !== event.startDate
+          ? " – " + format.format(new Date(event.endDate))
+          : ""),
+    );
+    date.dateTime = event.startDate;
+    const content = node("div", "timeline-content", "");
+    if (event.category)
+      content.append(node("span", "event-category", event.category));
+    content.append(node("h3", "", event.title));
+    for (const field of ["description", "location"])
+      if (typeof event[field] === "string" && event[field].trim())
+        content.append(node("p", "", event[field]));
+    article.append(date, content);
+    return article;
+  }
+  function render() {
+    const rows = model.merge(manual, live);
+    if (filter) {
+      const selected = filter.value;
+      const options = [
+        ...new Set(rows.map((r) => r.category).filter(Boolean)),
+      ].sort();
+      filter.replaceChildren(
+        new Option("Alle Kategorien", ""),
+        ...options.map((c) => new Option(c, c)),
+      );
+      filter.value = options.includes(selected) ? selected : "";
+    }
+    const { upcoming, past } = model.split(
+      rows.filter((r) => !filter?.value || r.category === filter.value),
+    );
+    list.replaceChildren(...upcoming.slice(0, limit).map(card));
+    if (!upcoming.length)
+      list.append(
+        node(
+          "p",
+          "empty-state",
+          "Aktuell sind keine kommenden Termine in dieser Auswahl veröffentlicht. Unser Regeltraining findet mittwochs ab 18:30 Uhr statt.",
+        ),
+      );
+    if (archive) {
+      archive.replaceChildren(...past.map(card));
+      if (!past.length)
+        archive.append(
+          node("p", "", "Keine vergangenen Termine in dieser Auswahl."),
+        );
+    }
+  }
+  async function getJSON(url) {
+    const response = await fetch(url, {
+      credentials: "omit",
+      cache: "no-store",
+      signal: AbortSignal.timeout(12000),
+    });
+    if (!response.ok) throw new Error("Termine nicht erreichbar");
+    return response.json();
   }
   async function refresh() {
     if (busy) return;
     busy = true;
     retry.hidden = true;
-    list.setAttribute('aria-busy', 'true');
-    status.textContent = 'Aktuelle Termine werden geladen …';
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 12000);
+    list.setAttribute("aria-busy", "true");
     try {
-      const response = await fetch(endpoint, {
-        signal: controller.signal, credentials: 'omit', cache: 'no-store'
-      });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      const body = await response.json();
-      const rows = Array.isArray(body) ? body : body.events;
-      if (!Array.isArray(rows)) throw new Error('Invalid events response');
-      const events = rows.map(row => {
-        if (!row || typeof row !== 'object') throw new Error('Invalid event');
-        const start = date(row.startDate);
-        const end = date(row.endDate) || start;
-        if (!start || typeof row.title !== 'string' || !row.title.trim()) {
-          throw new Error('Invalid event fields');
-        }
-        return { ...row, start, end };
-      }).filter(row => row.publishToHomepage !== false &&
-        (row.visibility == null || row.visibility === 'public') &&
-        dayFormat.format(row.end) >= dayFormat.format(new Date())).sort((a, b) => a.start - b.start);
-      const fragment = document.createDocumentFragment();
-      for (const event of events) {
-        const article = element('article', 'timeline-item', '');
-        const format = event.hasTime === false ? dateOnlyFormat : dateFormat;
-        const when = format.format(event.start) +
-          (event.end > event.start ? ` – ${format.format(event.end)}` : '');
-        article.append(element('div', 'timeline-date', when));
-        const content = element('div', 'timeline-content', '');
-        content.append(element('h2', '', event.title));
-        for (const field of ['description', 'location']) {
-          if (typeof event[field] === 'string' && event[field].trim()) {
-            content.append(element('p', '', event[field]));
-          }
-        }
-        article.append(content);
-        fragment.append(article);
+      if (!manualLoaded) {
+        const data = await getJSON("/assets/data/events.json");
+        if (!Array.isArray(data)) throw new Error("Invalid local data");
+        manual = data;
+        manualLoaded = true;
+        render();
       }
-      list.replaceChildren(fragment);
-      loaded = true;
-      status.textContent = events.length ? 'Aktuelle Termine aus der ASC-App.' :
-        'Aktuell sind keine kommenden öffentlichen Termine vorhanden.';
-    } catch (error) {
-      status.textContent = loaded ?
-        'Die Aktualisierung ist momentan nicht möglich. Die zuletzt geladenen Termine bleiben sichtbar.' :
-        'Aktuelle App-Termine sind momentan nicht erreichbar. Angezeigt werden die manuell gepflegten Termine; diese können veraltet sein.';
+      const data = await getJSON(
+        "https://europe-west3-asc-app-e25d6.cloudfunctions.net/publicEvents?limit=100",
+      );
+      const rows = Array.isArray(data) ? data : data.events;
+      if (!Array.isArray(rows) || rows.some((r) => !model.normalize(r)))
+        throw new Error("Invalid event response");
+      live = rows;
+      render();
+      status.textContent =
+        "Vereinstermine und öffentlich freigegebene Termine aus der ASC-App.";
+    } catch {
+      status.textContent =
+        "Die App-Termine sind momentan nicht erreichbar. Vorhandene Vereinstermine bleiben sichtbar; kurzfristige Änderungen bitte beim Verein erfragen.";
       retry.hidden = false;
     } finally {
-      clearTimeout(timeout);
       busy = false;
-      list.setAttribute('aria-busy', 'false');
+      list.setAttribute("aria-busy", "false");
     }
   }
-  retry.addEventListener('click', refresh);
-  document.addEventListener('visibilitychange', () => {
+  filter?.addEventListener("change", render);
+  retry.addEventListener("click", refresh);
+  document.addEventListener("visibilitychange", () => {
     if (!document.hidden) refresh();
   });
-  setInterval(() => { if (!document.hidden) refresh(); }, 300000);
-  // main.js finishes its static fallback sorting before the first request starts.
-  document.addEventListener('DOMContentLoaded', refresh);
+  setInterval(() => {
+    if (!document.hidden) {
+      if (manualLoaded) render();
+      refresh();
+    }
+  }, 300000);
+  refresh();
 })();

@@ -1,102 +1,229 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mitglied werden | ASC Freudenstadt e.V.</title>
-  <meta name="description" content="Mitgliedsantrag des ASC Freudenstadt e.V. direkt online ausfüllen." />
-  <link rel="icon" type="image/png" href="assets/img/logo-dark.png" />
-  <link rel="apple-touch-icon" href="assets/img/logo-dark.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260530-zoom" />
-  <script defer src="assets/js/main.js"></script>
-  <script src="https://admin.campai.com/lib/web-form.js"></script>
-</head>
-<body>
-  <header class="site-header">
-    <div class="container nav">
-      <a class="brand" href="index.html" aria-label="Zur Startseite">
-        <img src="assets/img/logo-light.png" alt="Logo des ASC Freudenstadt e.V." />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mitglied werden | ASC Freudenstadt e.V.</title>
+    <meta
+      name="description"
+      content="Mitgliedsantrag des ASC Freudenstadt e.V. direkt online ausfüllen."
+    />
+    <link rel="icon" type="image/png" href="assets/img/logo-dark.png" />
+    <link rel="apple-touch-icon" href="assets/img/logo-dark.png" />
+    <link rel="stylesheet" href="assets/css/styles.css?v=20260927" />
+    <script defer src="assets/js/main.js?v=20260927"></script>
+    <link rel="canonical" href="https://www.asc-fds.de/mitglied-werden.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="de_DE" />
+    <meta
+      property="og:title"
+      content="Mitglied werden | ASC Freudenstadt e.V."
+    />
+    <meta
+      property="og:description"
+      content="Mitgliedsantrag des ASC Freudenstadt e.V. direkt online ausfüllen."
+    />
+    <meta
+      property="og:url"
+      content="https://www.asc-fds.de/mitglied-werden.html"
+    />
+    <meta
+      property="og:image"
+      content="https://www.asc-fds.de/assets/img/logo-dark.png"
+    />
+    <meta name="twitter:card" content="summary" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Startseite",
+            "item": "https://www.asc-fds.de/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Mitglied werden",
+            "item": "https://www.asc-fds.de/mitglied-werden.html"
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Zum Inhalt</a>
+    <header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="/index.html" aria-label="Zur Startseite">
+      <img
+        src="/assets/img/logo-light-320.webp"
+        srcset="
+          /assets/img/logo-light-320.webp 320w,
+          /assets/img/logo-light-640.webp 640w
+        "
+        sizes="(max-width: 980px) 90px, 160px"
+        alt="Logo des ASC Freudenstadt e.V."
+        width="5000"
+        height="3750"
+      />
+    </a>
+
+    <button
+      class="nav-toggle"
+      aria-controls="site-navigation"
+      type="button"
+      aria-expanded="false"
+      aria-label="Navigation öffnen"
+    >
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="site-nav" id="site-navigation" aria-label="Hauptnavigation">
+      <a
+        class="nav-home-link"
+        href="/index.html"
+        aria-label="Startseite"
+        title="Startseite"
+      >
+        <svg class="nav-home-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 10.5 12 3l8 7.5V20H4z" />
+        </svg>
       </a>
+      <a href="/ueber-uns.html">Verein</a>
+      <a href="/index.html#sport">Sport</a>
+      <a href="/events_sportbetrieb.html">Termine &amp; Ergebnisse</a>
+      <a href="/spende">Spenden</a>
+      <a href="/kontakt.html">Kontakt &amp; Anfahrt</a>
+      <a class="active nav-cta" href="/mitglied-werden.html" aria-current="page">Mitglied werden</a>
+    </nav>
+  </div>
+</header>
 
-      <button class="nav-toggle" aria-expanded="false" aria-label="Navigation öffnen">
-        <span></span><span></span><span></span>
-      </button>
-
-      <nav class="site-nav">
-        <a class="nav-home-link" href="index.html" aria-label="Startseite" title="Startseite">
-          <svg class="nav-home-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M4 10.5 12 3l8 7.5V20H4z" />
-          </svg>
-        </a>
-        <a href="ueber-uns.html">Über uns</a>
-        <a href="events_sportbetrieb.html">Events &amp; Sportbetrieb</a>
-        <a href="/spende">Spenden</a>
-        <a href="kontakt.html">Kontakt &amp; Anfahrt</a>
-        <a class="nav-cta" href="mitglied-werden.html">Mitglied werden!</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section class="page-hero">
-      <div class="container">
-        <p class="eyebrow">Mitgliedschaft</p>
-        <h1>Mitglied werden</h1>
-        <p class="lead">
-          Den Mitgliedsantrag für den ASC Freudenstadt könnt ihr direkt online ausfüllen und absenden.
-        </p>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">Online-Antrag</p>
-          <h2>Mitgliedsantrag</h2>
-          <p>
-            Bitte füllt das Formular vollständig aus. Nach dem Absenden erhaltet ihr eine Rückmeldung über den weiteren Ablauf.
+    <main id="main-content">
+      <section class="page-hero">
+        <div class="container">
+          <p class="eyebrow">Mitgliedschaft</p>
+          <h1>Mitglied werden</h1>
+          <p class="lead">
+            Den Mitgliedsantrag für den ASC Freudenstadt könnt ihr direkt online
+            ausfüllen und absenden.
           </p>
         </div>
+      </section>
 
-        <div class="form-embed-wrap">
-          <p class="form-embed-note">
-          </p>
-          <web-form zone="campai" organisation="658025583a7cd688f95c6426" form="69dbc74753ea3c928447cd4a" css='.sd-root-modern{--base-unit: 8px;--primary: #c90e0e;--primary-foreground: #ffffff;--foreground: #000000;--background: #ffffff;--background-dim: #f3f3f3;--background-dim-light: #f9f9f9;--font-family: initial;flex: 1;}.sv-tagbox__item, .sd-tagbox_clean-button{box-sizing: content-box;}' model='base64;eyJsb2NhbGUiOiJkZSIsInRpdGxlIjp7ImRlIjoiTWl0Z2xpZWRzYW50cmFnIn0sImRlc2NyaXB0aW9uIjp7ImRlIjoiQVNDIEZyZXVkZW5zdGFkdCBlLlYuIDx1IHN0eWxlPVwiY2FyZXQtY29sb3I6IHJnYigwLCAwLCAwKTsgY29sb3I6IHJnYigwLCAwLCAwKTsgd2hpdGUtc3BhY2U6IG5vcm1hbDtcIj48c3BhbiBzdHlsZT1cImZvbnQtc2l6ZTogN3B0OyBmb250LWZhbWlseTogJnF1b3Q7QXJpYWwgVW5pY29kZSBNUyZxdW90Oywgc2Fucy1zZXJpZjtcIj7igKImbmJzcDs8L3NwYW4+PC91PjxzcGFuIHN0eWxlPVwiY2FyZXQtY29sb3I6IHJnYigwLCAwLCAwKTsgY29sb3I6IHJnYigwLCAwLCAwKTsgZm9udC1mYW1pbHk6IC13ZWJraXQtc3RhbmRhcmQ7IGZvbnQtc2l6ZTogbWVkaXVtOyB3aGl0ZS1zcGFjZTogbm9ybWFsO1wiPjwvc3Bhbj5HZXJoYXJ0LUhhdXB0bWFubi1XZWcgOCA8dSBzdHlsZT1cIndoaXRlLXNwYWNlOiBub3JtYWw7IGNhcmV0LWNvbG9yOiByZ2IoMCwgMCwgMCk7IGNvbG9yOiByZ2IoMCwgMCwgMCk7XCI+PHNwYW4gc3R5bGU9XCJmb250LXNpemU6IDdwdDsgZm9udC1mYW1pbHk6ICZxdW90O0FyaWFsIFVuaWNvZGUgTVMmcXVvdDssIHNhbnMtc2VyaWY7XCI+4oCiJm5ic3A7PC9zcGFuPjwvdT43MjI1MCBGcmV1ZGVuc3RhZHQifSwibG9nbyI6eyJkZSI6Imh0dHBzOi8vYXBpLmNhbXBhaS5jb20vc3RvcmFnZS9kb3dubG9hZC9vcmdhbmlzYXRpb24vNjU4MDI1NTgzYTdjZDY4OGY5NWM2NDI2L2Zvcm0vNjlkYmM3NDc1M2VhM2M5Mjg0NDdjZDRhL3l2Um5lVXFiaEFCSElCaXFhR0FvWi5wbmcifSwibG9nb1Bvc2l0aW9uIjoicmlnaHQiLCJjb21wbGV0ZWRIdG1sIjp7ImRlIjoiPGgxPlZpZWxlbiBEYW5rIGbDvHIgZGFzIEF1c2bDvGxsZW4gZGVzIE1pdGdsaWVkc2FudHJhZ3M8L2gxPlxuPHA+RHUgc29sbHRlc3QgZWluZSBFLU1haWwgZXJoYWx0ZW4gaGFiZW4gZGllIER1IGJlc3TDpHRpZ2VuIG11c3N0LiBCaXR0ZSDDvGJlcnByw7xmZSBhdWNoIGRlaW5lbiBTUEFNLU9yZG5lci48L3A+XG4ifSwicGFnZXMiOlt7Im5hbWUiOiJNaXRnbGllZCIsImVsZW1lbnRzIjpbeyJ0eXBlIjoidGV4dCIsIm5hbWUiOiJGcmFnZTEiLCJtYXhXaWR0aCI6IjUwMHB4IiwidGl0bGUiOnsiZGUiOiJUaXRlbCJ9LCJmb3JtYXQiOiJ0ZXh0In0seyJ0eXBlIjoidGV4dCIsIm5hbWUiOiJWb3JuYW1lIiwibWF4V2lkdGgiOiI1MDBweCIsInN0YXJ0V2l0aE5ld0xpbmUiOmZhbHNlLCJpc1JlcXVpcmVkIjp0cnVlLCJmb3JtYXQiOiJ0ZXh0In0seyJ0eXBlIjoidGV4dCIsIm5hbWUiOiJOYWNobmFtZSIsIm1heFdpZHRoIjoiNTAwcHgiLCJzdGFydFdpdGhOZXdMaW5lIjpmYWxzZSwiaXNSZXF1aXJlZCI6dHJ1ZSwiZm9ybWF0IjoidGV4dCJ9LHsidHlwZSI6InRleHQiLCJuYW1lIjoiR2VidXJ0c2RhdHVtIiwid2lkdGgiOiIyNTBweCIsIm1pbldpZHRoIjoiMjUwcHgiLCJtYXhXaWR0aCI6IjI1MHB4Iiwic3RhcnRXaXRoTmV3TGluZSI6ZmFsc2UsImlzUmVxdWlyZWQiOnRydWUsImlucHV0VHlwZSI6ImRhdGUiLCJtYXhWYWx1ZUV4cHJlc3Npb24iOiJEYXR1bShIZXV0ZSgpLC0xOCwnSmFocicpIiwiZm9ybWF0IjoiZGF0ZSJ9LHsidHlwZSI6ImNoZWNrYm94IiwibmFtZSI6IkFydCIsIndpZHRoIjoiMjIwcHgiLCJtaW5XaWR0aCI6IjIyMHB4IiwibWF4V2lkdGgiOiIyMjBweCIsInRpdGxlIjp7ImRlIjoiR2VzY2hsZWNodCJ9LCJpc1JlcXVpcmVkIjp0cnVlLCJjaG9pY2VzIjpbIm3DpG5ubGljaCIsIndlaWJsaWNoIiwiZGl2ZXJzIix7InZhbHVlIjoiQXJ0aWtlbCAxIiwidGV4dCI6eyJkZSI6ImtlaW5lIEFuZ2FiZSJ9fV0sIm1heFNlbGVjdGVkQ2hvaWNlcyI6MSwibWluU2VsZWN0ZWRDaG9pY2VzIjoxfV0sInRpdGxlIjp7ImRlIjoiTWl0Z2xpZWQifSwiZGVzY3JpcHRpb24iOnsiZGUiOiJUcmFnZSBoaWVyIGRlaW5lIE1pdGdsaWVkZXJkYXRlbiBlaW4hIn19LHsibmFtZSI6IkFkcmVzc2UiLCJlbGVtZW50cyI6W3sidHlwZSI6InRleHQiLCJuYW1lIjoiU3RyYcOfZSArIE5yLiIsIm1heFdpZHRoIjoiNTAwcHgiLCJpc1JlcXVpcmVkIjp0cnVlLCJtaW4iOjAsIm1heCI6OTk5OTksImZvcm1hdCI6InRleHQifSx7InR5cGUiOiJ0ZXh0IiwibmFtZSI6IlBvc3RsZWl0emFobCIsIndpZHRoIjoiMTkwcHgiLCJtaW5XaWR0aCI6IjE5MHB4IiwibWF4V2lkdGgiOiIxOTBweCIsInN0YXJ0V2l0aE5ld0xpbmUiOmZhbHNlLCJ0aXRsZSI6eyJkZSI6IlBMWiJ9LCJpc1JlcXVpcmVkIjp0cnVlLCJtaW4iOjk5OSwibWF4Ijo5OTk5OSwic3RlcCI6MSwiZm9ybWF0IjoidGV4dCJ9LHsidHlwZSI6InRleHQiLCJuYW1lIjoiT3J0Iiwid2lkdGgiOiIzMDBweCIsIm1heFdpZHRoIjoiMzAwcHgiLCJpc1JlcXVpcmVkIjp0cnVlLCJmb3JtYXQiOiJ0ZXh0In0seyJ0eXBlIjoidGV4dCIsIm5hbWUiOiJMYW5kIiwid2lkdGgiOiIzMDBweCIsIm1heFdpZHRoIjoiMzAwcHgiLCJzdGFydFdpdGhOZXdMaW5lIjpmYWxzZSwiaXNSZXF1aXJlZCI6dHJ1ZSwicGxhY2Vob2xkZXIiOnsiZGUiOiJEZXV0c2NobGFuZCJ9LCJmb3JtYXQiOiJ0ZXh0In1dLCJ0aXRsZSI6eyJkZSI6IkFkcmVzc2UifSwiZGVzY3JpcHRpb24iOnsiZGUiOiJUcmFnZSBoaWVyIGJpdHRlIGRlaW5lIEFkcmVzc2UgZWluISJ9fSx7Im5hbWUiOiJLb21tdW5pa2F0aW9uIiwiZWxlbWVudHMiOlt7InR5cGUiOiJ0ZXh0IiwibmFtZSI6IkUtTWFpbCBBZHJlc3NlIiwid2lkdGgiOiIzMDBweCIsIm1heFdpZHRoIjoiMzAwcHgiLCJpc1JlcXVpcmVkIjp0cnVlLCJ2YWxpZGF0b3JzIjpbeyJ0eXBlIjoiZW1haWwifV0sImlucHV0VHlwZSI6ImVtYWlsIiwiZm9ybWF0IjoiZW1haWwifSx7InR5cGUiOiJ0ZXh0IiwibmFtZSI6Ik1vYmlsbnVtbWVyIiwid2lkdGgiOiIzMDBweCIsIm1heFdpZHRoIjoiMzAwcHgiLCJzdGFydFdpdGhOZXdMaW5lIjpmYWxzZSwidGl0bGUiOnsiZGUiOiJNb2JpbC0vRmVzdG5ldHpudW1tZXIifSwiaXNSZXF1aXJlZCI6dHJ1ZSwidmFsaWRhdG9ycyI6W3sidHlwZSI6Im1vYmlsZV9waG9uZSJ9XSwiaW5wdXRUeXBlIjoidGVsIiwiZm9ybWF0IjoibW9iaWxlIn1dLCJ0aXRsZSI6eyJkZSI6IktvbW11bmlrYXRpb24ifSwiZGVzY3JpcHRpb24iOnsiZGUiOiJXaWUga8O2bm5lbiB3aXIgZGljaCBlcnJlaWNoZW4gdW5kIHdpZSBzb2xsZW4gd2lyIG1pdCBkaXIga29tbXVuaXppZXJlbj8ifX0seyJuYW1lIjoiU2VpdGUyIiwiZWxlbWVudHMiOlt7InR5cGUiOiJ0ZXh0IiwibmFtZSI6IkVpbnRyaXR0c2RhdHVtIiwid2lkdGgiOiIyNTBweCIsIm1pbldpZHRoIjoiMjUwcHgiLCJtYXhXaWR0aCI6IjI1MHB4IiwiaXNSZXF1aXJlZCI6dHJ1ZSwiaW5wdXRUeXBlIjoiZGF0ZSIsImZvcm1hdCI6ImRhdGUifV0sInRpdGxlIjp7ImRlIjoiTWl0Z2xpZWRzY2hhZnQifSwiZGVzY3JpcHRpb24iOnsiZGUiOiJUcmFnZSBoaWVyIGJpdHRlIGRlaW5lbiBnZXfDvG5zY2h0ZW4gTWl0Z2xpZWRzY2hhZnRzYmVnaW5uIGVpbiEifX0seyJuYW1lIjoiU2VpdGUxIiwiZWxlbWVudHMiOlt7InR5cGUiOiJkcm9wZG93biIsIm5hbWUiOiJTdGFuZGFyZCBmw7xyIFphaGx1bmciLCJ3aWR0aCI6IjEwMCUiLCJkZWZhdWx0VmFsdWUiOiJTRVBBLUxhc3RzY2hyaWZ0IiwiaXNSZXF1aXJlZCI6dHJ1ZSwiY2hvaWNlcyI6WyJTRVBBLUxhc3RzY2hyaWZ0Il19LHsidHlwZSI6InRleHQiLCJuYW1lIjoiSUJBTiIsInZpc2libGVJZiI6IntTdGFuZGFyZCBmw7xyIFphaGx1bmd9ID0gJ1NFUEEtTGFzdHNjaHJpZnQnIiwid2lkdGgiOiIxMDAlIiwiaXNSZXF1aXJlZCI6dHJ1ZSwidmFsaWRhdG9ycyI6W3sidHlwZSI6ImliYW4ifV0sImZvcm1hdCI6ImliYW4ifSx7InR5cGUiOiJ0ZXh0IiwibmFtZSI6IkJJQyIsInZpc2libGVJZiI6IntMYW5kfSA8PiAnRGV1dHNjaGxhbmQnIGFuZCB7U3RhbmRhcmQgZsO8ciBaYWhsdW5nfSA9ICdTRVBBLUxhc3RzY2hyaWZ0JyIsIndpZHRoIjoiMTAwJSIsImlzUmVxdWlyZWQiOnRydWUsInZhbGlkYXRvcnMiOlt7InR5cGUiOiJiaWMifV0sImZvcm1hdCI6ImJpYyJ9LHsidHlwZSI6ImNoZWNrYm94IiwibmFtZSI6IlNFUEEtRXJtw6RjaHRpZ3VuZyIsInZpc2libGVJZiI6IntTdGFuZGFyZCBmw7xyIFphaGx1bmd9ID0gJ1NFUEEtTGFzdHNjaHJpZnQnIiwid2lkdGgiOiIxMDAlIiwiaXNSZXF1aXJlZCI6dHJ1ZSwiY2hvaWNlcyI6W3sidmFsdWUiOiJJY2ggZXJtw6RjaHRpZ2UgaGllcm1pdCBkZW4gVkVSRUlOIGUuVi4sIGRpZSB2b24gbWlyIHp1IGVudHJpY2h0ZW5kZW4gWmFobHVuZ2VuIGJlaSBGw6RsbGlna2VpdCB2b24gbWVpbmVtIEtvbnRvIG1pdHRlbHMgTGFzdHNjaHJpZnQgZWluenV6aWVoZW4uIEljaCB3ZWlzZSBtZWluIEtyZWRpdGluc3RpdHV0IGFuLCBkaWUgdm9uIFZFUkVJTiBlLlYuIGF1ZiBtZWluIEtvbnRvIGdlem9nZW5lbiBMYXN0c2NocmlmdGVuIGVpbnp1bMO2c2VuLiBIaW53ZWlzOiBJY2gga2FubiBpbm5lcmhhbGIgdm9uIGFjaHQgV29jaGVuLCBiZWdpbm5lbmQgbWl0IGRlbSBCZWxhc3R1bmdzZGF0dW0sIGRpZSBFcnN0YXR0dW5nIGRlcyBiZWxhc3RlbmRlbiBCZWl0cmFncyB2ZXJsYW5nZW4uIEVzIGdlbHRlbiBkYWJlaSBkaWUgbWl0IG1laW5lbSBLcmVkaXRpbnN0aXR1dCB2ZXJlaW5iYXJ0ZW4gQmVkaW5ndW5nZW4uIiwidGV4dCI6eyJkZSI6IkljaCBlcm3DpGNodGlnZSBoaWVybWl0IGRlbiBBU0MgRnJldWRlbnN0YWR0IGUuVi4sIGRpZSB2b24gbWlyIHp1IGVudHJpY2h0ZW5kZW4gWmFobHVuZ2VuIGJlaSBGw6RsbGlna2VpdCB2b24gbWVpbmVtIEtvbnRvIG1pdHRlbHMgTGFzdHNjaHJpZnQgZWluenV6aWVoZW4uIEljaCB3ZWlzZSBtZWluIEtyZWRpdGluc3RpdHV0IGFuLCBkaWUgdm9uIEFTQyBGcmV1ZGVuc3RhZHQgZS5WLiBhdWYgbWVpbiBLb250byBnZXpvZ2VuZW4gTGFzdHNjaHJpZnRlbiBlaW56dWzDtnNlbi4gSGlud2VpczogSWNoIGthbm4gaW5uZXJoYWxiIHZvbiBhY2h0IFdvY2hlbiwgYmVnaW5uZW5kIG1pdCBkZW0gQmVsYXN0dW5nc2RhdHVtLCBkaWUgRXJzdGF0dHVuZyBkZXMgYmVsYXN0ZW5kZW4gQmVpdHJhZ3MgdmVybGFuZ2VuLiBFcyBnZWx0ZW4gZGFiZWkgZGllIG1pdCBtZWluZW0gS3JlZGl0aW5zdGl0dXQgdmVyZWluYmFydGVuIEJlZGluZ3VuZ2VuLiJ9fV19LHsidHlwZSI6ImNoZWNrYm94IiwibmFtZSI6IkZyYWdlMyIsInRpdGxlIjp7ImRlIjoiV2llIGJpc3QgRHUgYXVmIHVucyBhdWZtZXJrc2FtIGdld29yZGVuPyJ9LCJjaG9pY2VzIjpbeyJ2YWx1ZSI6Ikl0ZW0gMSIsInRleHQiOnsiZGUiOiJTb2NpYWwtTWVkaWEifX0seyJ2YWx1ZSI6Ikl0ZW0gMiIsInRleHQiOnsiZGUiOiJBbmRlcmUgTWl0Z2xpZWRlciJ9fV0sInNob3dPdGhlckl0ZW0iOnRydWV9LHsidHlwZSI6InNpZ25hdHVyZXBhZCIsIm5hbWUiOiJVbnRlcnNjaHJpZnQiLCJ0aXRsZSI6eyJkZSI6IlVudGVyc2NocmlmdCJ9LCJpc1JlcXVpcmVkIjp0cnVlLCJzaWduYXR1cmVBdXRvU2NhbGVFbmFibGVkIjp0cnVlfV0sInRpdGxlIjp7ImRlIjoiWmFobHVuZ3NtZXRob2RlIn0sImRlc2NyaXB0aW9uIjp7ImRlIjoiVHJhZ2UgaGllciBiaXR0ZSBJbmZvcm1hdGlvbmVuIHp1ciBaYWhsdW5nc21ldGhvZGUgZWluISJ9fV0sIndpZHRoTW9kZSI6InN0YXRpYyIsIndpZHRoIjoiODAwcHgiLCJmaXRUb0NvbnRhaW5lciI6dHJ1ZX0=' ></web-form>
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">Online-Antrag</p>
+            <h2>Mitgliedsantrag</h2>
+            <p>
+              Du möchtest uns erst kennenlernen?
+              <a
+                class="text-link"
+                href="kontakt.html?anliegen=probetraining#anfrage"
+                >Probetraining anfragen</a
+              >.
+            </p>
+            <p>
+              Bitte füllt das Formular vollständig aus. Nach dem Absenden
+              erhaltet ihr eine Rückmeldung über den weiteren Ablauf.
+            </p>
+          </div>
+
+          <div
+            class="form-embed-wrap external-content"
+            data-external="membership"
+          >
+            <p>
+              Der Online-Antrag wird von campai bereitgestellt. Erst mit deiner
+              Zustimmung werden Inhalte geladen und technische Daten an campai
+              übertragen.
+            </p>
+            <button type="button" class="btn btn-primary" data-external-load>
+              Mitgliedsantrag laden und zustimmen
+            </button>
+            <p>
+              <a class="text-link" href="/datenschutz.html"
+                >Datenschutzhinweise</a
+              >
+            </p>
+            <noscript
+              ><p>
+                Für eingebettete Inhalte bitte JavaScript aktivieren. Du
+                erreichst uns auch unter
+                <a href="mailto:info@asc-fds.de">info@asc-fds.de</a>.
+              </p></noscript
+            >
+            <p data-external-status role="status"></p>
+            <div data-external-slot>
+              <template>
+                <p class="form-embed-note"></p>
+                <web-form
+                  zone="campai"
+                  organisation="658025583a7cd688f95c6426"
+                  form="69dbc74753ea3c928447cd4a"
+                  css=".sd-root-modern{--base-unit: 8px;--primary: #c90e0e;--primary-foreground: #ffffff;--foreground: #000000;--background: #ffffff;--background-dim: #f3f3f3;--background-dim-light: #f9f9f9;--font-family: initial;flex: 1;}.sv-tagbox__item, .sd-tagbox_clean-button{box-sizing: content-box;}"
+                  model="base64;eyJsb2NhbGUiOiJkZSIsInRpdGxlIjp7ImRlIjoiTWl0Z2xpZWRzYW50cmFnIn0sImRlc2NyaXB0aW9uIjp7ImRlIjoiQVNDIEZyZXVkZW5zdGFkdCBlLlYuIDx1IHN0eWxlPVwiY2FyZXQtY29sb3I6IHJnYigwLCAwLCAwKTsgY29sb3I6IHJnYigwLCAwLCAwKTsgd2hpdGUtc3BhY2U6IG5vcm1hbDtcIj48c3BhbiBzdHlsZT1cImZvbnQtc2l6ZTogN3B0OyBmb250LWZhbWlseTogJnF1b3Q7QXJpYWwgVW5pY29kZSBNUyZxdW90Oywgc2Fucy1zZXJpZjtcIj7igKImbmJzcDs8L3NwYW4+PC91PjxzcGFuIHN0eWxlPVwiY2FyZXQtY29sb3I6IHJnYigwLCAwLCAwKTsgY29sb3I6IHJnYigwLCAwLCAwKTsgZm9udC1mYW1pbHk6IC13ZWJraXQtc3RhbmRhcmQ7IGZvbnQtc2l6ZTogbWVkaXVtOyB3aGl0ZS1zcGFjZTogbm9ybWFsO1wiPjwvc3Bhbj5HZXJoYXJ0LUhhdXB0bWFubi1XZWcgOCA8dSBzdHlsZT1cIndoaXRlLXNwYWNlOiBub3JtYWw7IGNhcmV0LWNvbG9yOiByZ2IoMCwgMCwgMCk7IGNvbG9yOiByZ2IoMCwgMCwgMCk7XCI+PHNwYW4gc3R5bGU9XCJmb250LXNpemU6IDdwdDsgZm9udC1mYW1pbHk6ICZxdW90O0FyaWFsIFVuaWNvZGUgTVMmcXVvdDssIHNhbnMtc2VyaWY7XCI+4oCiJm5ic3A7PC9zcGFuPjwvdT43MjI1MCBGcmV1ZGVuc3RhZHQifSwibG9nbyI6eyJkZSI6Imh0dHBzOi8vYXBpLmNhbXBhaS5jb20vc3RvcmFnZS9kb3dubG9hZC9vcmdhbmlzYXRpb24vNjU4MDI1NTgzYTdjZDY4OGY5NWM2NDI2L2Zvcm0vNjlkYmM3NDc1M2VhM2M5Mjg0NDdjZDRhL3l2Um5lVXFiaEFCSElCaXFhR0FvWi5wbmcifSwibG9nb1Bvc2l0aW9uIjoicmlnaHQiLCJjb21wbGV0ZWRIdG1sIjp7ImRlIjoiPGgxPlZpZWxlbiBEYW5rIGbDvHIgZGFzIEF1c2bDvGxsZW4gZGVzIE1pdGdsaWVkc2FudHJhZ3M8L2gxPlxuPHA+RHUgc29sbHRlc3QgZWluZSBFLU1haWwgZXJoYWx0ZW4gaGFiZW4gZGllIER1IGJlc3TDpHRpZ2VuIG11c3N0LiBCaXR0ZSDDvGJlcnByw7xmZSBhdWNoIGRlaW5lbiBTUEFNLU9yZG5lci48L3A+XG4ifSwicGFnZXMiOlt7Im5hbWUiOiJNaXRnbGllZCIsImVsZW1lbnRzIjpbeyJ0eXBlIjoidGV4dCIsIm5hbWUiOiJGcmFnZTEiLCJtYXhXaWR0aCI6IjUwMHB4IiwidGl0bGUiOnsiZGUiOiJUaXRlbCJ9LCJmb3JtYXQiOiJ0ZXh0In0seyJ0eXBlIjoidGV4dCIsIm5hbWUiOiJWb3JuYW1lIiwibWF4V2lkdGgiOiI1MDBweCIsInN0YXJ0V2l0aE5ld0xpbmUiOmZhbHNlLCJpc1JlcXVpcmVkIjp0cnVlLCJmb3JtYXQiOiJ0ZXh0In0seyJ0eXBlIjoidGV4dCIsIm5hbWUiOiJOYWNobmFtZSIsIm1heFdpZHRoIjoiNTAwcHgiLCJzdGFydFdpdGhOZXdMaW5lIjpmYWxzZSwiaXNSZXF1aXJlZCI6dHJ1ZSwiZm9ybWF0IjoidGV4dCJ9LHsidHlwZSI6InRleHQiLCJuYW1lIjoiR2VidXJ0c2RhdHVtIiwid2lkdGgiOiIyNTBweCIsIm1pbldpZHRoIjoiMjUwcHgiLCJtYXhXaWR0aCI6IjI1MHB4Iiwic3RhcnRXaXRoTmV3TGluZSI6ZmFsc2UsImlzUmVxdWlyZWQiOnRydWUsImlucHV0VHlwZSI6ImRhdGUiLCJtYXhWYWx1ZUV4cHJlc3Npb24iOiJEYXR1bShIZXV0ZSgpLC0xOCwnSmFocicpIiwiZm9ybWF0IjoiZGF0ZSJ9LHsidHlwZSI6ImNoZWNrYm94IiwibmFtZSI6IkFydCIsIndpZHRoIjoiMjIwcHgiLCJtaW5XaWR0aCI6IjIyMHB4IiwibWF4V2lkdGgiOiIyMjBweCIsInRpdGxlIjp7ImRlIjoiR2VzY2hsZWNodCJ9LCJpc1JlcXVpcmVkIjp0cnVlLCJjaG9pY2VzIjpbIm3DpG5ubGljaCIsIndlaWJsaWNoIiwiZGl2ZXJzIix7InZhbHVlIjoiQXJ0aWtlbCAxIiwidGV4dCI6eyJkZSI6ImtlaW5lIEFuZ2FiZSJ9fV0sIm1heFNlbGVjdGVkQ2hvaWNlcyI6MSwibWluU2VsZWN0ZWRDaG9pY2VzIjoxfV0sInRpdGxlIjp7ImRlIjoiTWl0Z2xpZWQifSwiZGVzY3JpcHRpb24iOnsiZGUiOiJUcmFnZSBoaWVyIGRlaW5lIE1pdGdsaWVkZXJkYXRlbiBlaW4hIn19LHsibmFtZSI6IkFkcmVzc2UiLCJlbGVtZW50cyI6W3sidHlwZSI6InRleHQiLCJuYW1lIjoiU3RyYcOfZSArIE5yLiIsIm1heFdpZHRoIjoiNTAwcHgiLCJpc1JlcXVpcmVkIjp0cnVlLCJtaW4iOjAsIm1heCI6OTk5OTksImZvcm1hdCI6InRleHQifSx7InR5cGUiOiJ0ZXh0IiwibmFtZSI6IlBvc3RsZWl0emFobCIsIndpZHRoIjoiMTkwcHgiLCJtaW5XaWR0aCI6IjE5MHB4IiwibWF4V2lkdGgiOiIxOTBweCIsInN0YXJ0V2l0aE5ld0xpbmUiOmZhbHNlLCJ0aXRsZSI6eyJkZSI6IlBMWiJ9LCJpc1JlcXVpcmVkIjp0cnVlLCJtaW4iOjk5OSwibWF4Ijo5OTk5OSwic3RlcCI6MSwiZm9ybWF0IjoidGV4dCJ9LHsidHlwZSI6InRleHQiLCJuYW1lIjoiT3J0Iiwid2lkdGgiOiIzMDBweCIsIm1heFdpZHRoIjoiMzAwcHgiLCJpc1JlcXVpcmVkIjp0cnVlLCJmb3JtYXQiOiJ0ZXh0In0seyJ0eXBlIjoidGV4dCIsIm5hbWUiOiJMYW5kIiwid2lkdGgiOiIzMDBweCIsIm1heFdpZHRoIjoiMzAwcHgiLCJzdGFydFdpdGhOZXdMaW5lIjpmYWxzZSwiaXNSZXF1aXJlZCI6dHJ1ZSwicGxhY2Vob2xkZXIiOnsiZGUiOiJEZXV0c2NobGFuZCJ9LCJmb3JtYXQiOiJ0ZXh0In1dLCJ0aXRsZSI6eyJkZSI6IkFkcmVzc2UifSwiZGVzY3JpcHRpb24iOnsiZGUiOiJUcmFnZSBoaWVyIGJpdHRlIGRlaW5lIEFkcmVzc2UgZWluISJ9fSx7Im5hbWUiOiJLb21tdW5pa2F0aW9uIiwiZWxlbWVudHMiOlt7InR5cGUiOiJ0ZXh0IiwibmFtZSI6IkUtTWFpbCBBZHJlc3NlIiwid2lkdGgiOiIzMDBweCIsIm1heFdpZHRoIjoiMzAwcHgiLCJpc1JlcXVpcmVkIjp0cnVlLCJ2YWxpZGF0b3JzIjpbeyJ0eXBlIjoiZW1haWwifV0sImlucHV0VHlwZSI6ImVtYWlsIiwiZm9ybWF0IjoiZW1haWwifSx7InR5cGUiOiJ0ZXh0IiwibmFtZSI6Ik1vYmlsbnVtbWVyIiwid2lkdGgiOiIzMDBweCIsIm1heFdpZHRoIjoiMzAwcHgiLCJzdGFydFdpdGhOZXdMaW5lIjpmYWxzZSwidGl0bGUiOnsiZGUiOiJNb2JpbC0vRmVzdG5ldHpudW1tZXIifSwiaXNSZXF1aXJlZCI6dHJ1ZSwidmFsaWRhdG9ycyI6W3sidHlwZSI6Im1vYmlsZV9waG9uZSJ9XSwiaW5wdXRUeXBlIjoidGVsIiwiZm9ybWF0IjoibW9iaWxlIn1dLCJ0aXRsZSI6eyJkZSI6IktvbW11bmlrYXRpb24ifSwiZGVzY3JpcHRpb24iOnsiZGUiOiJXaWUga8O2bm5lbiB3aXIgZGljaCBlcnJlaWNoZW4gdW5kIHdpZSBzb2xsZW4gd2lyIG1pdCBkaXIga29tbXVuaXppZXJlbj8ifX0seyJuYW1lIjoiU2VpdGUyIiwiZWxlbWVudHMiOlt7InR5cGUiOiJ0ZXh0IiwibmFtZSI6IkVpbnRyaXR0c2RhdHVtIiwid2lkdGgiOiIyNTBweCIsIm1pbldpZHRoIjoiMjUwcHgiLCJtYXhXaWR0aCI6IjI1MHB4IiwiaXNSZXF1aXJlZCI6dHJ1ZSwiaW5wdXRUeXBlIjoiZGF0ZSIsImZvcm1hdCI6ImRhdGUifV0sInRpdGxlIjp7ImRlIjoiTWl0Z2xpZWRzY2hhZnQifSwiZGVzY3JpcHRpb24iOnsiZGUiOiJUcmFnZSBoaWVyIGJpdHRlIGRlaW5lbiBnZXfDvG5zY2h0ZW4gTWl0Z2xpZWRzY2hhZnRzYmVnaW5uIGVpbiEifX0seyJuYW1lIjoiU2VpdGUxIiwiZWxlbWVudHMiOlt7InR5cGUiOiJkcm9wZG93biIsIm5hbWUiOiJTdGFuZGFyZCBmw7xyIFphaGx1bmciLCJ3aWR0aCI6IjEwMCUiLCJkZWZhdWx0VmFsdWUiOiJTRVBBLUxhc3RzY2hyaWZ0IiwiaXNSZXF1aXJlZCI6dHJ1ZSwiY2hvaWNlcyI6WyJTRVBBLUxhc3RzY2hyaWZ0Il19LHsidHlwZSI6InRleHQiLCJuYW1lIjoiSUJBTiIsInZpc2libGVJZiI6IntTdGFuZGFyZCBmw7xyIFphaGx1bmd9ID0gJ1NFUEEtTGFzdHNjaHJpZnQnIiwid2lkdGgiOiIxMDAlIiwiaXNSZXF1aXJlZCI6dHJ1ZSwidmFsaWRhdG9ycyI6W3sidHlwZSI6ImliYW4ifV0sImZvcm1hdCI6ImliYW4ifSx7InR5cGUiOiJ0ZXh0IiwibmFtZSI6IkJJQyIsInZpc2libGVJZiI6IntMYW5kfSA8PiAnRGV1dHNjaGxhbmQnIGFuZCB7U3RhbmRhcmQgZsO8ciBaYWhsdW5nfSA9ICdTRVBBLUxhc3RzY2hyaWZ0JyIsIndpZHRoIjoiMTAwJSIsImlzUmVxdWlyZWQiOnRydWUsInZhbGlkYXRvcnMiOlt7InR5cGUiOiJiaWMifV0sImZvcm1hdCI6ImJpYyJ9LHsidHlwZSI6ImNoZWNrYm94IiwibmFtZSI6IlNFUEEtRXJtw6RjaHRpZ3VuZyIsInZpc2libGVJZiI6IntTdGFuZGFyZCBmw7xyIFphaGx1bmd9ID0gJ1NFUEEtTGFzdHNjaHJpZnQnIiwid2lkdGgiOiIxMDAlIiwiaXNSZXF1aXJlZCI6dHJ1ZSwiY2hvaWNlcyI6W3sidmFsdWUiOiJJY2ggZXJtw6RjaHRpZ2UgaGllcm1pdCBkZW4gVkVSRUlOIGUuVi4sIGRpZSB2b24gbWlyIHp1IGVudHJpY2h0ZW5kZW4gWmFobHVuZ2VuIGJlaSBGw6RsbGlna2VpdCB2b24gbWVpbmVtIEtvbnRvIG1pdHRlbHMgTGFzdHNjaHJpZnQgZWluenV6aWVoZW4uIEljaCB3ZWlzZSBtZWluIEtyZWRpdGluc3RpdHV0IGFuLCBkaWUgdm9uIFZFUkVJTiBlLlYuIGF1ZiBtZWluIEtvbnRvIGdlem9nZW5lbiBMYXN0c2NocmlmdGVuIGVpbnp1bMO2c2VuLiBIaW53ZWlzOiBJY2gga2FubiBpbm5lcmhhbGIgdm9uIGFjaHQgV29jaGVuLCBiZWdpbm5lbmQgbWl0IGRlbSBCZWxhc3R1bmdzZGF0dW0sIGRpZSBFcnN0YXR0dW5nIGRlcyBiZWxhc3RlbmRlbiBCZWl0cmFncyB2ZXJsYW5nZW4uIEVzIGdlbHRlbiBkYWJlaSBkaWUgbWl0IG1laW5lbSBLcmVkaXRpbnN0aXR1dCB2ZXJlaW5iYXJ0ZW4gQmVkaW5ndW5nZW4uIiwidGV4dCI6eyJkZSI6IkljaCBlcm3DpGNodGlnZSBoaWVybWl0IGRlbiBBU0MgRnJldWRlbnN0YWR0IGUuVi4sIGRpZSB2b24gbWlyIHp1IGVudHJpY2h0ZW5kZW4gWmFobHVuZ2VuIGJlaSBGw6RsbGlna2VpdCB2b24gbWVpbmVtIEtvbnRvIG1pdHRlbHMgTGFzdHNjaHJpZnQgZWluenV6aWVoZW4uIEljaCB3ZWlzZSBtZWluIEtyZWRpdGluc3RpdHV0IGFuLCBkaWUgdm9uIEFTQyBGcmV1ZGVuc3RhZHQgZS5WLiBhdWYgbWVpbiBLb250byBnZXpvZ2VuZW4gTGFzdHNjaHJpZnRlbiBlaW56dWzDtnNlbi4gSGlud2VpczogSWNoIGthbm4gaW5uZXJoYWxiIHZvbiBhY2h0IFdvY2hlbiwgYmVnaW5uZW5kIG1pdCBkZW0gQmVsYXN0dW5nc2RhdHVtLCBkaWUgRXJzdGF0dHVuZyBkZXMgYmVsYXN0ZW5kZW4gQmVpdHJhZ3MgdmVybGFuZ2VuLiBFcyBnZWx0ZW4gZGFiZWkgZGllIG1pdCBtZWluZW0gS3JlZGl0aW5zdGl0dXQgdmVyZWluYmFydGVuIEJlZGluZ3VuZ2VuLiJ9fV19LHsidHlwZSI6ImNoZWNrYm94IiwibmFtZSI6IkZyYWdlMyIsInRpdGxlIjp7ImRlIjoiV2llIGJpc3QgRHUgYXVmIHVucyBhdWZtZXJrc2FtIGdld29yZGVuPyJ9LCJjaG9pY2VzIjpbeyJ2YWx1ZSI6Ikl0ZW0gMSIsInRleHQiOnsiZGUiOiJTb2NpYWwtTWVkaWEifX0seyJ2YWx1ZSI6Ikl0ZW0gMiIsInRleHQiOnsiZGUiOiJBbmRlcmUgTWl0Z2xpZWRlciJ9fV0sInNob3dPdGhlckl0ZW0iOnRydWV9LHsidHlwZSI6InNpZ25hdHVyZXBhZCIsIm5hbWUiOiJVbnRlcnNjaHJpZnQiLCJ0aXRsZSI6eyJkZSI6IlVudGVyc2NocmlmdCJ9LCJpc1JlcXVpcmVkIjp0cnVlLCJzaWduYXR1cmVBdXRvU2NhbGVFbmFibGVkIjp0cnVlfV0sInRpdGxlIjp7ImRlIjoiWmFobHVuZ3NtZXRob2RlIn0sImRlc2NyaXB0aW9uIjp7ImRlIjoiVHJhZ2UgaGllciBiaXR0ZSBJbmZvcm1hdGlvbmVuIHp1ciBaYWhsdW5nc21ldGhvZGUgZWluISJ9fV0sIndpZHRoTW9kZSI6InN0YXRpYyIsIndpZHRoIjoiODAwcHgiLCJmaXRUb0NvbnRhaW5lciI6dHJ1ZX0="
+                ></web-form
+              ></template>
+            </div>
+            <button
+              type="button"
+              class="text-button"
+              data-external-revoke
+              hidden
+            >
+              Formular entfernen
+            </button>
+          </div>
         </div>
-      </div>
-    </section>
-  </main>
+      </section>
+    </main>
 
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-brand">
-        <img class="footer-logo" src="assets/img/logo-light.png" alt="ASC Freudenstadt Logo" />
-        <p>Armbrust-Sport-Club Freudenstadt e.V.<br></p>
-      </div>
-      <div>
-        <h3>Navigation</h3>
-        <a href="ueber-uns.html">Über uns</a>
-        <a href="events_sportbetrieb.html">Events &amp; Sportbetrieb</a>
-        <a href="/spende">Spenden</a>
-        <a href="kontakt.html">Kontakt &amp; Anfahrt</a>
-      </div>
-      <div>
-        <h3>Kontakt</h3>
-        <p>Gerhart-Hauptmann-Weg 8<br>72250 Freudenstadt</p>
-        <a href="mailto:info@asc-fds.de">info@asc-fds.de</a>
-      </div>
-      <div>
-        <h3>Rechtliches</h3>
-        <a href="impressum.html">Impressum</a>
-        <a href="datenschutz.html">Datenschutz</a>
-      </div>
+    <footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <img
+        class="footer-logo"
+        src="/assets/img/logo-light-320.webp"
+        srcset="
+          /assets/img/logo-light-320.webp 320w,
+          /assets/img/logo-light-640.webp 640w
+        "
+        sizes="160px"
+        loading="lazy"
+        alt="ASC Freudenstadt Logo"
+        width="5000"
+        height="3750"
+      />
+      <p>Armbrust-Sport-Club Freudenstadt e.V.<br /></p>
     </div>
-    <div class="container footer-bottom">
-      <p>© <span data-current-year></span> ASC Freudenstadt e.V.</p>
+    <div>
+      <h3>Navigation</h3>
+      <a href="/ueber-uns.html">Verein</a>
+      <a href="/events_sportbetrieb.html">Termine &amp; Ergebnisse</a>
+      <a href="/mitglied-werden.html">Mitglied werden</a>
+      <a href="/spende">Spenden</a>
+      <a href="/kontakt.html">Kontakt &amp; Anfahrt</a>
     </div>
-  </footer>
-</body>
+    <div>
+      <h3>Vereinsanschrift</h3>
+      <p>Gerhart-Hauptmann-Weg 8<br />72250 Freudenstadt</p>
+      <a href="mailto:info@asc-fds.de">info@asc-fds.de</a>
+    </div>
+    <div>
+      <h3>Rechtliches</h3>
+      <a href="/impressum.html">Impressum</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p>© <span data-current-year></span> ASC Freudenstadt e.V.</p>
+  </div>
+</footer>
+    <div id="assistant-root"></div>
+  </body>
 </html>

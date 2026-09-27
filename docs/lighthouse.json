@@ -1,0 +1,415 @@
+{
+  "categories": {
+    "performance": 0.95,
+    "accessibility": 1,
+    "best-practices": 0.96,
+    "seo": 1
+  },
+  "metrics": {
+    "first-contentful-paint": "1.2 s",
+    "largest-contentful-paint": "2.9 s",
+    "cumulative-layout-shift": "0",
+    "total-blocking-time": "0 ms",
+    "speed-index": "1.4 s"
+  },
+  "issues": [
+    {
+      "id": "largest-contentful-paint",
+      "title": "Largest Contentful Paint",
+      "score": 0.82
+    },
+    {
+      "id": "errors-in-console",
+      "title": "Browser errors were logged to the console",
+      "score": 0,
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "sourceLocation",
+            "valueType": "source-location",
+            "label": "Source"
+          },
+          {
+            "key": "description",
+            "valueType": "code",
+            "label": "Description"
+          }
+        ],
+        "items": [
+          {
+            "source": "javascript",
+            "description": "Access to fetch at 'https://europe-west3-asc-app-e25d6.cloudfunctions.net/publicEvents?limit=100' from origin 'http://127.0.0.1:8765' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+            "sourceLocation": {
+              "type": "source-location",
+              "url": "http://127.0.0.1:8765/index.html",
+              "urlProvider": "network",
+              "line": 0,
+              "column": 0
+            }
+          },
+          {
+            "source": "network",
+            "description": "Failed to load resource: net::ERR_FAILED",
+            "sourceLocation": {
+              "type": "source-location",
+              "url": "https://europe-west3-asc-app-e25d6.cloudfunctions.net/publicEvents?limit=100",
+              "urlProvider": "network",
+              "line": 0,
+              "column": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "unminified-css",
+      "title": "Minify CSS",
+      "score": 0,
+      "details": {
+        "type": "opportunity",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "label": "URL"
+          },
+          {
+            "key": "totalBytes",
+            "valueType": "bytes",
+            "label": "Transfer Size"
+          },
+          {
+            "key": "wastedBytes",
+            "valueType": "bytes",
+            "label": "Est Savings"
+          }
+        ],
+        "items": [
+          {
+            "url": "http://127.0.0.1:8765/assets/css/styles.css?v=20260927",
+            "totalBytes": 32375,
+            "wastedBytes": 5215,
+            "wastedPercent": 16.107987200596476
+          }
+        ],
+        "overallSavingsMs": 0,
+        "overallSavingsBytes": 5215,
+        "sortedBy": [
+          "wastedBytes"
+        ],
+        "debugData": {
+          "type": "debugdata",
+          "metricSavings": {
+            "FCP": 150,
+            "LCP": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "unused-css-rules",
+      "title": "Reduce unused CSS",
+      "score": 0,
+      "details": {
+        "type": "opportunity",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "label": "URL"
+          },
+          {
+            "key": "totalBytes",
+            "valueType": "bytes",
+            "label": "Transfer Size"
+          },
+          {
+            "key": "wastedBytes",
+            "valueType": "bytes",
+            "label": "Est Savings"
+          }
+        ],
+        "items": [
+          {
+            "url": "http://127.0.0.1:8765/assets/css/styles.css?v=20260927",
+            "wastedBytes": 15905,
+            "wastedPercent": 49.41128957097145,
+            "totalBytes": 32189
+          }
+        ],
+        "overallSavingsMs": 150,
+        "overallSavingsBytes": 15905,
+        "sortedBy": [
+          "wastedBytes"
+        ],
+        "debugData": {
+          "type": "debugdata",
+          "metricSavings": {
+            "FCP": 270,
+            "LCP": 150
+          }
+        }
+      }
+    },
+    {
+      "id": "cache-insight",
+      "title": "Use efficient cache lifetimes",
+      "score": 0,
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "label": "Request"
+          },
+          {
+            "key": "cacheLifetimeMs",
+            "valueType": "ms",
+            "label": "Cache TTL",
+            "displayUnit": "duration"
+          },
+          {
+            "key": "totalBytes",
+            "valueType": "bytes",
+            "label": "Transfer Size",
+            "displayUnit": "kb",
+            "granularity": 1
+          }
+        ],
+        "items": [
+          {
+            "url": "http://127.0.0.1:8765/assets/css/styles.css?v=20260927",
+            "cacheLifetimeMs": 0,
+            "totalBytes": 32375,
+            "wastedBytes": 32375
+          },
+          {
+            "url": "http://127.0.0.1:8765/assets/img/logo-light-320.webp",
+            "cacheLifetimeMs": 0,
+            "totalBytes": 16670,
+            "wastedBytes": 16670
+          },
+          {
+            "url": "http://127.0.0.1:8765/assets/js/main.js",
+            "cacheLifetimeMs": 0,
+            "totalBytes": 9886,
+            "wastedBytes": 9886
+          },
+          {
+            "url": "http://127.0.0.1:8765/assets/js/public-events.js",
+            "cacheLifetimeMs": 0,
+            "totalBytes": 4239,
+            "wastedBytes": 4239
+          },
+          {
+            "url": "http://127.0.0.1:8765/assets/js/event-model.js",
+            "cacheLifetimeMs": 0,
+            "totalBytes": 2072,
+            "wastedBytes": 2072
+          }
+        ],
+        "sortedBy": [
+          "wastedBytes"
+        ],
+        "skipSumming": [
+          "cacheLifetimeMs"
+        ],
+        "debugData": {
+          "type": "debugdata",
+          "wastedBytes": 65242
+        }
+      }
+    },
+    {
+      "id": "document-latency-insight",
+      "title": "Document request latency",
+      "score": 0.5,
+      "details": {
+        "type": "checklist",
+        "items": {
+          "noRedirects": {
+            "label": "Avoids redirects",
+            "value": true
+          },
+          "serverResponseIsFast": {
+            "label": "Server responds quickly (observed 2 ms)",
+            "value": true
+          },
+          "usesCompression": {
+            "label": "No compression applied",
+            "value": false
+          }
+        },
+        "debugData": {
+          "type": "debugdata",
+          "redirectDuration": 0,
+          "serverResponseTime": 2,
+          "uncompressedResponseBytes": 7487,
+          "wastedBytes": 7487
+        }
+      }
+    },
+    {
+      "id": "image-delivery-insight",
+      "title": "Improve image delivery",
+      "score": 0,
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "node",
+            "valueType": "node",
+            "label": ""
+          },
+          {
+            "key": "url",
+            "valueType": "url",
+            "label": "URL",
+            "subItemsHeading": {
+              "key": "reason",
+              "valueType": "text"
+            }
+          },
+          {
+            "key": "totalBytes",
+            "valueType": "bytes",
+            "label": "Resource Size"
+          },
+          {
+            "key": "wastedBytes",
+            "valueType": "bytes",
+            "label": "Est Savings",
+            "subItemsHeading": {
+              "key": "wastedBytes",
+              "valueType": "bytes"
+            }
+          }
+        ],
+        "items": [
+          {
+            "node": {
+              "type": "node",
+              "lhId": "page-0-IMG",
+              "path": "1,HTML,1,BODY,3,FOOTER,0,DIV,0,DIV,0,IMG",
+              "selector": "footer.site-footer > div.container > div.footer-brand > img.footer-logo",
+              "boundingRect": {
+                "top": 5398,
+                "bottom": 5518,
+                "left": 20,
+                "right": 180,
+                "width": 160,
+                "height": 120
+              },
+              "snippet": "<img class=\"footer-logo\" src=\"/assets/img/logo-light-320.webp\" srcset=\"/assets/img/logo-light-320.webp 320w, /assets/img/logo-light-640.webp 640w\" sizes=\"(max-width: 980px) 90px, 160px\" alt=\"ASC Freudenstadt Logo\" width=\"5000\" height=\"3750\">",
+              "nodeLabel": "ASC Freudenstadt Logo"
+            },
+            "url": "http://127.0.0.1:8765/assets/img/logo-light-320.webp",
+            "totalBytes": 16482,
+            "wastedBytes": 13282,
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "reason": "This image file is larger than it needs to be (320x240) for its displayed dimensions (160x120). Use responsive images to reduce the image download size.",
+                  "wastedBytes": 12362
+                }
+              ]
+            }
+          }
+        ],
+        "debugData": {
+          "type": "debugdata",
+          "wastedBytes": 13282
+        }
+      }
+    },
+    {
+      "id": "network-dependency-tree-insight",
+      "title": "Network dependency tree",
+      "score": 0,
+      "details": {
+        "type": "list",
+        "items": [
+          {
+            "type": "list-section",
+            "value": {
+              "type": "network-tree",
+              "chains": {
+                "4BDDD7CDDD64858EB741BC70BA554041": {
+                  "url": "http://127.0.0.1:8765/index.html",
+                  "navStartToEndTime": 9,
+                  "transferSize": 11361,
+                  "isLongest": true,
+                  "children": {
+                    "21386.2": {
+                      "url": "http://127.0.0.1:8765/assets/css/styles.css?v=20260927",
+                      "navStartToEndTime": 14,
+                      "transferSize": 32375,
+                      "isLongest": true,
+                      "children": {}
+                    }
+                  }
+                }
+              },
+              "longestChain": {
+                "duration": 14
+              }
+            }
+          },
+          {
+            "type": "list-section",
+            "title": "Preconnected origins",
+            "description": "[preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.",
+            "value": {
+              "type": "text",
+              "value": "no origins were preconnected"
+            }
+          },
+          {
+            "type": "list-section",
+            "title": "Preconnect candidates",
+            "description": "Add [preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints to your most important origins, but try to use no more than 4.",
+            "value": {
+              "type": "text",
+              "value": "No additional origins are good candidates for preconnecting"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "render-blocking-insight",
+      "title": "Render-blocking requests",
+      "score": 0,
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "label": "URL"
+          },
+          {
+            "key": "totalBytes",
+            "valueType": "bytes",
+            "label": "Transfer Size"
+          },
+          {
+            "key": "wastedMs",
+            "valueType": "timespanMs",
+            "label": "Duration"
+          }
+        ],
+        "items": [
+          {
+            "url": "http://127.0.0.1:8765/assets/css/styles.css?v=20260927",
+            "totalBytes": 32375,
+            "wastedMs": 602
+          }
+        ]
+      }
+    }
+  ]
+}

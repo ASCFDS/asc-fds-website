@@ -1,18 +1,20 @@
+import "./render-shell.js";
+import "./render-content.js";
 import { cpSync, existsSync, mkdirSync, readdirSync, rmSync } from "node:fs";
 import { join } from "node:path";
 
 const rootDir = process.cwd();
 const distDir = join(rootDir, "dist");
 const publicFiles = [
+  "robots.txt",
+  "sitemap.xml",
   "CNAME",
   "CNAME.txt",
   "_redirects",
-  "_headers"
+  "_headers",
 ];
 
-const publicDirectories = [
-  "spende"
-];
+const publicDirectories = ["spende"];
 
 rmSync(distDir, { force: true, recursive: true });
 mkdirSync(distDir, { recursive: true });
@@ -39,6 +41,6 @@ copy("assets");
 
 function copy(path) {
   cpSync(join(rootDir, path), join(distDir, path), {
-    recursive: true
+    recursive: true,
   });
 }

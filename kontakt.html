@@ -1,184 +1,366 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kontakt & Anfahrt | ASC Freudenstadt e.V.</title>
-  <meta name="description" content="Kontakt und Anfahrt zum ASC Freudenstadt e.V." />
-  <link rel="icon" type="image/png" href="assets/img/logo-dark.png" />
-  <link rel="apple-touch-icon" href="assets/img/logo-dark.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260530-zoom" />
-  <script defer src="assets/js/main.js"></script>
-  <script defer src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"></script>
-</head>
-<body>
-  <header class="site-header">
-    <div class="container nav">
-      <a class="brand" href="index.html" aria-label="Zur Startseite">
-        <img src="assets/img/logo-light.png" alt="Logo des ASC Freudenstadt e.V." />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kontakt & Anfahrt | ASC Freudenstadt e.V.</title>
+    <meta
+      name="description"
+      content="Kontakt und Anfahrt zum ASC Freudenstadt e.V."
+    />
+    <link rel="icon" type="image/png" href="assets/img/logo-dark.png" />
+    <link rel="apple-touch-icon" href="assets/img/logo-dark.png" />
+    <link rel="stylesheet" href="assets/css/styles.css?v=20260927" />
+    <script defer src="assets/js/main.js?v=20260927"></script>
+    <script
+      defer
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+    ></script>
+    <link rel="canonical" href="https://www.asc-fds.de/kontakt.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="de_DE" />
+    <meta
+      property="og:title"
+      content="Kontakt &amp; Anfahrt | ASC Freudenstadt e.V."
+    />
+    <meta
+      property="og:description"
+      content="Kontakt und Anfahrt zum ASC Freudenstadt e.V."
+    />
+    <meta property="og:url" content="https://www.asc-fds.de/kontakt.html" />
+    <meta
+      property="og:image"
+      content="https://www.asc-fds.de/assets/img/logo-dark.png"
+    />
+    <meta name="twitter:card" content="summary" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Startseite",
+            "item": "https://www.asc-fds.de/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Kontakt & Anfahrt",
+            "item": "https://www.asc-fds.de/kontakt.html"
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Zum Inhalt</a>
+    <header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="/index.html" aria-label="Zur Startseite">
+      <img
+        src="/assets/img/logo-light-320.webp"
+        srcset="
+          /assets/img/logo-light-320.webp 320w,
+          /assets/img/logo-light-640.webp 640w
+        "
+        sizes="(max-width: 980px) 90px, 160px"
+        alt="Logo des ASC Freudenstadt e.V."
+        width="5000"
+        height="3750"
+      />
+    </a>
+
+    <button
+      class="nav-toggle"
+      aria-controls="site-navigation"
+      type="button"
+      aria-expanded="false"
+      aria-label="Navigation öffnen"
+    >
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="site-nav" id="site-navigation" aria-label="Hauptnavigation">
+      <a
+        class="nav-home-link"
+        href="/index.html"
+        aria-label="Startseite"
+        title="Startseite"
+      >
+        <svg class="nav-home-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 10.5 12 3l8 7.5V20H4z" />
+        </svg>
       </a>
+      <a href="/ueber-uns.html">Verein</a>
+      <a href="/index.html#sport">Sport</a>
+      <a href="/events_sportbetrieb.html">Termine &amp; Ergebnisse</a>
+      <a href="/spende">Spenden</a>
+      <a  class="active" href="/kontakt.html" aria-current="page">Kontakt &amp; Anfahrt</a>
+      <a class="nav-cta" href="/mitglied-werden.html">Mitglied werden</a>
+    </nav>
+  </div>
+</header>
 
-      <button class="nav-toggle" aria-expanded="false" aria-label="Navigation öffnen">
-        <span></span><span></span><span></span>
-      </button>
-
-      <nav class="site-nav">
-        <a class="nav-home-link" href="index.html" aria-label="Startseite" title="Startseite">
-          <svg class="nav-home-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M4 10.5 12 3l8 7.5V20H4z" />
-          </svg>
-        </a>
-        <a href="ueber-uns.html">Über uns</a>
-        <a href="events_sportbetrieb.html">Events & Sportbetrieb</a>
-        <a href="/spende">Spenden</a>
-        <a class="active" href="kontakt.html">Kontakt &amp; Anfahrt</a>
-        <a class="nav-cta" href="mitglied-werden.html">Mitglied werden!</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section class="page-hero">
-      <div class="container">
-        <p class="eyebrow">Kontakt</p>
-        <h1>Kontakt &amp; Anfahrt</h1>
-        <p class="lead">Fragen zum Training, zum Verein oder zur Anfahrt beantworten wir gerne.</p>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container contact-grid">
-        <div class="panel">
-          <h2>Vereinskontakt</h2>
-          <p><strong>Ansprechpartner:</strong><br>Andreas Henne</p>
-          <p><strong>Adresse:</strong><br>Gerhart-Hauptmann-Weg 8<br>72250 Freudenstadt</p>
-          <p><strong>E-Mail:</strong><br><a href="mailto:info@asc-fds.de">info@asc-fds.de</a></p>
-          <p><strong>Telefon:</strong><br><a href="tel:+491743213421">0174 3213421</a></p>
-          <p><strong>Training:</strong><br>Mittwochs ab 18:30 Uhr</p>
-        </div>
-
-        <div class="panel">
-          <h2>Anfahrt zum Schützenhaus</h2>
-          <p>
-            Für die Navigation kann die Vereinsadresse direkt in Google Maps übernommen werden.
-          </p>
-          <a class="btn btn-primary" target="_blank" rel="noopener noreferrer"
-             href="https://www.google.com/maps/search/?api=1&query=Erlenweg+29%2F1%2C+72250+Freudenstadt">
-            Route in Google Maps öffnen
-          </a>
-
-          <div class="map-embed">
-            <iframe
-              title="Google Maps Karte zum ASC Freudenstadt e.V."
-              src="https://www.google.com/maps?q=Erlenweg%2029%2F1%2C%2072250%20Freudenstadt&z=15&output=embed"
-              width="100%"
-              height="320"
-              style="border:0;"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-          </div>
-          <p class="map-note">
-            Mit dem Laden der Karte werden Inhalte von Google Maps geladen.
+    <main id="main-content">
+      <section class="page-hero">
+        <div class="container">
+          <p class="eyebrow">Kontakt</p>
+          <h1>Kontakt &amp; Anfahrt</h1>
+          <p class="lead">
+            Fragen zum Training, zum Verein oder zur Anfahrt beantworten wir
+            gerne.
           </p>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="section">
-      <div class="container">
-        <div class="section-head" id="anfrage">
-          <p class="eyebrow">Anfrage</p>
-          <h2>Nachricht an den Verein</h2>
+      <section class="section">
+        <div class="container contact-grid">
+          <div class="panel">
+            <h2>Vereinskontakt</h2>
+            <p><strong>Ansprechpartner:</strong><br />Andreas Henne</p>
+            <p>
+              <strong>Vereins- und Postanschrift:</strong
+              ><br />Gerhart-Hauptmann-Weg 8<br />72250 Freudenstadt
+            </p>
+            <p>
+              <strong>E-Mail:</strong><br /><a href="mailto:info@asc-fds.de"
+                >info@asc-fds.de</a
+              >
+            </p>
+            <p>
+              <strong>Telefon:</strong><br /><a href="tel:+491743213421"
+                >0174 3213421</a
+              >
+            </p>
+            <p><strong>Training:</strong><br />Mittwochs ab 18:30 Uhr</p>
+          </div>
+
+          <div class="panel">
+            <h2>Anfahrt zum Schützenhaus</h2>
+            <p>
+              <strong>Trainingsort: Erlenweg 29/1, 72250 Freudenstadt.</strong
+              ><br />Bitte nutze diese Adresse für deinen Besuch beim Training.
+            </p>
+            <a
+              class="btn btn-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.google.com/maps/search/?api=1&query=Erlenweg+29%2F1%2C+72250+Freudenstadt"
+            >
+              Route in Google Maps öffnen
+            </a>
+
+            <div class="map-embed external-content" data-external="maps">
+              <p>
+                Google Maps wird erst nach deiner Zustimmung geladen. Dabei
+                werden technische Daten wie deine IP-Adresse an Google
+                übermittelt.
+              </p>
+              <button type="button" class="btn btn-primary" data-external-load>
+                Karte laden und zustimmen
+              </button>
+              <p>
+                <a class="text-link" href="/datenschutz.html"
+                  >Datenschutzhinweise</a
+                >
+              </p>
+              <noscript
+                ><p>
+                  Für eingebettete Inhalte bitte JavaScript aktivieren. Du
+                  erreichst uns auch unter
+                  <a href="mailto:info@asc-fds.de">info@asc-fds.de</a>.
+                </p></noscript
+              >
+              <p data-external-status role="status"></p>
+              <div data-external-slot></div>
+              <button
+                type="button"
+                class="text-button"
+                data-external-revoke
+                hidden
+              >
+                Karte entfernen
+              </button>
+            </div>
+            <p class="map-note">
+              Mit dem Laden der Karte werden Inhalte von Google Maps geladen.
+            </p>
+          </div>
         </div>
+      </section>
 
-        <form
-          class="contact-form"
-          data-contact-form
-          action="/api/contact"
-          method="POST"
-        >
-          <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
-          <input type="url" name="website" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <section class="section">
+        <div class="container">
+          <div class="section-head" id="anfrage">
+            <p class="eyebrow">Anfrage</p>
+            <h2>Wir freuen uns auf dich.</h2>
+            <p>
+              Probetraining oder eine allgemeine Frage? Wähle dein Anliegen.
+              Pflichtfelder sind mit * markiert.
+            </p>
+          </div>
 
-          <div class="form-grid">
-            <div class="form-group">
-              <label for="name">Name *</label>
-              <input id="name" name="name" type="text" autocomplete="name" required />
+          <form
+            class="contact-form"
+            data-contact-form
+            action="/api/contact"
+            method="POST"
+          >
+            <input
+              type="text"
+              name="_honey"
+              class="form-honeypot"
+              tabindex="-1"
+              autocomplete="off"
+              aria-hidden="true"
+            />
+            <input
+              type="url"
+              name="website"
+              class="form-honeypot"
+              tabindex="-1"
+              autocomplete="off"
+              aria-hidden="true"
+            />
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="name">Name *</label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  autocomplete="name"
+                  maxlength="120"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="email">E-Mail *</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  maxlength="254"
+                  required
+                />
+              </div>
             </div>
-            <div class="form-group">
-              <label for="email">E-Mail *</label>
-              <input id="email" name="email" type="email" autocomplete="email" required />
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="telefon">Telefon</label>
+                <input
+                  id="telefon"
+                  name="telefon"
+                  type="tel"
+                  autocomplete="tel"
+                />
+              </div>
+              <div class="form-group">
+                <label for="betreff">Dein Anliegen *</label
+                ><select id="betreff" name="betreff">
+                  <option>Allgemeine Anfrage</option>
+                  <option value="Probetraining">
+                    Probetraining vereinbaren
+                  </option>
+                  <option>Mitgliedschaft</option>
+                </select>
+              </div>
             </div>
-          </div>
 
-          <div class="form-grid">
             <div class="form-group">
-              <label for="telefon">Telefon</label>
-              <input id="telefon" name="telefon" type="tel" autocomplete="tel" />
+              <label for="nachricht">Deine Nachricht *</label>
+              <p id="message-hint">
+                Für ein Probetraining genügen dein Interesse und ein möglicher
+                Termin. Alles Weitere besprechen wir persönlich.
+              </p>
+              <textarea
+                id="nachricht"
+                name="nachricht"
+                rows="5"
+                aria-describedby="message-hint"
+                maxlength="4000"
+                required
+              ></textarea>
             </div>
-            <div class="form-group">
-              <label for="betreff">Betreff *</label>
-              <input id="betreff" name="betreff" type="text" required />
+
+            <div class="form-checkbox">
+              <input
+                id="datenschutz"
+                name="datenschutz"
+                type="checkbox"
+                required
+              />
+              <label for="datenschutz">
+                Ich habe die
+                <a href="datenschutz.html">Datenschutzerklärung</a> gelesen und
+                stimme der Verarbeitung meiner Angaben zur Bearbeitung meiner
+                Anfrage zu. *
+              </label>
             </div>
-          </div>
 
-          <div class="form-group">
-            <label for="nachricht">Nachricht *</label>
-            <textarea id="nachricht" name="nachricht" rows="6" required></textarea>
-          </div>
+            <div class="turnstile-wrap" data-turnstile-widget></div>
+            <noscript>
+              <p class="form-status is-error">
+                Das Formular benötigt JavaScript für die Sicherheitsprüfung.
+              </p>
+            </noscript>
+            <p class="form-status" data-form-status aria-live="polite"></p>
+            <div class="form-actions">
+              <button class="btn btn-primary form-submit-button" type="submit">
+                Nachricht senden
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
 
-          <div class="form-checkbox">
-            <input id="datenschutz" name="datenschutz" type="checkbox" required />
-            <label for="datenschutz">
-              Ich habe die <a href="datenschutz.html">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage zu. *
-            </label>
-          </div>
-
-          <div class="turnstile-wrap" data-turnstile-widget></div>
-          <noscript>
-            <p class="form-status is-error">Das Formular benötigt JavaScript für die Sicherheitsprüfung.</p>
-          </noscript>
-          <p class="form-status" data-form-status aria-live="polite"></p>
-          <div class="form-actions">
-            <button class="btn btn-primary form-submit-button" type="submit">Nachricht senden</button>
-          </div>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-brand">
-        <img class="footer-logo" src="assets/img/logo-light.png" alt="ASC Freudenstadt Logo" />
-        <p>Armbrust-Sport-Club Freudenstadt e.V.<br></p>
-      </div>
-      <div>
-        <h3>Navigation</h3>
-        <a href="ueber-uns.html">Über uns</a>
-        <a href="events_sportbetrieb.html">Events &amp; Sportbetrieb</a>
-        <a href="/spende">Spenden</a>
-        <a href="kontakt.html">Kontakt &amp; Anfahrt</a>
-      </div>
-      <div>
-        <h3>Kontakt</h3>
-        <p>Gerhart-Hauptmann-Weg 8<br>72250 Freudenstadt</p>
-        <a href="mailto:info@asc-fds.de">info@asc-fds.de</a>
-      </div>
-      <div>
-        <h3>Rechtliches</h3>
-        <a href="impressum.html">Impressum</a>
-        <a href="datenschutz.html">Datenschutz</a>
-      </div>
+    <footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <img
+        class="footer-logo"
+        src="/assets/img/logo-light-320.webp"
+        srcset="
+          /assets/img/logo-light-320.webp 320w,
+          /assets/img/logo-light-640.webp 640w
+        "
+        sizes="160px"
+        loading="lazy"
+        alt="ASC Freudenstadt Logo"
+        width="5000"
+        height="3750"
+      />
+      <p>Armbrust-Sport-Club Freudenstadt e.V.<br /></p>
     </div>
-    <div class="container footer-bottom">
-      <p>© <span data-current-year></span> ASC Freudenstadt e.V.</p>
+    <div>
+      <h3>Navigation</h3>
+      <a href="/ueber-uns.html">Verein</a>
+      <a href="/events_sportbetrieb.html">Termine &amp; Ergebnisse</a>
+      <a href="/mitglied-werden.html">Mitglied werden</a>
+      <a href="/spende">Spenden</a>
+      <a href="/kontakt.html">Kontakt &amp; Anfahrt</a>
     </div>
-  </footer>
-</body>
+    <div>
+      <h3>Vereinsanschrift</h3>
+      <p>Gerhart-Hauptmann-Weg 8<br />72250 Freudenstadt</p>
+      <a href="mailto:info@asc-fds.de">info@asc-fds.de</a>
+    </div>
+    <div>
+      <h3>Rechtliches</h3>
+      <a href="/impressum.html">Impressum</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p>© <span data-current-year></span> ASC Freudenstadt e.V.</p>
+  </div>
+</footer>
+    <div id="assistant-root"></div>
+  </body>
 </html>

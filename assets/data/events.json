@@ -1,0 +1,83 @@
+[
+  {
+    "id": "club-0",
+    "title": "Ski-Ausfahrt Obersaxen",
+    "description": "Vereinsausfahrt ins Skigebiet mit Übernachtung und Verpflegung.",
+    "startDate": "2027-01-08",
+    "endDate": "2027-01-10",
+    "hasTime": false,
+    "category": "Ausflug"
+  },
+  {
+    "id": "club-1",
+    "title": "Ski-Ausfahrt Obersaxen",
+    "description": "Vereinsausfahrt ins Skigebiet mit Übernachtung und Verpflegung.",
+    "startDate": "2026-01-09",
+    "endDate": "2026-01-11",
+    "hasTime": false,
+    "category": "Ausflug"
+  },
+  {
+    "id": "club-2",
+    "title": "Jahreshauptversammlung 2026",
+    "description": "Jahresbericht und Ausblick – Alle Mitglieder sind herzlich willkommen.",
+    "startDate": "2026-04-02",
+    "endDate": "2026-04-02",
+    "hasTime": false,
+    "category": "Sitzung"
+  },
+  {
+    "id": "club-3",
+    "title": "Jahreshauptversammlung 2027",
+    "description": "Jahresbericht und Ausblick – Alle Mitglieder sind herzlich willkommen.",
+    "startDate": "2027-03-25",
+    "endDate": "2027-03-25",
+    "hasTime": false,
+    "category": "Sitzung"
+  },
+  {
+    "id": "club-4",
+    "title": "Ausschusssitzung",
+    "description": "Regelmäßiger Austausch des Vereinsausschusses.",
+    "startDate": "2026-03-09",
+    "endDate": "2026-03-09",
+    "hasTime": false,
+    "category": "Sitzung"
+  },
+  {
+    "id": "club-5",
+    "title": "Ausschusssitzung",
+    "description": "Regelmäßiger Austausch des Vereinsausschusses.",
+    "startDate": "2026-06-08",
+    "endDate": "2026-06-08",
+    "hasTime": false,
+    "category": "Sitzung"
+  },
+  {
+    "id": "club-6",
+    "title": "Sportlerehrung Stadt Freudenstadt",
+    "description": "Die Stadt Freudenstadt ehrt ihre besten Sportler im Kurhaus.",
+    "startDate": "2026-03-13",
+    "endDate": "2026-03-13",
+    "hasTime": false,
+    "category": "Vereinsleben"
+  },
+  {
+    "id": "club-7",
+    "title": "Sportlerehrung Sportkreis Freudenstadt",
+    "description": "Ehrung herausragender sportlicher Leistungen in der Region in der Festhalle in Horb am Neckar-Nordstetten.",
+    "startDate": "2026-04-18",
+    "endDate": "2026-04-18",
+    "hasTime": false,
+    "category": "Vereinsleben"
+  },
+  {
+    "id": "club-8",
+    "title": "Kreisschützentag 2026",
+    "description": "Jährliche Hauptversammlung unseres Schützenkreises inkl. entsprechender Ehrungen im Haus des Gastes in Waldachtal-Lützenhardt.",
+    "startDate": "2026-05-16",
+    "endDate": "2026-05-16",
+    "hasTime": false,
+    "category": "Sitzung"
+  }
+]

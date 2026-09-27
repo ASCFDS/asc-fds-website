@@ -1,201 +1,373 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ASC Freudenstadt e.V.</title>
-  <meta name="description" content="ASC Freudenstadt e.V. – Armbrust- und Schießsport, Vereinsleben, Termine, Ergebnisse und Kontakt." />
-  <link rel="icon" type="image/png" href="assets/img/logo-dark.png" />
-  <link rel="apple-touch-icon" href="assets/img/logo-dark.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260530-zoom" />
-  <script defer src="assets/js/main.js"></script>
-</head>
-<body>
-  <header class="site-header">
-    <div class="container nav">
-      <a class="brand" href="index.html" aria-label="Zur Startseite">
-        <img src="assets/img/logo-light.png" alt="Logo des ASC Freudenstadt e.V." />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Armbrust &amp; Schießsport in Freudenstadt | ASC Freudenstadt</title>
+    <meta
+      name="description"
+      content="ASC Freudenstadt e.V. – Armbrust- und Schießsport, Vereinsleben, Termine, Ergebnisse und Kontakt."
+    />
+    <link rel="icon" type="image/png" href="assets/img/logo-dark.png" />
+    <link rel="apple-touch-icon" href="assets/img/logo-dark.png" />
+    <link rel="stylesheet" href="assets/css/styles.css?v=20260927" />
+    <script defer src="assets/js/main.js?v=20260927"></script>
+    <script defer src="assets/js/event-model.js?v=20260927"></script>
+    <script defer src="assets/js/public-events.js?v=20260927"></script>
+    <link rel="canonical" href="https://www.asc-fds.de/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="de_DE" />
+    <meta
+      property="og:title"
+      content="Armbrust &amp; Schießsport in Freudenstadt | ASC Freudenstadt"
+    />
+    <meta
+      property="og:description"
+      content="ASC Freudenstadt e.V. – Armbrust- und Schießsport, Vereinsleben, Termine, Ergebnisse und Kontakt."
+    />
+    <meta property="og:url" content="https://www.asc-fds.de/" />
+    <meta
+      property="og:image"
+      content="https://www.asc-fds.de/assets/img/logo-dark.png"
+    />
+    <meta name="twitter:card" content="summary" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SportsOrganization",
+        "name": "Armbrust-Sport-Club Freudenstadt e.V.",
+        "url": "https://www.asc-fds.de/",
+        "logo": "https://www.asc-fds.de/assets/img/logo-dark.png",
+        "foundingDate": "2011",
+        "email": "info@asc-fds.de",
+        "sameAs": ["https://www.instagram.com/asc_fds"],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Gerhart-Hauptmann-Weg 8",
+          "postalCode": "72250",
+          "addressLocality": "Freudenstadt",
+          "addressCountry": "DE"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Zum Inhalt</a>
+    <header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="/index.html" aria-label="Zur Startseite">
+      <img
+        src="/assets/img/logo-light-320.webp"
+        srcset="
+          /assets/img/logo-light-320.webp 320w,
+          /assets/img/logo-light-640.webp 640w
+        "
+        sizes="(max-width: 980px) 90px, 160px"
+        alt="Logo des ASC Freudenstadt e.V."
+        width="5000"
+        height="3750"
+      />
+    </a>
+
+    <button
+      class="nav-toggle"
+      aria-controls="site-navigation"
+      type="button"
+      aria-expanded="false"
+      aria-label="Navigation öffnen"
+    >
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="site-nav" id="site-navigation" aria-label="Hauptnavigation">
+      <a
+        class="active nav-home-link"
+        href="/index.html"
+        aria-label="Startseite"
+        title="Startseite"
+       aria-current="page">
+        <svg class="nav-home-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 10.5 12 3l8 7.5V20H4z" />
+        </svg>
       </a>
+      <a href="/ueber-uns.html">Verein</a>
+      <a href="/index.html#sport">Sport</a>
+      <a href="/events_sportbetrieb.html">Termine &amp; Ergebnisse</a>
+      <a href="/spende">Spenden</a>
+      <a href="/kontakt.html">Kontakt &amp; Anfahrt</a>
+      <a class="nav-cta" href="/mitglied-werden.html">Mitglied werden</a>
+    </nav>
+  </div>
+</header>
 
-      <button class="nav-toggle" aria-expanded="false" aria-label="Navigation öffnen">
-        <span></span><span></span><span></span>
-      </button>
-
-      <nav class="site-nav">
-        <a class="active nav-home-link" href="index.html" aria-label="Startseite" title="Startseite">
-          <svg class="nav-home-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M4 10.5 12 3l8 7.5V20H4z" />
-          </svg>
-        </a>
-        <a href="ueber-uns.html">Über uns</a>
-        <a href="events_sportbetrieb.html">Events & Sportbetrieb</a>
-        <a href="/spende">Spenden</a>
-        <a href="kontakt.html">Kontakt &amp; Anfahrt</a>
-        <a class="nav-cta" href="mitglied-werden.html">Mitglied werden!</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero hero-home">
-      <div class="hero-overlay"></div>
-      <div class="container hero-content">
-        <p class="eyebrow">ASC Freudenstadt e.V.</p>
-        <h1>Präzision. Gemeinschaft. Leistungssport.</h1>
-        <p class="lead">
-          Der Armbrustsportclub Freudenstadt e.V. steht für anspruchsvollen Schießsport,
-          starke Gemeinschaft und sportliche Erfolge auf höchstem Niveau.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="events_sportbetrieb.html">Zum Sportbetrieb</a>
-          <a class="btn btn-secondary" href="kontakt.html#anfrage">Kontakt aufnehmen</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-accent donation-home">
-      <div class="container cta-box">
-        <div class="cta-box__content">
-          <p class="eyebrow">Crowdfunding</p>
-          <h2>Unterstütze unser Spendenprojekt</h2>
-          <p>
-            Jeder Beitrag hilft dem ASC Freudenstadt, den Sportbetrieb und die Vereinsarbeit weiter zu stärken.
-          </p>
-        </div>
-        <div class="cta-box__action">
-          <a class="btn btn-light cta-box__button" href="/spende#spendenwidget">Jetzt spenden</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container stats-grid">
-        <article class="stat-card">
-          <span class="stat-number">seit 2011</span>
-          <h2>Vereinsgeschichte</h2>
-          <p>Gegründet aus Leistungsschützen mit klarem Fokus auf Qualität, Präzision und Entwicklung.</p>
-        </article>
-        <article class="stat-card">
-          <span class="stat-number">10m · 35m · 50m · 65m</span>
-          <h2>Unsere Anlagen</h2>
-          <p>Trainings- und Wettkampfmöglichkeiten für Luftdruckwaffen, Match-Armbrust und Feldarmbrust.</p>
-        </article>
-        <article class="stat-card">
-          <span class="stat-number">EM &amp; WM</span>
-          <h2>Erfolge</h2>
-          <p>Mehrfache Europa- und Weltmeister in den Reihen unseres Vereins prägen unseren sportlichen Anspruch.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section section-dark">
-      <div class="container split-grid">
-        <div>
-          <p class="eyebrow">Verein</p>
-          <h2>Armbrustsport mit Tradition und modernem Anspruch</h2>
-          <p>
-            Beim ASC Freudenstadt e.V. verbinden wir sportlichen Ehrgeiz mit echtem Teamgeist. Egal ob Einsteiger oder ambitionierter Schütze – bei uns findet jeder seinen Platz.
-            Unser Schwerpunkt liegt insbesondere im Armbrustsport, ergänzt durch gängige Gewehr- und Pistolendisziplinen.
-          </p>
-        </div>
-        <div class="panel accent-panel">
-          <h3>Trainingszeit</h3>
-          <p class="big-info">Mittwochs ab 18:30 Uhr</p>
-          <h3>Neugierig geworden?</h3>
-          <p>
-            Lerne den ASC Freudenstadt ganz unverbindlich kennen -
-            egal ob Anfänger oder erfahrener Schütze.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="kontakt.html#anfrage">Probetraining vereinbaren</a>
-            <a class="btn btn-secondary" href="ueber-uns.html">Mehr über den Verein</a>
+    <main id="main-content">
+      <section class="hero hero-home">
+        <div class="container home-hero-grid">
+          <div class="hero-content">
+            <p class="eyebrow">Armbrust-Sport-Club · Freudenstadt</p>
+            <h1>
+              Präzision.<br />Gemeinschaft.<br /><span>Leistungssport.</span>
+            </h1>
+            <p class="lead">
+              Konzentriert im Sport. Verbunden im Verein. Entdecke Armbrust- und
+              Schießsport beim ASC Freudenstadt.
+            </p>
+            <div class="hero-actions">
+              <a
+                class="btn btn-primary"
+                href="kontakt.html?anliegen=probetraining#anfrage"
+                >Probetraining vereinbaren <span aria-hidden="true">↗</span></a
+              ><a class="btn btn-secondary" href="ueber-uns.html"
+                >ASC kennenlernen</a
+              >
+            </div>
+            <p class="training-note">Mittwochs ab 18:30 Uhr · Freudenstadt</p>
+          </div>
+          <div class="precision-art" aria-hidden="true">
+            <div class="precision-ring ring-one"></div>
+            <div class="precision-ring ring-two"></div>
+            <div class="precision-ring ring-three"></div>
+            <div class="precision-center"></div>
+            <span class="precision-label">FOKUS AUF DAS WESENTLICHE</span
+            ><span class="precision-coordinate">ASC / SEIT 2011</span>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">Disziplinen</p>
-          <h2>Sportliche Vielfalt im ASC Freudenstadt</h2>
-        </div>
-        <div class="cards-grid three">
-          <article class="info-card">
-            <h3>10m-Anlagen</h3>
-            <p>Für Luftdruckwaffen sowie 10m-Match-Armbrust stehen geeignete Schießstände zur Verfügung.</p>
+      </section>
+      <section class="section facts-section" aria-label="ASC auf einen Blick">
+        <div class="container stats-grid">
+          <article class="stat-card">
+            <span class="stat-number">2011</span>
+            <h2>Unser Anfang</h2>
+            <p>
+              Gegründet aus Leistungsschützen. Gewachsen durch Gemeinschaft.
+            </p>
           </article>
-          <article class="info-card">
-            <h3>Feldarmbrust</h3>
-            <p>Eine eigene Anlage ermöglicht Training und Wettkampf in der Disziplin Feldarmbrust.</p>
+          <article class="stat-card">
+            <span class="stat-number">10–65 <small>m</small></span>
+            <h2>Raum für Präzision</h2>
+            <p>10 m im Stand. 35, 50 und 65 m auf der Feldarmbrust-Anlage.</p>
           </article>
-          <article class="info-card">
-            <h3>Weitere Distanzen</h3>
-            <p>Trainingsmöglichkeiten auf 35m, 50m und 65m für unterschiedliche Anforderungen und Disziplinen.</p>
+          <article class="stat-card">
+            <span class="stat-number">WM &amp; EM</span>
+            <h2>Sportlicher Anspruch</h2>
+            <p>Mehrfache Welt- und Europameister in unseren Reihen.</p>
           </article>
         </div>
-      </div>
-    </section>
-
-    <section class="section section-dark">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">Social Media</p>
-          <h2>ASC Freudenstadt auf Instagram</h2>
-          <p>Aktuelle Eindrücke aus dem Vereinsleben, vom Training und aus dem Wettkampfbetrieb.</p>
+      </section>
+      <section class="section" id="sport">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">Dein Sport. Dein Fokus.</p>
+            <h2>Armbrustsport erleben.</h2>
+            <p>
+              Ruhe finden, konzentriert bleiben, präzise sein. Lerne unsere
+              Disziplinen kennen – auch ohne Vorerfahrung.
+            </p>
+          </div>
+          <div class="cards-grid three discipline-grid">
+            <article class="info-card">
+              <span class="discipline-number" aria-hidden="true">01 /</span>
+              <h3>Match-Armbrust</h3>
+              <p>
+                Konzentration auf den nächsten Schuss: An unserem 10-m-Stand
+                lernst du die Match-Armbrust kennen.
+              </p>
+              <a
+                class="text-link"
+                href="kontakt.html?anliegen=probetraining#anfrage"
+                >Match-Armbrust ausprobieren ↗</a
+              >
+            </article>
+            <article class="info-card">
+              <span class="discipline-number" aria-hidden="true">02 /</span>
+              <h3>Feldarmbrust</h3>
+              <p>
+                Präzision auf Distanz. Unsere Feldarmbrust-Anlage bietet
+                Trainingsmöglichkeiten auf 35, 50 und 65 Metern.
+              </p>
+              <a class="text-link" href="ueber-uns.html#anlagen"
+                >Anlagen kennenlernen ↗</a
+              >
+            </article>
+            <article class="info-card">
+              <span class="discipline-number" aria-hidden="true">03 /</span>
+              <h3>Gewehr &amp; Pistole</h3>
+              <p>
+                Neben der Armbrust gehören auch Gewehr- und Pistolendisziplinen
+                zum sportlichen Angebot des ASC.
+              </p>
+              <a class="text-link" href="events_sportbetrieb.html#sport"
+                >Unser Sportangebot ↗</a
+              >
+            </article>
+          </div>
         </div>
-        <a class="btn btn-secondary" href="https://www.instagram.com/asc_fds" target="_blank" rel="noopener noreferrer">
-          Instagram-Profil öffnen
-        </a>
-      </div>
-    </section>
-
-    <section class="section section-accent">
-      <div class="container cta-box">
-        <div class="cta-box__content">
-          <h2>Kontakt aufnehmen und den ASC kennenlernen</h2>
-          <p>
-            Ob sportliches Interesse, Fragen zum Training oder zur Mitgliedschaft:
-            Wir freuen uns auf deine Nachricht.
-          </p>
+      </section>
+      <section class="section section-dark trial-section">
+        <div class="container split-grid">
+          <div>
+            <p class="eyebrow">Dein Einstieg</p>
+            <h2>Einfach<br />ausprobieren.</h2>
+            <p class="lead">
+              Du musst unseren Sport noch nicht kennen. Bring deine Neugier mit
+              – den Einstieg besprechen wir gemeinsam.
+            </p>
+            <a
+              class="btn btn-primary"
+              href="kontakt.html?anliegen=probetraining#anfrage"
+              >Probetraining anfragen ↗</a
+            >
+          </div>
+          <ol class="entry-steps">
+            <li>
+              <h3>Kontakt aufnehmen</h3>
+              <p>
+                Schreib uns, was dich interessiert. Vorerfahrung ist nicht
+                erforderlich.
+              </p>
+            </li>
+            <li>
+              <h3>Verein kennenlernen</h3>
+              <p>
+                Training anschauen, Fragen stellen und die Menschen hinter dem
+                ASC treffen.
+              </p>
+            </li>
+            <li>
+              <h3>Deinen Sport entdecken</h3>
+              <p>
+                Gemeinsam klären wir, welche Disziplin und welcher Einstieg zu
+                dir passen. Auch für Jugendliche und Familien.
+              </p>
+            </li>
+          </ol>
         </div>
-        <div class="cta-box__action">
-          <a class="btn btn-light cta-box__button" href="kontakt.html#anfrage">Jetzt Kontakt aufnehmen</a>
+      </section>
+      <section class="section" aria-labelledby="next-events">
+        <div class="container">
+          <div class="section-heading-row">
+            <div>
+              <p class="eyebrow">Dabei sein</p>
+              <h2 id="next-events">Die nächsten Termine.</h2>
+            </div>
+            <a class="text-link" href="events_sportbetrieb.html"
+              >Alle Termine &amp; Ergebnisse ↗</a
+            >
+          </div>
+          <p id="events-status" role="status">Vereinstermine</p>
+          <button id="events-retry" class="btn" type="button" hidden>
+            Erneut laden
+          </button>
+          <div id="events-list" class="timeline" data-limit="3">
+            <!-- EVENTS START -->
+<article class="timeline-item"><time class="timeline-date" datetime="2027-01-08T00:00:00.000Z">08.01.2027 – 10.01.2027</time><div class="timeline-content"><span class="event-category">Ausflug</span><h3>Ski-Ausfahrt Obersaxen</h3><p>Vereinsausfahrt ins Skigebiet mit Übernachtung und Verpflegung.</p></div></article>
+<article class="timeline-item"><time class="timeline-date" datetime="2027-03-25T00:00:00.000Z">25.03.2027</time><div class="timeline-content"><span class="event-category">Sitzung</span><h3>Jahreshauptversammlung 2027</h3><p>Jahresbericht und Ausblick – Alle Mitglieder sind herzlich willkommen.</p></div></article>
+<!-- EVENTS END -->
+          </div>
+          <noscript
+            ><p>
+              Die folgenden Termine entsprechen dem Stand der letzten
+              Veröffentlichung. Aktuelle Auskünfte erhältst du beim Verein.
+            </p></noscript
+          >
         </div>
-      </div>
-    </section>
-  </main>
+      </section>
+      <section class="section section-soft">
+        <div class="container split-grid">
+          <div>
+            <p class="eyebrow">Aus Freudenstadt. International erfolgreich.</p>
+            <h2>Erfolg hat beim ASC Tradition.</h2>
+          </div>
+          <div>
+            <p class="large-copy">
+              In unseren Reihen stehen mehrfache Welt- und Europameister. Ihr
+              sportlicher Anspruch gehört genauso zum ASC wie die Offenheit für
+              Menschen, die gerade erst anfangen.
+            </p>
+            <a class="text-link" href="ueber-uns.html#erfolge"
+              >Was unseren Verein ausmacht ↗</a
+            >
+          </div>
+        </div>
+      </section>
+      <section class="section social-section">
+        <div class="container split-grid">
+          <div>
+            <p class="eyebrow">Training · Wettkämpfe · Vereinsleben</p>
+            <h2>ASC erleben.</h2>
+            <p>
+              Die Menschen, die Momente und der Sport: Auf Instagram zeigen wir
+              Einblicke in unseren Verein.
+            </p>
+          </div>
+          <a
+            class="social-link"
+            href="https://www.instagram.com/asc_fds"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><span>@asc_fds</span><span aria-hidden="true">↗</span
+            ><small>Auf Instagram entdecken</small></a
+          >
+        </div>
+      </section>
+      <section class="section section-accent donation-home">
+        <div class="container cta-box">
+          <div class="cta-box__content">
+            <p class="eyebrow">Gemeinsam weiterkommen</p>
+            <h2>Deine Unterstützung.<br />Unsere Zukunft.</h2>
+            <p>
+              Mit deiner Unterstützung entwickelt sich der ASC weiter. Entdecke
+              unser bestehendes Crowdfunding-Projekt.
+            </p>
+          </div>
+          <div class="cta-box__action">
+            <a class="btn btn-light" href="/spende">Spendenprojekt ansehen ↗</a>
+          </div>
+        </div>
+      </section>
+    </main>
 
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-brand">
-        <img class="footer-logo" src="assets/img/logo-light.png" alt="ASC Freudenstadt Logo" />
-        <p>Armbrust-Sport-Club Freudenstadt e.V.<br></p>
-      </div>
-      <div>
-        <h3>Navigation</h3>
-        <a href="ueber-uns.html">Über uns</a>
-        <a href="events_sportbetrieb.html">Events &amp; Sportbetrieb</a>
-        <a href="/spende">Spenden</a>
-        <a href="kontakt.html">Kontakt &amp; Anfahrt</a>
-      </div>
-      <div>
-        <h3>Kontakt</h3>
-        <p>Gerhart-Hauptmann-Weg 8<br>72250 Freudenstadt</p>
-        <a href="mailto:info@asc-fds.de">info@asc-fds.de</a>
-      </div>
-      <div>
-        <h3>Rechtliches</h3>
-        <a href="impressum.html">Impressum</a>
-        <a href="datenschutz.html">Datenschutz</a>
-      </div>
+    <footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <img
+        class="footer-logo"
+        src="/assets/img/logo-light-320.webp"
+        srcset="
+          /assets/img/logo-light-320.webp 320w,
+          /assets/img/logo-light-640.webp 640w
+        "
+        sizes="160px"
+        loading="lazy"
+        alt="ASC Freudenstadt Logo"
+        width="5000"
+        height="3750"
+      />
+      <p>Armbrust-Sport-Club Freudenstadt e.V.<br /></p>
     </div>
-    <div class="container footer-bottom">
-      <p>© <span data-current-year></span> ASC Freudenstadt e.V.</p>
+    <div>
+      <h3>Navigation</h3>
+      <a href="/ueber-uns.html">Verein</a>
+      <a href="/events_sportbetrieb.html">Termine &amp; Ergebnisse</a>
+      <a href="/mitglied-werden.html">Mitglied werden</a>
+      <a href="/spende">Spenden</a>
+      <a href="/kontakt.html">Kontakt &amp; Anfahrt</a>
     </div>
-  </footer>
-</body>
+    <div>
+      <h3>Vereinsanschrift</h3>
+      <p>Gerhart-Hauptmann-Weg 8<br />72250 Freudenstadt</p>
+      <a href="mailto:info@asc-fds.de">info@asc-fds.de</a>
+    </div>
+    <div>
+      <h3>Rechtliches</h3>
+      <a href="/impressum.html">Impressum</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p>© <span data-current-year></span> ASC Freudenstadt e.V.</p>
+  </div>
+</footer>
+    <div id="assistant-root"></div>
+  </body>
 </html>

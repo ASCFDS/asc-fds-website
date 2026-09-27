@@ -1,23 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const toggle = document.querySelector(".nav-toggle");
-  const nav = document.querySelector(".site-nav");
-
-  if (toggle && nav) {
-    toggle.addEventListener("click", () => {
-      const isOpen = nav.classList.toggle("open");
-      toggle.setAttribute("aria-expanded", String(isOpen));
-    });
-  }
-
-  const yearTargets = document.querySelectorAll("[data-current-year]");
-  const currentYear = new Date().getFullYear();
-
-  yearTargets.forEach((el) => {
-    el.textContent = currentYear;
-  });
-});
-
-document.addEventListener("DOMContentLoaded", () => {
   const contactForm = document.querySelector("[data-contact-form]");
   if (!contactForm) return;
 
@@ -49,7 +30,8 @@ document.addEventListener("DOMContentLoaded", () => {
     setSubmitDisabled(true);
 
     try {
-      const siteKey = turnstileTarget.dataset.sitekey || await fetchTurnstileSiteKey();
+      const siteKey =
+        turnstileTarget.dataset.sitekey || (await fetchTurnstileSiteKey());
       const turnstile = await waitForTurnstile();
 
       turnstileWidgetId = turnstile.render(turnstileTarget, {
@@ -64,18 +46,27 @@ document.addEventListener("DOMContentLoaded", () => {
         "expired-callback": () => {
           turnstileIsReady = false;
           setSubmitDisabled(true);
-          setStatus("Bitte die Sicherheitsprüfung erneut abschließen.", "is-error");
+          setStatus(
+            "Bitte die Sicherheitsprüfung erneut abschließen.",
+            "is-error",
+          );
         },
         "error-callback": () => {
           turnstileIsReady = false;
           setSubmitDisabled(true);
-          setStatus("Die Sicherheitsprüfung konnte nicht geladen werden. Bitte später erneut versuchen.", "is-error");
-        }
+          setStatus(
+            "Die Sicherheitsprüfung konnte nicht geladen werden. Bitte später erneut versuchen.",
+            "is-error",
+          );
+        },
       });
     } catch (error) {
       turnstileIsReady = false;
       setSubmitDisabled(true);
-      setStatus("Die Sicherheitsprüfung konnte nicht geladen werden. Bitte direkt an info@asc-fds.de schreiben.", "is-error");
+      setStatus(
+        "Die Sicherheitsprüfung konnte nicht geladen werden. Bitte direkt an info@asc-fds.de schreiben.",
+        "is-error",
+      );
     }
   };
 
@@ -98,12 +89,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (formData.get("_honey") || formData.get("website")) {
       contactForm.reset();
-      setStatus("Vielen Dank. Die Nachricht wurde erfolgreich versendet.", "is-success");
+      setStatus(
+        "Vielen Dank. Die Nachricht wurde erfolgreich versendet.",
+        "is-success",
+      );
       return;
     }
 
-    if (isBrowserRateLimited(browserRateLimitKey, browserRateLimitWindow, browserRateLimitMax)) {
-      setStatus("Bitte warte kurz, bevor du eine weitere Nachricht sendest.", "is-error");
+    if (
+      isBrowserRateLimited(
+        browserRateLimitKey,
+        browserRateLimitWindow,
+        browserRateLimitMax,
+      )
+    ) {
+      setStatus(
+        "Bitte warte kurz, bevor du eine weitere Nachricht sendest.",
+        "is-error",
+      );
       return;
     }
 
@@ -119,9 +122,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const response = await fetch(contactForm.action, {
         method: "POST",
         headers: {
-          Accept: "application/json"
+          Accept: "application/json",
         },
-        body: formData
+        body: formData,
+        signal: AbortSignal.timeout(20000),
       });
 
       if (!response.ok) {
@@ -130,12 +134,16 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       rememberBrowserSubmission(browserRateLimitKey, browserRateLimitWindow);
-      setStatus("Vielen Dank. Die Nachricht wurde erfolgreich versendet.", "is-success");
+      setStatus(
+        "Vielen Dank. Die Nachricht wurde erfolgreich versendet.",
+        "is-success",
+      );
       contactForm.reset();
     } catch (error) {
-      const rateLimitMessage = error.message === "rate_limited"
-        ? "Bitte warte kurz, bevor du eine weitere Nachricht sendest."
-        : "Das Senden hat leider nicht funktioniert. Bitte versucht es erneut oder schreibt direkt an info@asc-fds.de.";
+      const rateLimitMessage =
+        error.message === "rate_limited"
+          ? "Bitte warte kurz, bevor du eine weitere Nachricht sendest."
+          : "Das Senden hat leider nicht funktioniert. Bitte versucht es erneut oder schreibt direkt an info@asc-fds.de.";
 
       setStatus(rateLimitMessage, "is-error");
     } finally {
@@ -147,9 +155,9 @@ document.addEventListener("DOMContentLoaded", () => {
 async function fetchTurnstileSiteKey() {
   const response = await fetch("/api/contact", {
     headers: {
-      Accept: "application/json"
+      Accept: "application/json",
     },
-    credentials: "same-origin"
+    credentials: "same-origin",
   });
 
   if (!response.ok) {
@@ -201,7 +209,9 @@ async function readResponseError(response) {
 function getBrowserSubmissions(storageKey, windowMs) {
   try {
     const now = Date.now();
-    const timestamps = JSON.parse(window.localStorage.getItem(storageKey) || "[]");
+    const timestamps = JSON.parse(
+      window.localStorage.getItem(storageKey) || "[]",
+    );
     return timestamps.filter((timestamp) => now - timestamp < windowMs);
   } catch (error) {
     return [];
@@ -221,49 +231,124 @@ function rememberBrowserSubmission(storageKey, windowMs) {
     // localStorage can be unavailable in private or restricted browsing contexts.
   }
 }
-// Termine automatisch als "vergangen" markieren
+
 document.addEventListener("DOMContentLoaded", () => {
-  const events = document.querySelectorAll(".timeline-item[data-event-date]");
-  const today = new Date();
-
-  events.forEach((event) => {
-    const dateStr = event.getAttribute("data-event-date");
-    const eventDate = new Date(dateStr);
-
-    // Uhrzeit auf 00:00 setzen für sauberen Vergleich
-    eventDate.setHours(0,0,0,0);
-    today.setHours(0,0,0,0);
-
-    if (eventDate < today) {
-      event.classList.add("is-past");
+  const toggle = document.querySelector(".nav-toggle");
+  const nav = document.querySelector(".site-nav");
+  document.documentElement.classList.add("js");
+  const close = () => {
+    nav?.classList.remove("open");
+    toggle?.setAttribute("aria-expanded", "false");
+    toggle?.setAttribute("aria-label", "Navigation öffnen");
+  };
+  toggle?.addEventListener("click", () => {
+    const open = nav.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute(
+      "aria-label",
+      open ? "Navigation schließen" : "Navigation öffnen",
+    );
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && nav?.classList.contains("open")) {
+      close();
+      toggle.focus();
     }
+  });
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".nav")) close();
+  });
+  nav?.addEventListener("click", (e) => {
+    if (e.target.closest("a")) close();
+  });
+  nav?.addEventListener("focusout", () =>
+    setTimeout(() => {
+      if (!document.activeElement.closest(".nav")) close();
+    }, 0),
+  );
+  const header = document.querySelector(".site-header");
+  const scroll = () => header?.classList.toggle("is-scrolled", scrollY > 40);
+  window.addEventListener("scroll", scroll, { passive: true });
+  scroll();
+  document
+    .querySelectorAll("[data-current-year]")
+    .forEach((n) => (n.textContent = new Date().getFullYear()));
+  if (
+    new URLSearchParams(location.search).get("anliegen") === "probetraining"
+  ) {
+    const subject = document.getElementById("betreff");
+    if (subject) subject.value = "Probetraining";
+  }
+  document.querySelectorAll(".external-content").forEach((panel) => {
+    const load = panel.querySelector("[data-external-load]"),
+      revoke = panel.querySelector("[data-external-revoke]"),
+      slot = panel.querySelector("[data-external-slot]"),
+      status = panel.querySelector("[data-external-status]");
+    const template = slot.querySelector("template")?.content.cloneNode(true);
+    let script;
+    load.addEventListener("click", () => {
+      load.disabled = true;
+      status.textContent = "Inhalt wird geladen …";
+      if (panel.dataset.external === "maps") {
+        const frame = document.createElement("iframe");
+        frame.title = "Google Maps: Schützenhaus Erlenweg 29/1, Freudenstadt";
+        frame.src =
+          "https://www.google.com/maps?q=Erlenweg%2029%2F1%2C%2072250%20Freudenstadt&z=15&output=embed";
+        frame.width = "100%";
+        frame.height = "320";
+        frame.referrerPolicy = "no-referrer";
+        slot.replaceChildren(frame);
+        status.textContent = "Karte aktiviert.";
+        load.hidden = true;
+        revoke.hidden = false;
+      } else {
+        slot.replaceChildren(template.cloneNode(true));
+        script = document.createElement("script");
+        script.src =
+          panel.dataset.external === "donation"
+            ? "https://www.viele-schaffen-mehr.de/projects/vsm/dist/js/widget.js"
+            : "https://admin.campai.com/lib/web-form.js";
+        if (panel.dataset.external === "donation")
+          script.dataset.script = "cf-project-widget";
+        script.onload = () => {
+          if (
+            panel.dataset.external === "donation" &&
+            typeof window.loadWidget === "function"
+          )
+            window.loadWidget();
+          status.textContent =
+            "Externer Dienst aktiviert. Falls kein Inhalt erscheint, kontaktiere uns bitte.";
+          load.hidden = true;
+          revoke.hidden = false;
+        };
+        script.onerror = () => {
+          status.textContent =
+            "Der Dienst ist nicht erreichbar. Bitte versuche es erneut oder kontaktiere info@asc-fds.de.";
+          load.disabled = false;
+          slot.replaceChildren();
+          script.remove();
+        };
+        slot.append(script);
+      }
+    });
+    revoke.addEventListener("click", () => {
+      location.reload();
+    });
   });
 });
-// EVENTS SORTIEREN + STATUS
+
 document.addEventListener("DOMContentLoaded", () => {
-  const container = document.getElementById("events-list");
-  if (!container) return;
-
-  const items = Array.from(container.querySelectorAll(".timeline-item"));
-  const today = new Date();
-  today.setHours(0,0,0,0);
-
-  items.forEach(item => {
-    const date = new Date(item.dataset.eventDate);
-    date.setHours(0,0,0,0);
-
-    if (date < today) {
-      item.classList.add("is-past");
-    } else if (date.getTime() === today.getTime()) {
-      item.classList.add("is-today");
-    }
+  const today = new Intl.DateTimeFormat("sv-SE", {
+    timeZone: "Europe/Berlin",
+  }).format(new Date());
+  document.querySelectorAll("[data-result-end]").forEach((row) => {
+    const badge = row.querySelector(".result-badge");
+    if (row.dataset.resultStatus !== "available")
+      badge.textContent =
+        row.dataset.resultEnd >= today
+          ? "Bevorstehend"
+          : row.dataset.resultStatus === "report-pending"
+            ? "Bericht folgt"
+            : "Abgeschlossen";
   });
-
-  items.sort((a, b) => {
-    const da = new Date(a.dataset.eventDate);
-    const db = new Date(b.dataset.eventDate);
-    return db - da;
-  });
-
-  items.forEach(item => container.appendChild(item));
 });

@@ -62,6 +62,14 @@ const fs = require("fs");
           fullPage: true,
         });
     }
+    if (width === 390 || width === 1440) {
+      for (const slug of ['ueber-uns','events_sportbetrieb','kontakt','mitglied-werden']) {
+        await page.goto(BASE + '/' + slug + '.html');
+        await page.locator('img[loading=lazy]').evaluateAll(imgs=>imgs.forEach(i=>i.loading='eager'));
+        await page.waitForFunction(()=>[...document.images].every(i=>i.complete));
+        await page.screenshot({path:`/private/tmp/asc-website-qa-${slug}-${width}.png`,fullPage:true});
+      }
+    }
     await context.close();
     findings.push({ width, errors });
   }

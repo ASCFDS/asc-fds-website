@@ -31,14 +31,12 @@ function replaceBlock(s, kind, content) {
   );
 }
 const split = globalThis.ASCEvents.split(events);
-for (const file of ["index.html", "events_sportbetrieb.html"]) {
+for (const file of ["events_sportbetrieb.html"]) {
   let s = readFileSync(file, "utf8");
   s = replaceBlock(
     s,
     "EVENTS",
-    (file === "index.html" ? split.upcoming.slice(0, 3) : split.upcoming)
-      .map(card)
-      .join("\n") ||
+    split.upcoming.map(card).join("\n") ||
       "<p>Aktuell sind keine kommenden Vereinstermine veröffentlicht.</p>",
   );
   if (file === "events_sportbetrieb.html") {
@@ -89,4 +87,25 @@ for (const file of ["index.html", "events_sportbetrieb.html"]) {
     );
   }
   writeFileSync(file, s);
+}
+
+const fees = JSON.parse(readFileSync("assets/data/membership.json", "utf8"));
+const euro = new Intl.NumberFormat("de-DE", {
+  style: "currency",
+  currency: "EUR",
+});
+for (const file of ["ueber-uns.html", "mitglied-werden.html"]) {
+  let html = readFileSync(file, "utf8");
+  for (const [key, value] of Object.entries(fees)) {
+    if (!Number.isFinite(value) || value < 0)
+      throw new Error("Invalid membership fee");
+    html = html.replace(
+      new RegExp(
+        `(<p class="price-tag" data-fee="${key}">)[\\s\\S]*?</p>`,
+        "g",
+      ),
+      `$1${euro.format(value)} p.a.</p>`,
+    );
+  }
+  writeFileSync(file, html);
 }

@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const browserRateLimitKey = "ascContactFormSubmissions";
   const browserRateLimitWindow = 60 * 1000;
   const browserRateLimitMax = 3;
+  let isSubmitting = false;
   let turnstileWidgetId = null;
   let turnstileIsReady = !turnstileTarget;
 
@@ -83,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
   contactForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    if (!contactForm.reportValidity()) return;
+    if (isSubmitting || !contactForm.reportValidity()) return;
 
     const formData = new FormData(contactForm);
 
@@ -115,6 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    isSubmitting = true;
     setStatus("Nachricht wird gesendet...", "is-pending");
     setSubmitDisabled(true);
 
@@ -133,6 +135,8 @@ document.addEventListener("DOMContentLoaded", () => {
         throw new Error(error || "Request failed");
       }
 
+      const result = await response.json();
+      if (result.ok !== true) throw new Error("Invalid delivery response");
       rememberBrowserSubmission(browserRateLimitKey, browserRateLimitWindow);
       setStatus(
         "Vielen Dank. Die Nachricht wurde erfolgreich versendet.",
@@ -147,6 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       setStatus(rateLimitMessage, "is-error");
     } finally {
+      isSubmitting = false;
       resetTurnstile();
     }
   });
@@ -158,6 +163,7 @@ async function fetchTurnstileSiteKey() {
       Accept: "application/json",
     },
     credentials: "same-origin",
+    signal: AbortSignal.timeout(10000),
   });
 
   if (!response.ok) {
@@ -278,6 +284,12 @@ document.addEventListener("DOMContentLoaded", () => {
   ) {
     const subject = document.getElementById("betreff");
     if (subject) subject.value = "Probetraining";
+  }
+  if (
+    new URLSearchParams(location.search).get("anliegen") === "mitgliedschaft"
+  ) {
+    const subject = document.getElementById("betreff");
+    if (subject) subject.value = "Mitgliedschaft";
   }
   document.querySelectorAll(".external-content").forEach((panel) => {
     const load = panel.querySelector("[data-external-load]"),

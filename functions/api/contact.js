@@ -9,20 +9,21 @@ const securityHeaders = {
   "X-Frame-Options": "DENY",
   "X-Content-Type-Options": "nosniff",
   "Referrer-Policy": "strict-origin-when-cross-origin",
-  "Permissions-Policy": "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()",
-  "X-Robots-Tag": "noindex"
+  "Permissions-Policy":
+    "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()",
+  "X-Robots-Tag": "noindex",
 };
 
 const jsonHeaders = {
   ...securityHeaders,
   "Content-Type": "application/json; charset=utf-8",
-  "Cache-Control": "no-store"
+  "Cache-Control": "no-store",
 };
 
 function jsonResponse(payload, status = 200) {
   return new Response(JSON.stringify(payload), {
     status,
-    headers: jsonHeaders
+    headers: jsonHeaders,
   });
 }
 
@@ -39,8 +40,8 @@ export async function onRequestOptions() {
     status: 204,
     headers: {
       ...securityHeaders,
-      Allow: "GET, POST, OPTIONS"
-    }
+      Allow: "GET, POST, OPTIONS",
+    },
   });
 }
 
@@ -69,7 +70,24 @@ export async function onRequestPost({ request, env }) {
   let formData;
 
   try {
-    formData = await request.formData();
+    const reader = request.body?.getReader();
+    const chunks = [];
+    let received = 0;
+    if (reader) {
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        received += value.byteLength;
+        if (received > MAX_BODY_BYTES) {
+          await reader.cancel();
+          return jsonResponse({ error: "payload_too_large" }, 413);
+        }
+        chunks.push(value);
+      }
+    }
+    formData = await new Response(new Blob(chunks), {
+      headers: { "Content-Type": request.headers.get("content-type") || "" },
+    }).formData();
   } catch (error) {
     return jsonResponse({ error: "invalid_form_data" }, 400);
   }
@@ -91,7 +109,11 @@ export async function onRequestPost({ request, env }) {
     return jsonResponse({ error: "missing_turnstile_token" }, 400);
   }
 
-  const turnstileResult = await verifyTurnstile(turnstileToken, env.TURNSTILE_SECRET_KEY, clientIp);
+  const turnstileResult = await verifyTurnstile(
+    turnstileToken,
+    env.TURNSTILE_SECRET_KEY,
+    clientIp,
+  );
 
   if (!turnstileResult.success) {
     return jsonResponse({ error: "turnstile_failed" }, 400);
@@ -108,19 +130,28 @@ export async function onRequestPost({ request, env }) {
   forwardData.set("datenschutz", "akzeptiert");
 
   const endpoint = env.FORMSUBMIT_ENDPOINT || CONTACT_ENDPOINT;
-  const formSubmitResponse = await fetch(endpoint, {
-    method: "POST",
-    headers: {
-      Accept: "application/json"
-    },
-    body: forwardData
-  });
+  try {
+    const formSubmitResponse = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+      },
+      body: forwardData,
+      signal: AbortSignal.timeout(10000),
+    });
 
-  if (!formSubmitResponse.ok) {
+    if (!formSubmitResponse.ok) {
+      return jsonResponse({ error: "mail_delivery_failed" }, 502);
+    }
+
+    const delivery = await formSubmitResponse.json();
+    if (delivery.success !== true && delivery.success !== "true") {
+      return jsonResponse({ error: "mail_delivery_failed" }, 502);
+    }
+    return jsonResponse({ ok: true });
+  } catch {
     return jsonResponse({ error: "mail_delivery_failed" }, 502);
   }
-
-  return jsonResponse({ ok: true });
 }
 
 function isContactConfigured(env) {
@@ -137,7 +168,9 @@ function getClientIp(request) {
 
 function isRateLimited(ip) {
   const now = Date.now();
-  const recent = (ipSubmissions.get(ip) || []).filter((timestamp) => now - timestamp < RATE_LIMIT_WINDOW_MS);
+  const recent = (ipSubmissions.get(ip) || []).filter(
+    (timestamp) => now - timestamp < RATE_LIMIT_WINDOW_MS,
+  );
 
   if (recent.length >= RATE_LIMIT_MAX_REQUESTS) {
     ipSubmissions.set(ip, recent);
@@ -154,7 +187,9 @@ function pruneRateLimitMap(now) {
   if (ipSubmissions.size < 1000) return;
 
   for (const [ip, timestamps] of ipSubmissions) {
-    const recent = timestamps.filter((timestamp) => now - timestamp < RATE_LIMIT_WINDOW_MS);
+    const recent = timestamps.filter(
+      (timestamp) => now - timestamp < RATE_LIMIT_WINDOW_MS,
+    );
 
     if (recent.length) {
       ipSubmissions.set(ip, recent);
@@ -165,7 +200,9 @@ function pruneRateLimitMap(now) {
 }
 
 function isHoneypotFilled(formData) {
-  return Boolean(stringValue(formData.get("_honey")) || stringValue(formData.get("website")));
+  return Boolean(
+    stringValue(formData.get("_honey")) || stringValue(formData.get("website")),
+  );
 }
 
 function normalizeFields(formData) {
@@ -175,16 +212,26 @@ function normalizeFields(formData) {
     telefon: cleanText(formData.get("telefon"), 60),
     betreff: cleanText(formData.get("betreff"), 160),
     nachricht: cleanText(formData.get("nachricht"), 4000),
-    datenschutz: stringValue(formData.get("datenschutz"))
+    datenschutz: stringValue(formData.get("datenschutz")),
   };
 }
 
 function validateFields(fields) {
-  if (!fields.name || !fields.email || !fields.betreff || !fields.nachricht || !fields.datenschutz) {
+  if (
+    !fields.name ||
+    !fields.email ||
+    !fields.betreff ||
+    !fields.nachricht ||
+    !fields.datenschutz
+  ) {
     return "missing_required_fields";
   }
 
-  if (hasHeaderInjection(fields.name) || hasHeaderInjection(fields.email) || hasHeaderInjection(fields.betreff)) {
+  if (
+    hasHeaderInjection(fields.name) ||
+    hasHeaderInjection(fields.email) ||
+    hasHeaderInjection(fields.betreff)
+  ) {
     return "invalid_header_value";
   }
 
@@ -217,23 +264,27 @@ function hasHeaderInjection(value) {
 
 async function verifyTurnstile(token, secret, remoteIp) {
   try {
-    const response = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
+    const response = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          secret,
+          response: token,
+          remoteip: remoteIp,
+        }),
+        signal: AbortSignal.timeout(5000),
       },
-      body: JSON.stringify({
-        secret,
-        response: token,
-        remoteip: remoteIp
-      })
-    });
+    );
 
     if (!response.ok) {
       return { success: false };
     }
 
-    return response.json();
+    return await response.json();
   } catch (error) {
     return { success: false };
   }

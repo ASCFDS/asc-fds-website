@@ -10,8 +10,8 @@
     />
     <link rel="icon" type="image/png" href="assets/img/logo-dark.png" />
     <link rel="apple-touch-icon" href="assets/img/logo-dark.png" />
-    <link rel="stylesheet" href="assets/css/styles.css?v=20260928-classic" />
-    <script defer src="assets/js/main.js?v=20260927"></script>
+    <link rel="stylesheet" href="assets/css/styles.css?v=20260929-classic" />
+    <script defer src="assets/js/main.js?v=20260929"></script>
     <script defer src="assets/js/event-model.js?v=20260927"></script>
     <script defer src="assets/js/public-events.js?v=20260927"></script>
     <link
@@ -118,6 +118,7 @@
           </p>
         </div>
       </section>
+<div class="container"><nav class="section-nav" aria-label="Auf dieser Seite"><a href="#termine">Termine</a><a href="#ergebnisse">Ergebnisse</a><a href="#sport">Training</a></nav></div>
 
       <section class="section">
         <div class="container">
@@ -128,7 +129,7 @@
 
           <div class="section-head section-head--spaced">
             <p class="eyebrow">Aktuelles</p>
-            <h2>Vereinstermine &amp; Veranstaltungen</h2>
+            <h2 id="termine">Vereinstermine &amp; Veranstaltungen</h2>
           </div>
 
           <div class="event-tools">
@@ -140,7 +141,7 @@
           <p id="events-status" role="status" aria-live="polite">
             Aktuelle Termine werden geladen …
           </p>
-          <button id="events-retry" type="button" hidden>Erneut laden</button>
+          <button class="btn btn-primary" id="events-retry" type="button" hidden>Erneut laden</button>
           <noscript
             ><p>
               Für automatisch aktualisierte Termine bitte JavaScript aktivieren.
@@ -174,7 +175,7 @@
         <div class="container">
           <div class="section-head">
             <p class="eyebrow">Wettkämpfe & Ergebnisse</p>
-            <h2>Aktuelle Ergebnisse zu unseren Wettkämpfen</h2>
+            <h2 id="ergebnisse">Aktuelle Ergebnisse zu unseren Wettkämpfen</h2>
           </div>
 
           <div class="results-table-wrap">

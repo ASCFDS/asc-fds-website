@@ -2,6 +2,10 @@ const BASE = process.env.ASC_QA_BASE_URL || "http://127.0.0.1:8766";
 const { chromium } = require("playwright");
 const assert = require("node:assert/strict");
 const fs = require("fs");
+require("../assets/js/event-model.js");
+const manual = require("../assets/data/events.json");
+const expected = globalThis.ASCEvents.split(manual);
+const resultCount = require("../assets/data/results.json").length;
 (async () => {
   const b = await chromium.launch();
   const c = await b.newContext({ viewport: { width: 390, height: 844 } });
@@ -35,15 +39,12 @@ const fs = require("fs");
     });
   });
   await p.goto(BASE + "/index.html");
-  await p.waitForFunction(() =>
-    document
-      .querySelector("#events-status")
-      .textContent.includes("freigegebene"),
+  assert.equal(await p.locator("#events-list").count(), 0);
+  assert.equal(
+    external.some((url) => url.includes("/publicEvents")),
+    false,
   );
-  assert.equal(await p.locator("#events-list article").count(), 2);
-  checks.push(
-    "Empty live feed preserves two manually published upcoming events",
-  );
+  checks.push("Homepage retains original content and makes no event request");
   await p.locator(".nav-toggle").click();
   assert.equal(
     await p.locator(".nav-toggle").getAttribute("aria-expanded"),
@@ -70,17 +71,19 @@ const fs = require("fs");
       category: "Wettkampf",
     },
   ];
-  await p.reload();
-  await p.waitForFunction(
-    () => document.querySelectorAll("#events-list article").length === 3,
-  );
-  assert.equal(await p.locator("#events-list img").count(), 0);
-  checks.push("API text is escaped; homepage capped at three events");
   await p.goto(BASE + "/events_sportbetrieb.html");
   await p.waitForFunction(
-    () => document.querySelectorAll("#events-list article").length === 3,
+    count => document.querySelectorAll("#events-list article").length === count,
+    expected.upcoming.length + 1,
   );
-  assert.equal(await p.locator("#events-archive article").count(), 7);
+  assert.equal(await p.locator("#events-list img").count(), 0);
+  checks.push("API text on the event page is safely escaped");
+  await p.goto(BASE + "/events_sportbetrieb.html");
+  await p.waitForFunction(
+    count => document.querySelectorAll("#events-list article").length === count,
+    expected.upcoming.length + 1,
+  );
+  assert.equal(await p.locator("#events-archive article").count(), expected.past.length);
   await p.locator("#event-category").selectOption("Wettkampf");
   assert.equal(await p.locator("#events-list article").count(), 1);
   checks.push("Archive, category filter and live event merge work");
@@ -155,8 +158,8 @@ const fs = require("fs");
   const n = await nojs.newPage();
   await n.goto(BASE + "/events_sportbetrieb.html");
   assert.equal(await n.locator(".site-nav").isVisible(), true);
-  assert.equal(await n.locator("#events-list article").count(), 2);
-  assert.equal(await n.locator(".results-table tbody tr").count(), 10);
+  assert.equal(await n.locator("#events-list article").count(), expected.upcoming.length);
+  assert.equal(await n.locator(".results-table tbody tr").count(), resultCount);
   checks.push(
     "No JavaScript: navigation, upcoming events, archive and results are accessible",
   );

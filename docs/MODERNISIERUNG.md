@@ -1,5 +1,15 @@
 # ASC-Website: Audit, Umsetzung und Qualitätsprüfung
 
+## Aktueller Stand: Startseite unverändert, Unterseiten und Technik verbessert
+
+Die Startseite wurde auf Wunsch wieder auf ihre ursprünglichen Inhalte und Buttons zurückgeführt. Ihr Hauptinhalt stimmt mit dem Ausgangscommit überein; kein Terminbereich, kein Termin-JavaScript und kein App-Terminabruf auf der Startseite. Metadaten, lokale Schriften und allgemeine technische Verbesserungen bleiben bestehen.
+
+Neu auf den Unterseiten: Sprungnavigation im Vereins- und Sportbereich; Probetraining-Einstieg und zentral gepflegte Jahresbeiträge vor dem Mitgliedsantrag. Beiträge werden aus `assets/data/membership.json` auf Vereins- und Mitgliedschaftsseite eingesetzt. Fehlende Bilder werden weiter durch Initialen ersetzt, bestehende Fotos optimiert ausgeliefert.
+
+Das Kontakt-Backend hat jetzt begrenzte Wartezeiten für Turnstile und FormSubmit, eine Größenprüfung auch ohne Content-Length-Header und kontrollierte Fehlerantworten bei nicht bestätigtem Versand. Das Frontend prüft zusätzlich die Erfolgsmeldung und verhindert parallele Übermittlungen. `scripts/test-contact.mjs` prüft diese Fälle ohne reale Nachrichten.
+
+Die folgenden Abschnitte dokumentieren auch die vorangegangenen Gestaltungsfassungen. Maßgeblich für die Startseite ist der vorstehende aktuelle Stand.
+
 ## Gestalterische Revision vom 29. September 2026
 
 Auf ausdrücklichen Wunsch bleibt die Website jetzt deutlich näher am ursprünglichen Layout. Wiederhergestellt sind die ursprüngliche Startseitenabfolge mit Spendenbereich direkt unter dem Hero, die vertrauten Karten, Rundungen, Hintergründe, Abstände und die Schrift Exo 2. Die abstrakte Präzisionsgrafik und die stark umgestalteten Inhaltsabschnitte wurden zurückgenommen. Die bisherigen Navigationsbezeichnungen sind wieder eingesetzt. Technische Verbesserungen, Terminarchiv, responsive Ergebnisse, Zugänglichkeit und Aktivierung externer Inhalte bleiben erhalten. Die aktuellen Vorschauen zeigen diese überarbeitete Fassung.
@@ -36,9 +46,9 @@ Stand: 28. September 2026. Ausgangspunkt: GitHub `ASCFDS/asc-fds-website`, Commi
 
 - Startseite im vertrauten ursprünglichen Layout; zwei klare Hero-CTAs und ergänzte nächste Termine. Kein fremdes oder erfundenes Sportfoto.
 - Kennzahlen ausschließlich aus vorhandenen Vereinsinhalten: 2011, Trainingsdistanzen, WM-/EM-Hinweis. Keine erfundenen Mitglieder-/Titelzahlen.
-- Niedrigschwelliger Einstieg und Probetraining-Verlinkung; Anliegen im Kontaktformular wird automatisch vorausgewählt. Backend-Feldvertrag und Schutzmechanismen bleiben erhalten; Übermittlung erhält ein Timeout.
+- Niedrigschwelliger Einstieg und Probetraining-Verlinkung; Anliegen im Kontaktformular wird automatisch vorausgewählt. Backend-Feldvertrag und Schutzmechanismen bleiben erhalten; Übermittlung und Serverdienste erhalten Zeitlimits.
 - Eindeutige Postanschrift (Gerhart-Hauptmann-Weg 8) und Trainingsort (Erlenweg 29/1).
-- Aufsteigend sortierte kommende Termine; abgelaufene Termine im aufklappbaren Archiv; Kategorien aus tatsächlich verfügbaren Daten. Ganztägige Veranstaltungen bleiben bis zum Ende ihres Berliner Kalendertags sichtbar. Maximal drei Termine auf der Startseite.
+- Aufsteigend sortierte kommende Termine; abgelaufene Termine im aufklappbaren Archiv; Kategorien aus tatsächlich verfügbaren Daten. Ganztägige Veranstaltungen bleiben bis zum Ende ihres Berliner Kalendertags sichtbar. Keine Termine auf der Startseite; Anzeige ausschließlich im Sport-/Terminbereich.
 - Manueller Datenbestand bleibt auch bei leerer oder fehlgeschlagener App-Antwort erhalten. App-Inhalte werden mit `textContent` ausgegeben; keine HTML-Injektion. Zeitlimit, Wiederholung, Aktualisierung alle fünf Minuten und beim Zurückkehren zur Seite.
 - Strukturierte Ergebnisdaten mit Datum, Wettkampf, Disziplin, vorhandenem Ort, Status und Dokumentlink. Status aktualisiert sich anhand des Datums; mobile Darstellung als beschriftete Karten.
 - Vorhandene Vorstandsporträts als kleinere WebP-Dateien; fehlende Porträts als Initialen. Originalbilder und Original-Logodateien bleiben unverändert im Repository. Responsive Logo-Derivate.
@@ -54,7 +64,7 @@ Stand: 28. September 2026. Ausgangspunkt: GitHub `ASCFDS/asc-fds-website`, Commi
 
 | Prüfung | Ergebnis / Grenze |
 | --- | --- |
-| Build | `node scripts/build-assets.js` erfolgreich; ursprünglicher Worker und Deployment-Befehl bleiben erhalten. |
+| Build | `node scripts/build-assets.js` erfolgreich; ursprünglicher Worker-Routing und Deployment-Befehl bleiben erhalten. |
 | Terminregressionen | `node scripts/test-events.cjs`: 11 Prüfungen, einschließlich Berliner Tagesgrenze, Sommerzeitwechsel, mehrtägiger Termine, privater/stornierter Einträge und Duplikate. |
 | Browser | Chromium: alle neun HTML-Seiten in 320, 390, 768, 1024 und 1440 px, kein horizontaler Dokumentüberlauf, keine defekten Bilder, keine JavaScript-Laufzeit-Ausnahmen. |
 | Automatisierte Accessibility | axe: keine gemeldeten WCAG-A/AA-Verstöße auf allen neun Seiten in 390 und 1440 px. Dies ersetzt weder einen vollständigen Screenreader-Test noch eine WCAG-Zertifizierung. |
@@ -98,6 +108,9 @@ Jugendfotos nur bei passender Freigabe; kein zusätzlicher Bildbestand allein f�
 
 ## Vorschauen und Prüfartefakte
 
+- [Terminseite mobil](vorschau-termine-mobil.png)
+- [Mitgliedschaft mobil](vorschau-mitgliedschaft-mobil.png)
+- [Vereinsseite](vorschau-verein.png)
 - [Desktop-Vorschau](vorschau-desktop.png)
 - [Smartphone-Vorschau](vorschau-mobil.png)
 - [Automatisierte Browserresultate](qa-browser.json)

@@ -1296,3 +1296,6 @@ button,input,textarea,select { font:inherit; }
 
 /* Keep long headings inside the original three-card layout. */
 .stat-card h2 { font-size:clamp(1.5rem,2.3vw,2.2rem); }
+
+.section-nav { display:flex; flex-wrap:wrap; gap:.5rem 1.5rem; padding:1.2rem 0; border-bottom:1px solid #ddd; }
+.section-nav a { display:inline-flex; align-items:center; min-height:44px; font-weight:600; color:var(--color-accent); }

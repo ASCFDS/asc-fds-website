@@ -1,7 +1,7 @@
 [
-  "Empty live feed preserves two manually published upcoming events",
+  "Homepage retains original content and makes no event request",
   "Mobile menu opens, Escape closes, focus returns",
-  "API text is escaped; homepage capped at three events",
+  "API text on the event page is safely escaped",
   "Archive, category filter and live event merge work",
   "maps: no provider request before consent; activation and withdrawal work",
   "membership: no provider request before consent; activation and withdrawal work",

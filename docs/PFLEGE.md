@@ -7,6 +7,7 @@ Die Seite bleibt eine statische Website mit dem bestehenden Cloudflare Worker. N
 ```sh
 node scripts/build-assets.js
 node scripts/test-events.cjs
+node scripts/test-contact.mjs
 python3 scripts/check-links.py
 ```
 
@@ -24,9 +25,13 @@ Die generierten HTML-Bereiche zwischen `EVENTS START/END`, `ARCHIVE START/END` u
 - `category`: beispielsweise `Wettkampf`, `Vereinsleben`, `Sitzung`, `Veranstaltung`, `Ausflug`. Nur tatsächlich passende Kategorien verwenden.
 - `location`: optionaler belegter Veranstaltungsort.
 
-Abgelaufene Termine nicht löschen: Die Website ordnet sie automatisch dem Archiv zu. Für mehrtägige Ausflüge Start UND Ende eintragen. Kategorieauswahl entsteht automatisch aus den vorhandenen Daten. Die Startseite zeigt bis zu drei nächste Termine.
+Abgelaufene Termine nicht löschen: Die Website ordnet sie automatisch dem Archiv zu. Für mehrtägige Ausflüge Start UND Ende eintragen. Kategorieauswahl entsteht automatisch aus den vorhandenen Daten. Die Startseite bleibt ohne Termine. Alle Termine erscheinen ausschließlich auf `events_sportbetrieb.html`.
 
 Die App bleibt eine zweite, schon vorhandene Quelle. Nur dort explizit für die Homepage freigegebene öffentliche Termine dürfen vom Backend geliefert werden. Gleicher Titel am gleichen Berliner Starttag wird zusammengeführt; App-Inhalte haben dabei Vorrang. Der leere Livefeed löscht keine manuellen Einträge. Bei API-Fehlern bleibt der Datenbestand sichtbar. Zum dauerhaften Archivieren von App-Terminen muss der Endpunkt entsprechende vergangene Einträge liefern.
+
+## Mitgliedsbeiträge
+
+`assets/data/membership.json` ist die zentrale Quelle für die bereits veröffentlichten Jahresbeiträge. Änderungen dort werden beim Build in Vereins- und Mitgliedschaftsseite übernommen. Die Startseite wird weder hier noch vom Termin-Generator verändert.
 
 ## Ergebnisse
 
@@ -56,7 +61,7 @@ Provider-Konfigurationen (Spendenprojekt-ID, campai-Modell) nur mit Wissen des V
 
 Das Formular behält `/api/contact`, Honeypots, Turnstile und die bestehenden Feldnamen. `?anliegen=probetraining#anfrage` wählt den Betreff vor. Backend-Secrets bleiben in Cloudflare; keine Werte in HTML/JavaScript eintragen. `SECURITY_SETUP.md` gilt weiter.
 
-Der Servercode wurde nicht um neue Versandziele erweitert. Ein erfolgreicher Mock oder HTTP-200-GET ist kein Zustellnachweis. Dafür nach Veröffentlichung einen bewusst autorisierten Testversand mit Rückmeldung im Verein durchführen.
+Der Servercode behält das bestehende Versandziel, begrenzt eingehende Daten auf 24 KB auch ohne Größenheader und wartet höchstens 5 Sekunden auf Turnstile sowie 10 Sekunden auf den Versanddienst. Nur dessen bestätigte Erfolgsantwort wird als Erfolg an den Browser gemeldet. Fehler löschen keine Nutzereingaben. Ein erfolgreicher Mock oder HTTP-200-GET ist kein Zustellnachweis. Dafür nach Veröffentlichung einen bewusst autorisierten Testversand mit Rückmeldung im Verein durchführen.
 
 ## Willi vorbereiten
 
@@ -75,4 +80,4 @@ NODE_PATH=/private/tmp/asc-qa/node_modules ASC_QA_BASE_URL=http://127.0.0.1:8766
 NODE_PATH=/private/tmp/asc-qa/node_modules ASC_QA_BASE_URL=http://127.0.0.1:8766 node scripts/check-interactions.cjs
 ```
 
-`check-browser.cjs` prüft alle neun HTML-Seiten in fünf Breiten; axe läuft auf Smartphone und Desktop. `check-interactions.cjs` simuliert API und externe Skripte, sendet keine echten Nachrichten und prüft den aktuellen redaktionellen Datenbestand. Die erwarteten Eintragszahlen im Integrationstest bei redaktionellen Änderungen mit anpassen. Ergebnisse und Screenshots werden unter `/private/tmp/asc-website-qa-*` abgelegt. Testwerkzeuge gehören nicht ins Deployment.
+`check-browser.cjs` prüft alle neun HTML-Seiten in fünf Breiten; axe läuft auf Smartphone und Desktop. `check-interactions.cjs` simuliert API und externe Skripte, sendet keine echten Nachrichten und prüft den aktuellen redaktionellen Datenbestand. Die erwarteten Eintragszahlen leitet der Integrationstest aus den aktuellen zentralen Daten ab. Ergebnisse und Screenshots werden unter `/private/tmp/asc-website-qa-*` abgelegt. Testwerkzeuge gehören nicht ins Deployment.

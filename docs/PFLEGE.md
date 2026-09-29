@@ -42,9 +42,9 @@ Keine Platzierungen aus dem Veranstaltungsnamen ableiten. Unbekannte Orte bleibe
 
 Original-Logo-PNGs nicht verändern. Die WebP-Derivate sind Größenvarianten derselben Originalgrafik. Header/Footer verwenden `srcset`; vorhandene Porträts werden als 480×480-WebP ausgeliefert. Keine künstlichen Porträts einsetzen.
 
-Design Tokens stehen oben in `assets/css/styles.css`. Originalrot: `--color-primary`; kontraststärkere Variante: `--color-primary-dark`. Kein Font-Download nötig. Bewegung wird bei `prefers-reduced-motion` abgeschaltet.
+Design Tokens stehen oben in `assets/css/styles.css`. Originalrot: `--color-primary`; kontraststärkere Variante: `--color-primary-dark`. Die ursprüngliche Schrift Exo 2 liegt als lokale WOFF2-Datei in `assets/fonts`; ihre OFL-Lizenz liegt daneben. Kein externer Font-Aufruf nötig. Bewegung wird bei `prefers-reduced-motion` abgeschaltet.
 
-Für einen echten Hero das CSS-Motiv `.precision-art` durch eine semantische Bildkomponente mit sinnvollem Mobile-Crop ersetzen. Das LCP-Bild nicht lazy laden; `width`, `height`, passende `srcset`/`sizes` und Alternativtext setzen. Redaktionsfreigabe für das konkrete Vereinsfoto einholen.
+Für einen echten Hero das vorhandene Hintergrundmaterial durch ein freigegebenes ASC-Foto beziehungsweise eine semantische Bildkomponente mit sinnvollem Mobile-Crop ersetzen. Das LCP-Bild nicht lazy laden; `width`, `height`, passende `srcset`/`sizes` und Alternativtext setzen. Redaktionsfreigabe für das konkrete Vereinsfoto einholen.
 
 ## Externe Inhalte
 

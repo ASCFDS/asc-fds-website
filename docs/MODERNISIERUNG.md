@@ -1,5 +1,11 @@
 # ASC-Website: Audit, Umsetzung und Qualitätsprüfung
 
+## Gestalterische Revision vom 29. September 2026
+
+Auf ausdrücklichen Wunsch bleibt die Website jetzt deutlich näher am ursprünglichen Layout. Wiederhergestellt sind die ursprüngliche Startseitenabfolge mit Spendenbereich direkt unter dem Hero, die vertrauten Karten, Rundungen, Hintergründe, Abstände und die Schrift Exo 2. Die abstrakte Präzisionsgrafik und die stark umgestalteten Inhaltsabschnitte wurden zurückgenommen. Die bisherigen Navigationsbezeichnungen sind wieder eingesetzt. Technische Verbesserungen, Terminarchiv, responsive Ergebnisse, Zugänglichkeit und Aktivierung externer Inhalte bleiben erhalten. Die aktuellen Vorschauen zeigen diese überarbeitete Fassung.
+
+Die unten aufgeführten Lighthouse-Werte stammen aus der ersten Gestaltungsfassung und sind keine Messung dieser Revision.
+
 Stand: 28. September 2026. Ausgangspunkt: GitHub `ASCFDS/asc-fds-website`, Commit `6ddc92e`. Der in der Sitzung angegebene lokale Pfad `/ASCFDS/asc-fds-website` existierte nicht. Deshalb wurde eine isolierte Arbeitskopie unter `/private/tmp/asc-website-modernization` verwendet. Keine bestehenden lokalen Änderungen wurden überschrieben.
 
 ## Phase 1: Audit
@@ -19,16 +25,16 @@ Stand: 28. September 2026. Ausgangspunkt: GitHub `ASCFDS/asc-fds-website`, Commi
 ## Phase 2: Zielarchitektur
 
 - Vorhandene Seitenadressen und Cloudflare-Deployment bleiben bestehen.
-- Startseite: Hero → Kennzahlen → Sport → Einstieg → nächste Termine → Erfolge → Social → Spenden.
-- Navigation: Verein, Sport (Startseitenabschnitt), Termine & Ergebnisse, Spenden, Kontakt & Anfahrt; Mitglied werden als Header-Aktion. Primäre Hero-Aktion: Probetraining.
+- Startseite: ursprünglicher Hero → Spenden → Kennzahlen → Verein/Probetraining → Disziplinen → nächste Termine → Instagram → Kontakt.
+- Navigation: Über uns, Events & Sportbetrieb, Spenden, Kontakt & Anfahrt; Mitglied werden als Header-Aktion. Primäre Hero-Aktion: Probetraining.
 - Header/Footer: `partials/`, beim bestehenden Build in statisches HTML eingesetzt. Kein clientseitig nachgeladenes Menü, kein CMS und keine Runtime-Dependency.
 - Termine/Ergebnisse: zwei zentrale JSON-Dateien, statisch generierter Inhalt als Basis; App-Termine werden ergänzend sicher gerendert.
-- Design: Originalrot `#dd2a1b`, am Logo per Pixelanalyse bestätigt. Dunklere Rotvariante für Text/Buttons, neutrale Flächen, Systemschrift ohne Google-Fonts-Verbindung, klare Typografie, geringe Schatten.
+- Design: Originalrot `#dd2a1b`, am Logo per Pixelanalyse bestätigt. Dunklere Rotvariante für Text/Buttons, bestehende Flächen und Karten; ursprüngliche Schrift Exo 2 wird lokal als WOFF2 ausgeliefert, ohne Google-Fonts-Verbindung.
 - Willi: leerer `#assistant-root` als gemeinsamer Integrationspunkt, noch keine Scripte, Datenübertragung oder Chatfunktion. Eine spätere produktive Integration braucht Backend, geprüfte Vereinsquellen, Fehler-/Offlineverhalten und zugängliche Bedienung. Details in `PFLEGE.md`.
 
 ## Phase 3: Umgesetzt
 
-- Neue Startseite mit zwei Hero-CTAs, abstrakter Präzisionsgrafik und verständlicher Sporteinführung. Kein fremdes oder erfundenes Sportfoto.
+- Startseite im vertrauten ursprünglichen Layout; zwei klare Hero-CTAs und ergänzte nächste Termine. Kein fremdes oder erfundenes Sportfoto.
 - Kennzahlen ausschließlich aus vorhandenen Vereinsinhalten: 2011, Trainingsdistanzen, WM-/EM-Hinweis. Keine erfundenen Mitglieder-/Titelzahlen.
 - Niedrigschwelliger Einstieg und Probetraining-Verlinkung; Anliegen im Kontaktformular wird automatisch vorausgewählt. Backend-Feldvertrag und Schutzmechanismen bleiben erhalten; Übermittlung erhält ein Timeout.
 - Eindeutige Postanschrift (Gerhart-Hauptmann-Weg 8) und Trainingsort (Erlenweg 29/1).

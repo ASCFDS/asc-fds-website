@@ -185,7 +185,8 @@ function waitForTurnstile() {
 
     const check = () => {
       if (window.turnstile && typeof window.turnstile.render === "function") {
-        window.turnstile.ready(() => resolve(window.turnstile));
+        // The deferred, explicit API is available now; ready() rejects deferred scripts.
+        resolve(window.turnstile);
         return;
       }
 

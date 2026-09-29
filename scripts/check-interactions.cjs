@@ -23,7 +23,7 @@ const resultCount = require("../assets/data/results.json").length;
     if (url.includes("turnstile/v0/api.js"))
       return route.fulfill({
         contentType: "application/javascript",
-        body: `window.turnstile={ready:cb=>cb(),render:(el,options)=>{const i=document.createElement('input');i.name='cf-turnstile-response';i.type='hidden';i.value='test';el.append(i);options.callback();return 1;},reset:()=>{}};`,
+        body: `window.turnstile={ready:()=>{throw new Error("ready() cannot be used with defer")},render:(el,options)=>{const i=document.createElement('input');i.name='cf-turnstile-response';i.type='hidden';i.value='test';el.append(i);options.callback();return 1;},reset:()=>{}};`,
       });
     if (url.includes("widget.js") || url.includes("web-form.js"))
       return route.fulfill({ contentType: "application/javascript", body: "" });

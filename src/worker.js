@@ -1,3 +1,4 @@
+import { onRequestGet as williGet, onRequestPost as williPost } from "../functions/api/willi.js";
 import {
   onRequestGet,
   onRequestOptions,
@@ -20,6 +21,12 @@ const prettyStaticPaths = new Map([
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
+
+    if (url.pathname === "/api/willi") {
+      if (request.method === "GET") return williGet({ request, env });
+      if (request.method === "POST") return williPost({ request, env });
+      return jsonResponse({ error: "method_not_allowed" }, 405);
+    }
 
     if (url.pathname === "/api/contact") {
       return handleContactRequest(request, env, ctx);

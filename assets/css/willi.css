@@ -1,0 +1,39 @@
+.willi-launch { position:fixed; right:1.25rem; bottom:max(1rem,env(safe-area-inset-bottom)); z-index:90; display:flex; align-items:center; gap:.5rem; min-height:56px; padding:0 .95rem 0 .25rem; border:1px solid #dedede; border-radius:999px; background:#fff; color:#171717; font:700 1rem 'Exo 2',sans-serif; box-shadow:0 5px 24px #0002; cursor:pointer; }
+.willi-launch img { width:56px; height:56px; object-fit:contain; }
+.willi-launch:hover { border-color:#bd2118; }
+.willi-dialog { width:min(480px,calc(100vw - 2rem)); max-width:none; height:min(760px,calc(100dvh - 2rem)); max-height:none; margin:auto 1rem 1rem auto; padding:0; border:1px solid #dedede; border-radius:24px; background:#fff; color:#171717; box-shadow:0 20px 70px #0003; overflow:hidden; }
+.willi-dialog[open] { display:flex; flex-direction:column; }
+.willi-dialog::backdrop { background:#10101445; }
+.willi-dialog * { box-sizing:border-box; }
+.willi-header { display:flex; gap:.7rem; align-items:center; padding:1rem; background:#f6f4f2; border-bottom:1px solid #e4dfda; flex-shrink:0; }
+.willi-header img { width:92px; height:92px; object-fit:contain; }
+.willi-header h2 { font-size:1.65rem; line-height:1.2; margin:.15rem 0; }
+.willi-eyebrow { margin:0; font-size:.72rem; color:#aa2019; font-weight:700; letter-spacing:.05em; text-transform:uppercase; }
+.willi-subtitle { margin:0; font-size:.82rem; color:#535353; }
+.willi-icon-button { margin-left:auto; align-self:flex-start; width:44px; height:44px; border:0; background:transparent; font-size:2rem; cursor:pointer; color:#171717; flex-shrink:0; }
+.willi-scroll { padding:1.25rem; overflow-y:auto; flex:1; min-height:0; overscroll-behavior:contain; }
+.willi-intro { margin-top:0; font-size:1rem; line-height:1.55; }
+.willi-suggestions { display:flex; flex-wrap:wrap; gap:.5rem; }
+.willi-chip { text-align:left; min-height:44px; padding:.55rem .75rem; font:inherit; font-size:.88rem; border:1px solid #ddd; border-radius:12px; color:#252525; background:#fff; cursor:pointer; }
+.willi-chip:hover { background:#faf1ef; border-color:#bd2118; }
+.willi-question { margin:1.3rem 0 .75rem 1.4rem; padding:.8rem 1rem; border-radius:16px 16px 0 16px; background:#f2ebe7; font-weight:600; overflow-wrap:anywhere; }
+.willi-answer { border-left:3px solid #bd2118; padding-left:1rem; margin-bottom:1rem; overflow-wrap:anywhere; }
+.willi-answer section+section { margin-top:1.2rem; padding-top:1rem; border-top:1px solid #e5e5e5; }
+.willi-answer h3 { font-size:1.05rem; margin:0 0 .5rem; }
+.willi-answer p { font-size:.95rem; line-height:1.6; margin:.5rem 0; }
+.willi-action { display:inline-block; padding:.6rem 0; color:#b21f16; font-weight:700; text-decoration:underline; font-size:.92rem; }
+.willi-sources { color:#555; margin:.6rem 0; font-size:.8rem; }
+.willi-sources summary { cursor:pointer; padding:.35rem 0; }
+.willi-sources p { font-size:.78rem; }.willi-sources a { text-decoration:underline; }
+.willi-status { font-size:.85rem; color:#9c2118; }
+.willi-form { padding:1rem 1.25rem .5rem; border-top:1px solid #e5e5e5; flex-shrink:0; }
+.willi-form label { display:block; font-size:.85rem; font-weight:700; margin-bottom:.35rem; }
+.willi-form textarea { width:100%; padding:.65rem; border:1px solid #bbb; border-radius:12px; color:#171717; background:#fff; font:inherit; font-size:16px; resize:none; max-height:100px; }
+.willi-form-actions { display:flex; justify-content:space-between; align-items:center; gap:.6rem; margin-top:.5rem; }
+.willi-form .btn { padding:.65rem .9rem; min-height:44px; font-size:.9rem; box-shadow:none; min-width:0; }
+.willi-text-button { border:0; background:transparent; color:#555; text-decoration:underline; font:inherit; font-size:.78rem; min-height:44px; cursor:pointer; }
+.willi-note { padding:0 1.25rem 1rem; margin:.25rem 0 0; font-size:.72rem; line-height:1.4; color:#555; flex-shrink:0; }
+.willi-privacy { text-decoration:underline; }
+@media(max-width:520px) { .willi-dialog { margin:auto; width:calc(100vw - 1rem); height:calc(100dvh - 1rem); border-radius:18px; }.willi-header { padding:.75rem; }.willi-header img { width:72px; height:72px; }.willi-launch { right:.75rem; }.willi-scroll { padding:1rem; } }
+@media(prefers-reduced-motion:reduce) { .willi-dialog * { scroll-behavior:auto; transition:none; } }
+@media print { #assistant-root { display:none; } }

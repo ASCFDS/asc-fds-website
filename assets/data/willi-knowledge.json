@@ -1,0 +1,422 @@
+{
+  "version": "2026-10-04",
+  "sources": {
+    "club": {
+      "title": "ASC: Über uns",
+      "url": "/ueber-uns.html",
+      "checkedAt": "2026-10-04"
+    },
+    "contact": {
+      "title": "ASC: Kontakt und Trainingsort",
+      "url": "/kontakt.html",
+      "checkedAt": "2026-10-04"
+    },
+    "membership": {
+      "title": "ASC: Mitglied werden",
+      "url": "/mitglied-werden.html",
+      "checkedAt": "2026-10-04"
+    },
+    "fees2023": {
+      "title": "Beitragsordnung des ASC, Beschluss vom 05.05.2023, §§ 2–5 und Anlage 1",
+      "checkedAt": "2026-10-04"
+    },
+    "fees2026": {
+      "title": "Beitragsordnung des ASC, Änderung vom 02.04.2026 per 01.01.2027, Anlage 1",
+      "checkedAt": "2026-10-04"
+    },
+    "press2026": {
+      "title": "Pressebericht „ASC Freudenstadt blickt zurück“, 28.04.2026, Rückblick auf das Sportjahr 2025",
+      "checkedAt": "2026-10-04"
+    },
+    "events": {
+      "title": "ASC: Termine und Ergebnisse",
+      "url": "/events_sportbetrieb.html",
+      "checkedAt": "2026-10-04"
+    },
+    "donation": {
+      "title": "ASC: Spendenprojekt",
+      "url": "/spende/",
+      "checkedAt": "2026-10-04"
+    }
+  },
+  "entries": [
+    {
+      "id": "history",
+      "title": "Wie der ASC entstand",
+      "terms": [
+        "geschichte",
+        "gegründet",
+        "gründung",
+        "seit wann",
+        "entstanden",
+        "2011",
+        "chronik",
+        "entstand"
+      ],
+      "answer": "Der ASC Freudenstadt e.V. wurde 2011 aus Leistungsschützen gegründet. Sein Schwerpunkt liegt im Armbrustsport, ergänzt durch Gewehr- und Pistolendisziplinen. Ambitionierter Sport und Gemeinschaft prägen den Verein. Eine vollständige Vereinschronik liegt Willi noch nicht vor.",
+      "sourceIds": [
+        "club"
+      ],
+      "action": "club",
+      "reviewAfter": "2027-04-01"
+    },
+    {
+      "id": "training",
+      "title": "Training beim ASC",
+      "terms": [
+        "training",
+        "trainingszeit",
+        "trainieren",
+        "mittwoch",
+        "uhrzeit"
+      ],
+      "answer": "Das reguläre Training findet mittwochs ab 18:30 Uhr im Schützenhaus, Erlenweg 29/1, 72250 Freudenstadt statt. Ob ein bestimmter Termin ausnahmsweise entfällt, klärst du bitte direkt mit dem Verein.",
+      "sourceIds": [
+        "contact"
+      ],
+      "action": "trial",
+      "reviewAfter": "2027-04-01"
+    },
+    {
+      "id": "trial",
+      "title": "Einfach ausprobieren",
+      "terms": [
+        "probetraining",
+        "anfänger",
+        "ausprobieren",
+        "einsteiger",
+        "vorkenntnisse",
+        "kennenlernen"
+      ],
+      "answer": "Du kannst den Verein und das Training zunächst kennenlernen; Vorerfahrung ist dafür nicht erforderlich. Frage ein Probetraining an und nenne dein Interesse sowie einen möglichen Termin. Eine Anfrage ist noch keine Terminbestätigung.",
+      "sourceIds": [
+        "membership",
+        "contact"
+      ],
+      "action": "trial",
+      "reviewAfter": "2027-04-01"
+    },
+    {
+      "id": "location",
+      "title": "Zum Schützenhaus",
+      "terms": [
+        "anfahrt",
+        "trainingsort",
+        "schützenhaus",
+        "erlenweg",
+        "parkplatz",
+        "parken",
+        "wo trainiert"
+      ],
+      "answer": "Der Trainingsort ist Erlenweg 29/1, 72250 Freudenstadt. Bitte nutze diese Adresse für deinen Besuch, nicht die Vereins- und Postanschrift. Zu Parkmöglichkeiten liegen Willi keine bestätigten Angaben vor.",
+      "sourceIds": [
+        "contact"
+      ],
+      "action": "contact",
+      "reviewAfter": "2027-04-01"
+    },
+    {
+      "id": "post",
+      "title": "Vereins- und Postanschrift",
+      "terms": [
+        "post",
+        "postanschrift",
+        "vereinsanschrift",
+        "hauptmann"
+      ],
+      "answer": "Die Vereins- und Postanschrift lautet Gerhart-Hauptmann-Weg 8, 72250 Freudenstadt. Trainiert wird im Schützenhaus am Erlenweg 29/1.",
+      "sourceIds": [
+        "contact"
+      ],
+      "action": "contact",
+      "reviewAfter": "2027-04-01"
+    },
+    {
+      "id": "contact",
+      "title": "Den Verein erreichen",
+      "terms": [
+        "kontakt",
+        "telefon",
+        "email",
+        "e mail",
+        "ansprechpartner",
+        "erreichen"
+      ],
+      "answer": "Du erreichst den Verein unter info@asc-fds.de oder über das Kontaktformular. Die Website nennt außerdem 0174 3213421. Willi selbst sendet keine E-Mails und nimmt keine Anmeldung vor.",
+      "sourceIds": [
+        "contact"
+      ],
+      "action": "contact",
+      "reviewAfter": "2027-04-01"
+    },
+    {
+      "id": "sports",
+      "title": "Unsere Disziplinen",
+      "terms": [
+        "disziplin",
+        "sportarten",
+        "armbrust",
+        "gewehr",
+        "pistole",
+        "match",
+        "feldarmbrust"
+      ],
+      "answer": "Der ASC konzentriert sich auf Armbrustsport und bietet ergänzend Gewehr- und Pistolendisziplinen an. Die Anlagen umfassen 10 m für Luftdruckwaffen und Match-Armbrust sowie 35, 50 und 65 m für Feldarmbrust.",
+      "sourceIds": [
+        "club"
+      ],
+      "action": "facilities",
+      "reviewAfter": "2027-04-01"
+    },
+    {
+      "id": "facilities",
+      "title": "Unsere Anlagen",
+      "terms": [
+        "anlage",
+        "stand",
+        "distanzen",
+        "10 m",
+        "35 m",
+        "50 m",
+        "65 m"
+      ],
+      "answer": "Zum ASC gehören ein 10-m-Stand für Luftdruckwaffen und Match-Armbrust und eine Feldarmbrust-Anlage mit 35, 50 und 65 m.",
+      "sourceIds": [
+        "club"
+      ],
+      "action": "facilities",
+      "reviewAfter": "2027-04-01"
+    },
+    {
+      "id": "fees",
+      "title": "Mitgliedsbeiträge",
+      "terms": [
+        "beitrag",
+        "kosten",
+        "preis",
+        "gebühr",
+        "mitgliedschaft kostet",
+        "jahresbeitrag",
+        "kost",
+        "teuer"
+      ],
+      "answer": "Der Jahresbeitrag beträgt 50 € für ordentliche und fördernde Mitglieder, 25 € für Minderjährige und 0 € für Ehrenmitglieder. Maßgeblich sind die Beitragsordnung und die persönliche Einstufung; Willi kann keine verbindliche Beitragsabrechnung vornehmen.",
+      "sourceIds": [
+        "fees2023",
+        "membership"
+      ],
+      "action": "membership",
+      "reviewAfter": "2027-04-01"
+    },
+    {
+      "id": "join",
+      "title": "Mitglied werden",
+      "terms": [
+        "beitreten",
+        "mitglied werden",
+        "antrag",
+        "aufnahme",
+        "anmelden"
+      ],
+      "answer": "Den Online-Mitgliedsantrag findest du auf „Mitglied werden“. Bei Fragen zum Einstieg oder zum Antrag hilft der Verein weiter. Willi kann den Antrag öffnen, ihn aber nicht für dich ausfüllen oder absenden.",
+      "sourceIds": [
+        "membership"
+      ],
+      "action": "membership",
+      "reviewAfter": "2027-04-01"
+    },
+    {
+      "id": "youth",
+      "title": "Kinder und Jugendliche",
+      "terms": [
+        "jugend",
+        "kind",
+        "minderjährig",
+        "eltern",
+        "mindestalter"
+      ],
+      "answer": "Für Minderjährige ist ein Jahresbeitrag von 25 € veröffentlicht. Den passenden Einstieg, die Voraussetzungen für die gewünschte Disziplin und den Antrag klärst du bitte gemeinsam mit den Eltern direkt mit dem Verein. Eine verbindliche Altersfreigabe für einzelne Disziplinen liegt Willi nicht vor.",
+      "sourceIds": [
+        "fees2023",
+        "membership"
+      ],
+      "action": "membership-question",
+      "reviewAfter": "2027-04-01"
+    },
+    {
+      "id": "partial-year",
+      "title": "Eintritt im zweiten Halbjahr",
+      "terms": [
+        "halbjahr",
+        "teiljahr",
+        "30.06",
+        "juli",
+        "anteilig",
+        "halber beitrag"
+      ],
+      "answer": "Laut § 4 Absatz 6 der Beitragsordnung werden bei einem Vereinseintritt nach dem 30. Juni 50 % des Beitragssatzes berechnet.",
+      "sourceIds": [
+        "fees2023"
+      ],
+      "action": "membership-question",
+      "reviewAfter": "2027-04-01"
+    },
+    {
+      "id": "payment",
+      "title": "So werden Beiträge bezahlt",
+      "terms": [
+        "sepa",
+        "lastschrift",
+        "überweisung",
+        "bezahlen",
+        "abbuchung",
+        "zahlung"
+      ],
+      "answer": "Die Beitragsordnung sieht SEPA-Lastschrift vor. Ohne Einzugsermächtigung kann der Verein 10 € Verwaltungsaufwand berechnen; Mitglieder ohne Abbuchungsverfahren zahlen laut Ordnung spätestens bis zum 28. Februar. Selbst verursachte Rücklastschriftkosten sind zu erstatten. Bitte teile Willi keine Bankdaten mit.",
+      "sourceIds": [
+        "fees2023"
+      ],
+      "action": "membership-question",
+      "reviewAfter": "2027-04-01"
+    },
+    {
+      "id": "discount",
+      "title": "Ermäßigung und Einstufung",
+      "terms": [
+        "ermäßigung",
+        "ermässigung",
+        "altersklasse",
+        "einstufung",
+        "rabatt"
+      ],
+      "answer": "Ermäßigte Beitragsformen müssen beantragt und nachgewiesen werden. Für die Altersklasse gilt grundsätzlich das vollendete Lebensjahr zum 31. Dezember des Vorjahres; bei Neuaufnahmen das Alter am Aufnahmetag. Den Einzelfall klärt der Verein.",
+      "sourceIds": [
+        "fees2023"
+      ],
+      "action": "membership-question",
+      "reviewAfter": "2027-04-01"
+    },
+    {
+      "id": "fees-2027",
+      "title": "Beschlossene Änderung ab 2027",
+      "terms": [
+        "2027",
+        "externe",
+        "leistungsschützen",
+        "neue beitragsordnung"
+      ],
+      "answer": "Die Fassung vom 2. April 2026 nennt eine Änderung per 1. Januar 2027. Ihre Anlage führt externe Leistungsschützen mit 25 € pro Geschäftsjahr auf. Die übrigen genannten Sätze sind 50 € für ordentliche und fördernde Mitglieder, 25 € für Minderjährige und 0 € für Ehrenmitglieder. Die Einstufung klärt der Verein.",
+      "sourceIds": [
+        "fees2026"
+      ],
+      "action": "membership-question",
+      "reviewAfter": "2027-04-01"
+    },
+    {
+      "id": "exit",
+      "title": "Austritt aus dem Verein",
+      "terms": [
+        "austritt",
+        "kündigung",
+        "kündigen"
+      ],
+      "answer": "Die Beitragsordnung verweist für den Austritt auf § 4 der Satzung. Die dafür geltenden Fristen und Formvorgaben sind in Willis Wissensbasis noch nicht belegt. Bitte frage den Verein; Willi erklärt keine Kündigung und bestätigt keinen Austritt.",
+      "sourceIds": [
+        "fees2023"
+      ],
+      "action": "contact",
+      "reviewAfter": "2027-04-01"
+    },
+    {
+      "id": "success",
+      "title": "Sportliche Erfolge",
+      "terms": [
+        "erfolge",
+        "weltmeister",
+        "europameister",
+        "medaillen",
+        "budapest",
+        "wm 2025",
+        "gold",
+        "bronze"
+      ],
+      "answer": "Der ASC zählt mehrfache Welt- und Europameister zu seinen Mitgliedern. Der Pressebericht vom 28. April 2026 blickt auf die Armbrust-WM 2025 in Budapest zurück: ASC-Sportler kehrten mit einer Gold- und vier Bronzemedaillen zurück. Eine vollständige Liste aller Titel und Einzelplatzierungen liegt Willi noch nicht vor.",
+      "sourceIds": [
+        "club",
+        "press2026"
+      ],
+      "action": "success",
+      "reviewAfter": "2027-04-01"
+    },
+    {
+      "id": "events",
+      "title": "Aktuelle Termine",
+      "terms": [
+        "termine",
+        "veranstaltung",
+        "nächste",
+        "wettkampf",
+        "ausflug",
+        "ski",
+        "veranstaltungen"
+      ],
+      "answer": "Auf „Events & Sportbetrieb“ findest du kommende Termine, Kategorien und das Archiv vergangener Veranstaltungen. Dort werden auch öffentlich freigegebene App-Termine ergänzt. Bitte prüfe diese Seite für den aktuellen Stand und mögliche Änderungen.",
+      "sourceIds": [
+        "events"
+      ],
+      "action": "events",
+      "reviewAfter": "2027-04-01"
+    },
+    {
+      "id": "results",
+      "title": "Wettkämpfe und Ergebnisse",
+      "terms": [
+        "ergebnis",
+        "resultat",
+        "platzierung",
+        "rangliste"
+      ],
+      "answer": "Die Ergebnisübersicht nennt Wettbewerbe, Disziplinen und die verfügbaren Ergebnislinks. Ein vergangener Wettkampf bedeutet nicht automatisch, dass ein Ergebnis veröffentlicht wurde. Für noch fehlende Berichte oder persönliche Resultate frage bitte beim Verein nach.",
+      "sourceIds": [
+        "events"
+      ],
+      "action": "results",
+      "reviewAfter": "2027-04-01"
+    },
+    {
+      "id": "donate",
+      "title": "Den ASC unterstützen",
+      "terms": [
+        "spenden",
+        "spende",
+        "unterstützen",
+        "crowdfunding",
+        "schießstandtechnik",
+        "wofür sind die spenden"
+      ],
+      "answer": "Das veröffentlichte Spendenprojekt unterstützt die Erneuerung der Schießstandtechnik und begleitende Modernisierung. Den aktuellen Projektstand findest du im verlinkten Spendenangebot. Willi nimmt keine Zahlungen entgegen und nennt keinen ungeprüften Spendenstand.",
+      "sourceIds": [
+        "donation"
+      ],
+      "action": "donate",
+      "reviewAfter": "2027-04-01"
+    },
+    {
+      "id": "privacy",
+      "title": "Was Willi weiß",
+      "terms": [
+        "datenschutz",
+        "speichern",
+        "wissen",
+        "quellen",
+        "privat"
+      ],
+      "answer": "Ich nutze die öffentlichen Vereinsinformationen und die für diesen Assistenten bereitgestellten Auszüge aus Vereinsunterlagen. Jede Auskunft nennt ihre Quellen. Die lokale Wissenssuche sendet deine Frage nicht an einen KI-Anbieter. Private Mitgliederdaten, Zahlungsstände und interne Unterlagen kann ich nicht abrufen.",
+      "sourceIds": [
+        "club"
+      ],
+      "action": "privacy",
+      "reviewAfter": "2027-04-01"
+    }
+  ]
+}

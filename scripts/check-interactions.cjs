@@ -125,7 +125,7 @@ const resultCount = require("../assets/data/results.json").length;
   await p.locator("#nachricht").fill("Test request retained");
   await p.locator("#datenschutz").check();
   mode = "error";
-  await p.locator("button[type=submit]").click();
+  await p.locator("[data-contact-form] button[type=submit]").click();
   await p.waitForFunction(() =>
     document
       .querySelector("[data-form-status]")
@@ -143,7 +143,7 @@ const resultCount = require("../assets/data/results.json").length;
   await p.locator("#nachricht").fill("Mock success");
   await p.locator("#datenschutz").check();
   mode = "success";
-  await p.locator("button[type=submit]").click();
+  await p.locator("[data-contact-form] button[type=submit]").click();
   await p.waitForFunction(() =>
     document
       .querySelector("[data-form-status]")

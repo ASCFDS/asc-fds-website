@@ -10,8 +10,8 @@
     />
     <link rel="icon" type="image/png" href="assets/img/logo-dark.png" />
     <link rel="apple-touch-icon" href="assets/img/logo-dark.png" />
-    <link rel="stylesheet" href="assets/css/styles.css?v=20260929-classic" />
-    <script defer src="assets/js/main.js?v=20260929-turnstile"></script>
+    <link rel="stylesheet" href="assets/css/styles.css?v=20261003-map" />
+    <script defer src="assets/js/main.js?v=20261003-map"></script>
     <script
       defer
       src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
@@ -151,41 +151,23 @@
               Route in Google Maps öffnen
             </a>
 
-            <div class="map-embed external-content" data-external="maps">
-              <p>
-                Google Maps wird erst nach deiner Zustimmung geladen. Dabei
-                werden technische Daten wie deine IP-Adresse an Google
-                übermittelt.
-              </p>
-              <button type="button" class="btn btn-primary" data-external-load>
-                Karte laden und zustimmen
-              </button>
-              <p>
-                <a class="text-link" href="/datenschutz.html"
-                  >Datenschutzhinweise</a
-                >
-              </p>
-              <noscript
-                ><p>
-                  Für eingebettete Inhalte bitte JavaScript aktivieren. Du
-                  erreichst uns auch unter
-                  <a href="mailto:info@asc-fds.de">info@asc-fds.de</a>.
-                </p></noscript
-              >
-              <p data-external-status role="status"></p>
-              <div data-external-slot></div>
-              <button
-                type="button"
-                class="text-button"
-                data-external-revoke
-                hidden
-              >
-                Karte entfernen
-              </button>
+            <div class="map-embed external-content map-preview" data-external="maps">
+              <div class="map-preview__stage">
+                <img class="map-preview__image" src="assets/img/anfahrt-preview.svg" alt="Kartenübersicht am Erlenweg in Freudenstadt mit markiertem Schützenhaus" width="1200" height="900" loading="lazy" />
+                <div class="map-preview__consent">
+                  <p>Mit deiner Zustimmung wird Google Maps geladen. Dabei werden unter anderem deine IP-Adresse und Browserdaten an Google übermittelt.</p>
+                  <button type="button" class="btn btn-primary" data-external-load>Google Maps aktivieren</button>
+                  <a class="text-link" href="/datenschutz.html">Datenschutzhinweise</a>
+                </div>
+                <div data-external-slot></div>
+              </div>
+              <div class="map-preview__footer">
+                <span class="map-preview__credit">Kartenvorschau: © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap-Mitwirkende</a></span>
+                <span data-external-status role="status"></span>
+                <button type="button" class="text-button" data-external-revoke hidden>Karte deaktivieren</button>
+              </div>
+              <noscript><p>Nutze für die Navigation den Link „Route in Google Maps öffnen“.</p></noscript>
             </div>
-            <p class="map-note">
-              Mit dem Laden der Karte werden Inhalte von Google Maps geladen.
-            </p>
           </div>
         </div>
       </section>

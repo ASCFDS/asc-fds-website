@@ -311,6 +311,7 @@ document.addEventListener("DOMContentLoaded", () => {
         frame.height = "320";
         frame.referrerPolicy = "no-referrer";
         slot.replaceChildren(frame);
+        panel.classList.add("is-active");
         status.textContent = "Karte aktiviert.";
         load.hidden = true;
         revoke.hidden = false;

@@ -81,3 +81,6 @@ NODE_PATH=/private/tmp/asc-qa/node_modules ASC_QA_BASE_URL=http://127.0.0.1:8766
 ```
 
 `check-browser.cjs` prüft alle neun HTML-Seiten in fünf Breiten; axe läuft auf Smartphone und Desktop. `check-interactions.cjs` simuliert API und externe Skripte, sendet keine echten Nachrichten und prüft den aktuellen redaktionellen Datenbestand. Die erwarteten Eintragszahlen leitet der Integrationstest aus den aktuellen zentralen Daten ab. Ergebnisse und Screenshots werden unter `/private/tmp/asc-website-qa-*` abgelegt. Testwerkzeuge gehören nicht ins Deployment.
+
+
+Kartenvorschau: assets/img/anfahrt-preview.svg ist eine lokal gerenderte OpenStreetMap-Karte (Daten © OpenStreetMap-Mitwirkende, ODbL, https://www.openstreetmap.org/copyright). Ausschnitt: 8.422,48.452 bis 8.446,48.464; Abruf 2026-10-03. Position Erlenweg 29/1: OSM-Knoten 4228846869. Keine externen Ressourcen im SVG; Quellenhinweis direkt unter der Vorschau beibehalten. Google Maps wird erst nach Aktivierung geladen.

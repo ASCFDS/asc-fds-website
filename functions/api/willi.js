@@ -1,4 +1,5 @@
-import knowledge from '../../assets/data/willi-knowledge.json' with { type: 'json' };
+// Pages' build bundler loads JSON directly (including Wrangler 3).
+import knowledge from '../../assets/data/willi-knowledge.json';
 const json=(body,status=200)=>new Response(JSON.stringify(body),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
 const configured=env=>env.WILLI_AI_ENABLED==='true'&&env.WILLI_FREE_PLAN_CONFIRMED==='true'&&typeof env.AI?.run==='function'&&!!env.TURNSTILE_SECRET_KEY&&!!env.TURNSTILE_SITE_KEY;
 // Local abuse throttle, not an account-wide spending cap. Free-plan provider quota is mandatory.

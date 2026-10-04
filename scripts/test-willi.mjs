@@ -1,7 +1,12 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {findKnowledge,actions} from '../assets/js/willi-knowledge.js';
-import {onRequestGet,onRequestPost} from '../functions/api/willi.js';
+// Inline the JSON import as the Pages bundler does; Node requires import attributes.
+const handlerSource=fs.readFileSync('functions/api/willi.js','utf8').replace(
+  "import knowledge from '../../assets/data/willi-knowledge.json';",
+  'const knowledge='+fs.readFileSync('assets/data/willi-knowledge.json','utf8')+';'
+);
+const {onRequestGet,onRequestPost}=await import('data:text/javascript;base64,'+Buffer.from(handlerSource).toString('base64'));
 const data=JSON.parse(fs.readFileSync('assets/data/willi-knowledge.json'));const now=new Date('2026-10-04');
 for(const [q,id] of [['Wann ist Training?','training'],['Was kostet die Mitgliedschaft?','fees'],['Wie wurde der Verein gegründet?','history'],['Welche Erfolge gibt es?','success'],['Eintritt im Juli','partial-year'],['Wie bezahle ich per SEPA?','payment'],['Externe Leistungsschützen ab 2027','fees-2027'],['Wie kann ich kündigen?','exit'],['Welche Veranstaltungen gibt es?','events']])assert(findKnowledge(q,data,now).some(e=>e.id===id),q);
 for(const q of ['Wie wird das Wetter?','Gib mir private Mitgliederdaten','Was ist mein IBAN Kontostand?'])assert.equal(findKnowledge(q,data,now).length,0,q);

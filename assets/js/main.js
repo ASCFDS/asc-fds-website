@@ -298,50 +298,66 @@ document.addEventListener("DOMContentLoaded", () => {
       slot = panel.querySelector("[data-external-slot]"),
       status = panel.querySelector("[data-external-status]");
     const template = slot.querySelector("template")?.content.cloneNode(true);
-    let script;
+    let attempt = 0;
     load.addEventListener("click", () => {
+      if (load.disabled) return;
+      const current = ++attempt;
+      let settled = false;
       load.disabled = true;
+      slot.setAttribute("aria-busy", "true");
       status.textContent = "Inhalt wird geladen …";
+      revoke.hidden = false;
+      const finish = (error = false) => {
+        if (settled || current !== attempt) return;
+        settled = true;
+        clearTimeout(timeout);
+        slot.setAttribute("aria-busy", "false");
+        if (error) {
+          slot.replaceChildren();
+          panel.classList.remove("is-active");
+          status.textContent = "Der Dienst konnte nicht geladen werden. Bitte erneut versuchen oder den Kontakt zum Verein nutzen.";
+          load.textContent = "Erneut laden und zustimmen";
+          load.disabled = false;
+          load.hidden = false;
+          // Keep the reload control available: provider scripts may have started.
+        } else {
+          status.textContent = panel.dataset.external === "maps"
+            ? "Karte aktiviert. Falls sie nicht angezeigt wird, nutze den Routenlink oberhalb."
+            : "Externer Dienst aktiviert. Falls kein Inhalt erscheint, kontaktiere uns bitte.";
+          load.hidden = true;
+          // Hiding the activation button must not lose keyboard focus.
+          if (document.activeElement === load) revoke.focus({ preventScroll: true });
+        }
+      };
+      const timeout = setTimeout(() => finish(true), 15000);
       if (panel.dataset.external === "maps") {
         const frame = document.createElement("iframe");
         frame.title = "Google Maps: Schützenhaus Erlenweg 29/1, Freudenstadt";
-        frame.src =
-          "https://www.google.com/maps?q=Erlenweg%2029%2F1%2C%2072250%20Freudenstadt&z=15&output=embed";
+        frame.src = "https://www.google.com/maps?q=Erlenweg%2029%2F1%2C%2072250%20Freudenstadt&z=15&output=embed";
         frame.width = "100%";
         frame.height = "320";
         frame.referrerPolicy = "no-referrer";
+        frame.onload = () => finish();
+        frame.onerror = () => finish(true);
         slot.replaceChildren(frame);
+        const hadFocus = document.activeElement === load;
         panel.classList.add("is-active");
-        status.textContent = "Karte aktiviert.";
-        load.hidden = true;
-        revoke.hidden = false;
+        if (hadFocus) revoke.focus({ preventScroll: true });
       } else {
         slot.replaceChildren(template.cloneNode(true));
-        script = document.createElement("script");
-        script.src =
-          panel.dataset.external === "donation"
-            ? "https://www.viele-schaffen-mehr.de/projects/vsm/dist/js/widget.js"
-            : "https://admin.campai.com/lib/web-form.js";
-        if (panel.dataset.external === "donation")
-          script.dataset.script = "cf-project-widget";
+        const script = document.createElement("script");
+        script.src = panel.dataset.external === "donation"
+          ? "https://www.viele-schaffen-mehr.de/projects/vsm/dist/js/widget.js"
+          : "https://admin.campai.com/lib/web-form.js";
+        if (panel.dataset.external === "donation") script.dataset.script = "cf-project-widget";
         script.onload = () => {
-          if (
-            panel.dataset.external === "donation" &&
-            typeof window.loadWidget === "function"
-          )
-            window.loadWidget();
-          status.textContent =
-            "Externer Dienst aktiviert. Falls kein Inhalt erscheint, kontaktiere uns bitte.";
-          load.hidden = true;
-          revoke.hidden = false;
+          if (settled || current !== attempt) return;
+          try {
+            if (panel.dataset.external === "donation" && typeof window.loadWidget === "function") window.loadWidget();
+            finish();
+          } catch { finish(true); }
         };
-        script.onerror = () => {
-          status.textContent =
-            "Der Dienst ist nicht erreichbar. Bitte versuche es erneut oder kontaktiere info@asc-fds.de.";
-          load.disabled = false;
-          slot.replaceChildren();
-          script.remove();
-        };
+        script.onerror = () => finish(true);
         slot.append(script);
       }
     });

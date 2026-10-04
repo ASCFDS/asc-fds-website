@@ -4,6 +4,8 @@ Stand: 04.10.2026. Keine Änderungen an der iOS-App.
 
 ## Betriebsstand
 
+Die lokale Wissenssuche wurde am 04.10.2026 auf `asc-fds.de` und `www.asc-fds.de` veröffentlicht. Der Pages-Buildfehler beim JSON-Import wurde behoben; Live-Dateien und Wissenszuordnung wurden geprüft. Die optionale KI ist weiterhin nicht aktiv.
+
 Die lokale, quellenbasierte Wissenssuche ist vollständig ohne KI-Anfragen verwendbar. Sie ist eine Stichwort-/Themensuche, kein frei formulierendes Sprachmodell. Unpassende oder unbekannte Fragen werden an den Verein verwiesen. Der optionale Cloudflare-Workers-AI-Anschluss ist implementiert, aber ohne bestätigte Free-Plan-Konfiguration deaktiviert. Keine OpenAI-Verbindung, keine API-Kosten durch die lokale Suche. Es gibt keinen Anspruch, dass ein kleiner Katalog sämtliches Vereinswissen abdeckt.
 
 ## Pflege und Quellen

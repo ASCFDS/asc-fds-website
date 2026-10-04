@@ -21,6 +21,6 @@ for (const file of [
     .replace(/<footer class="site-footer">[\s\S]*?<\/footer>/, footer);
   if (!s.includes('id="assistant-root"'))
     s = s.replace("</body>", '  <div id="assistant-root"></div>\n</body>');
-  if (!s.includes('/assets/css/willi.css')) s = s.replace('</head>', '  <link rel="stylesheet" href="/assets/css/willi.css?v=20261004" />\n  <script type="module" src="/assets/js/willi.js?v=20261004"></script>\n</head>');
+  if (!s.includes('/assets/css/willi.css')) s = s.replace('</head>', '  <link rel="stylesheet" href="/assets/css/willi.css?v=20261004-ux" />\n  <script type="module" src="/assets/js/willi.js?v=20261004-ux"></script>\n</head>');
   writeFileSync(file, s);
 }

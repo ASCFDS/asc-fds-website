@@ -37,3 +37,16 @@
 @media(max-width:520px) { .willi-dialog { margin:auto; width:calc(100vw - 1rem); height:calc(100dvh - 1rem); border-radius:18px; }.willi-header { padding:.75rem; }.willi-header img { width:72px; height:72px; }.willi-launch { right:.75rem; }.willi-scroll { padding:1rem; } }
 @media(prefers-reduced-motion:reduce) { .willi-dialog * { scroll-behavior:auto; transition:none; } }
 @media print { #assistant-root { display:none; } }
+
+.willi-recovery:not([hidden]) { display:flex; flex-wrap:wrap; gap:.5rem; align-items:center; }
+@media (max-height:600px) {
+ .willi-dialog { height:calc(100dvh - .5rem); margin:auto; }
+ .willi-header { padding:.4rem .75rem; }
+ .willi-header img { width:44px; height:44px; }
+ .willi-header h2 { font-size:1.15rem; }
+ .willi-eyebrow, .willi-subtitle { display:none; }
+ .willi-form { padding:.4rem .75rem; }
+ .willi-form textarea { height:44px; }
+ .willi-note { padding:0 .75rem .4rem; font-size:.7rem; }
+ .willi-scroll { padding:.6rem .75rem; }
+}

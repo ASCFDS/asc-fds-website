@@ -63,13 +63,15 @@ Das Formular behält `/api/contact`, Honeypots, Turnstile und die bestehenden Fe
 
 Der Servercode behält das bestehende Versandziel, begrenzt eingehende Daten auf 24 KB auch ohne Größenheader und wartet höchstens 5 Sekunden auf Turnstile sowie 10 Sekunden auf den Versanddienst. Nur dessen bestätigte Erfolgsantwort wird als Erfolg an den Browser gemeldet. Fehler löschen keine Nutzereingaben. Ein erfolgreicher Mock oder HTTP-200-GET ist kein Zustellnachweis. Dafür nach Veröffentlichung einen bewusst autorisierten Testversand mit Rückmeldung im Verein durchführen.
 
-## Willi vorbereiten
+## Willi pflegen
 
-`#assistant-root` ist auf allen Seiten vorhanden und leer. Solange es kein geprüftes Backend gibt, bleibt es leer. Eine spätere Integration kann ein separat geladenes Modul dort mounten; kein globales Vendor-Skript nötig. Anforderungen: ausschließlich serverseitiger Modellzugriff, zugelassene Vereinsquellen/Aktionen, explizite Unsicherheit, Tastatur-/Screenreaderbedienung, Reduced Motion, sichere Fehlerzustände. Keine autonome Mail und keine erfundenen Vereinsantworten. Der Assistant darf Formular- und Navigationsaktionen nicht verdecken.
+Willi ist seit 04.10.2026 auf der produktiven Website eingebunden. Die lokale Wissenssuche nutzt den geprüften Katalog; externe KI bleibt deaktiviert. Quellen, Prüftermine und Betriebsgrenzen stehen in `WILLI.md`.
+
+Bei Ladefehlern bleiben eingegebene Fragen erhalten; ein Wiederholungsbutton und der Kontaktweg stehen bereit. Auf Touch-Geräten erhält zunächst der Schließen-Button den Fokus, damit die Tastatur die Themenvorschläge nicht sofort verdeckt. Auf Geräten mit präzisem Zeiger wird das Fragenfeld fokussiert. Kleine Bildschirmhöhen verwenden einen kompakten Dialogkopf.
 
 ## Veröffentlichung
 
-Bestehenden Cloudflare-Build verwenden. Die Änderungen zunächst in einem eigenen Git-Branch prüfen. Nach Merge und Deployment kontrollieren: produktive Domain, Canonicals, Sitemap, Kontakt-Konfiguration, Termindaten/CORS, Spendenwidget, campai und Maps. Kein „live“-Status allein aufgrund eines erfolgreichen lokalen Builds.
+Die produktive Website läuft auf Cloudflare Pages (`asc-fds-website`), automatisch aus GitHub `main`. `wrangler.jsonc` beschreibt einen alternativen Worker-Build und ist nicht die produktive Pages-Konfiguration. Pages Functions müssen auch mit dem derzeit eingesetzten Wrangler 3.114.17 kompilieren. Bestehenden Cloudflare-Pages-Build verwenden. Die Änderungen zunächst in einem eigenen Git-Branch prüfen. Nach Merge und Deployment kontrollieren: produktive Domain, Canonicals, Sitemap, Kontakt-Konfiguration, Termindaten/CORS, Spendenwidget, campai und Maps. Kein „live“-Status allein aufgrund eines erfolgreichen lokalen Builds.
 
 ## Optionale automatisierte Browserprüfung
 
@@ -84,3 +86,10 @@ NODE_PATH=/private/tmp/asc-qa/node_modules ASC_QA_BASE_URL=http://127.0.0.1:8766
 
 
 Kartenvorschau: assets/img/anfahrt-preview.svg ist eine lokal gerenderte OpenStreetMap-Karte (Daten © OpenStreetMap-Mitwirkende, ODbL, https://www.openstreetmap.org/copyright). Ausschnitt: 8.422,48.452 bis 8.446,48.464; Abruf 2026-10-03. Position Erlenweg 29/1: OSM-Knoten 4228846869. Keine externen Ressourcen im SVG; Quellenhinweis direkt unter der Vorschau beibehalten. Google Maps wird erst nach Aktivierung geladen.
+
+
+## Funktionsverbesserungen vom 04.10.2026
+
+Externe Einbindungen bekommen 15 Sekunden zum Laden. Bei Fehler oder Zeitüberschreitung werden eingebettete Inhalte entfernt, die Aktivierung erneut angeboten und verspätete Callbacks ignoriert. Bereits gestartete Drittanbieter-Skripte lassen sich dadurch nicht sicher rückgängig machen; der Entfernen-Button lädt weiterhin die gesamte Seite neu. Ein iframe-Load-Event beweist nicht, dass der Drittanbieter intern fehlerfrei dargestellt wird; deshalb bleibt der direkte Routenlink als Alternative verfügbar.
+
+`NODE_PATH=<QA-Ordner>/node_modules node scripts/test-ui-recovery.cjs` prüft mit jsdom 26.1.0 die Einwilligungsschranken, Ladefehler, Zeitüberschreitung, Wiederholung, veraltete Callbacks, Fokus und Willi-Fehlerzustände. Das ist eine DOM-Funktionsprüfung, keine visuelle Browser- oder Geräteprüfung. Testabhängigkeiten bleiben außerhalb der veröffentlichten Website.

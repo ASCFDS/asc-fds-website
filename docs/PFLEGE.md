@@ -104,3 +104,7 @@ Jeder dynamisch angezeigte öffentliche Termin lässt sich lokal als `.ics` heru
 Dateien: `assets/js/event-calendar.js`, `assets/js/public-events.js`, `assets/js/results-search.js`. Kalender- und Suchlogik: `node scripts/test-calendar.cjs`. DOM-Funktionstest mit jsdom 26.1.0 im separaten QA-Ordner: `NODE_PATH=<QA-Ordner>/node_modules node scripts/test-event-tools.cjs`. Geprüft sind auch mehrtägige Termine, Sommerzeitwechsel, Schaltjahr, sichere Textausgabe, API-Ausfall und Filter-Rücksetzung. Diese Tests ersetzen keine visuelle Geräteprüfung oder einen echten Import in Apple Kalender/Outlook.
 
 Formatreferenz: https://www.rfc-editor.org/rfc/rfc5545
+
+### Teilbare Suchauswahl (06.10.2026)
+
+Termin- und Ergebnisfilter stehen in den URL-Parametern `termin`, `kategorie`, `ergebnis` und `berichte=1`. Die Schaltfläche „Link zur Auswahl kopieren“ kopiert die aktuelle Auswahl einschließlich Abschnitt. Ohne Zwischenablagezugriff erscheint ein markiertes Textfeld zum manuellen Kopieren. Zurücksetzen entfernt die jeweiligen Parameter; andere Parameter bleiben erhalten. Suchbegriffe sind dadurch Teil des Links und können beim Öffnen in Serverprotokollen erscheinen. Keine persönlichen Daten als Suchbegriff verwenden.

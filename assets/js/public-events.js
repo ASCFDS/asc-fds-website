@@ -65,10 +65,12 @@
     article.append(date, content);
     return article;
   }
+  let requestedCategory = new URL(location.href).searchParams.get("kategorie") || "";
+  if (search) search.value = new URL(location.href).searchParams.get("termin") || "";
   function render() {
     const rows = model.merge(manual, live);
     if (filter) {
-      const selected = filter.value;
+      const selected = requestedCategory;
       const options = [
         ...new Set(rows.map((r) => r.category).filter(Boolean)),
       ].sort();
@@ -135,17 +137,32 @@
       status.textContent =
         "Vereinstermine und öffentlich freigegebene Termine aus der ASC-App.";
     } catch {
-      status.textContent =
-        "Die App-Termine sind momentan nicht erreichbar. Vorhandene Vereinstermine bleiben sichtbar; kurzfristige Änderungen bitte beim Verein erfragen.";
+      status.textContent = !manualLoaded
+        ? "Die Terminliste konnte nicht geladen werden. Bitte erneut versuchen oder beim Verein nachfragen."
+        : "Die App-Termine sind momentan nicht erreichbar. Vorhandene Vereinstermine bleiben sichtbar; kurzfristige Änderungen bitte beim Verein erfragen.";
       retry.hidden = false;
     } finally {
       busy = false;
       list.setAttribute("aria-busy", "false");
     }
   }
-  filter?.addEventListener("change", render);
-  search?.addEventListener("input", render);
-  reset?.addEventListener("click", () => { if (search) search.value = ''; if (filter) filter.value = ''; render(); search?.focus(); });
+  function saveSelection() {
+    const url = new URL(location.href);
+    for (const [key, value] of [["termin", search?.value], ["kategorie", requestedCategory]]) {
+      if (value) url.searchParams.set(key, value); else url.searchParams.delete(key);
+    }
+    history.replaceState(null, "", url);
+    render();
+  }
+  window.addEventListener("popstate", () => {
+    const params = new URL(location.href).searchParams;
+    if (search) search.value = params.get("termin") || "";
+    requestedCategory = params.get("kategorie") || "";
+    render();
+  });
+  filter?.addEventListener("change", () => { requestedCategory = filter.value; saveSelection(); });
+  search?.addEventListener("input", saveSelection);
+  reset?.addEventListener("click", () => { if (search) search.value = ''; if (filter) filter.value = ''; requestedCategory = ''; saveSelection(); search?.focus(); });
   retry.addEventListener("click", refresh);
   document.addEventListener("visibilitychange", () => {
     if (!document.hidden) refresh();

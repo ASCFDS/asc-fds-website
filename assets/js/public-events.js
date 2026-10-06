@@ -6,6 +6,10 @@
   const retry = document.getElementById("events-retry");
   const archive = document.getElementById("events-archive");
   const filter = document.getElementById("event-category");
+  const search = document.getElementById("event-search");
+  const reset = document.getElementById("event-reset");
+  const count = document.getElementById("events-count");
+  const tools = document.getElementById("event-tools");
   const limit = Number(list.dataset.limit) || Infinity;
   const model = globalThis.ASCEvents;
   const dateOnly = new Intl.DateTimeFormat("de-DE", {
@@ -46,6 +50,18 @@
     for (const field of ["description", "location"])
       if (typeof event[field] === "string" && event[field].trim())
         content.append(node("p", "", event[field]));
+    const download = node("button", "text-button event-download", "Im Kalender speichern (.ics)");
+    download.type = "button";
+    download.setAttribute("aria-label", `${event.title}: im Kalender speichern`);
+    download.addEventListener("click", () => {
+      const url = URL.createObjectURL(new Blob([model.calendar(event)], { type: "text/calendar;charset=utf-8" }));
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = 'asc-' + event.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 80) + '.ics';
+      document.body.append(link); link.click(); link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 60000);
+    });
+    content.append(download);
     article.append(date, content);
     return article;
   }
@@ -63,8 +79,12 @@
       filter.value = options.includes(selected) ? selected : "";
     }
     const { upcoming, past } = model.split(
-      rows.filter((r) => !filter?.value || r.category === filter.value),
+      rows.filter((r) => (!filter?.value || r.category === filter.value) && model.matches(search?.value || '', [r.title, r.description, r.location, r.category, dateOnly.format(new Date(r.startDate)), dateOnly.format(new Date(r.endDate))])),
     );
+    if (tools) tools.hidden = false;
+    if (count) count.textContent = `${upcoming.length} kommende · ${past.length} vergangene Termine`;
+    if (reset) reset.hidden = !search?.value && !filter?.value;
+    if (search?.value.trim() && archive?.parentElement.tagName === 'DETAILS') archive.parentElement.open = past.length > 0;
     list.replaceChildren(...upcoming.slice(0, limit).map(card));
     if (!upcoming.length)
       list.append(
@@ -124,6 +144,8 @@
     }
   }
   filter?.addEventListener("change", render);
+  search?.addEventListener("input", render);
+  reset?.addEventListener("click", () => { if (search) search.value = ''; if (filter) filter.value = ''; render(); search?.focus(); });
   retry.addEventListener("click", refresh);
   document.addEventListener("visibilitychange", () => {
     if (!document.hidden) refresh();

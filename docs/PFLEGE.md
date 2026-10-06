@@ -93,3 +93,14 @@ Kartenvorschau: assets/img/anfahrt-preview.svg ist eine lokal gerenderte OpenStr
 Externe Einbindungen bekommen 15 Sekunden zum Laden. Bei Fehler oder Zeitüberschreitung werden eingebettete Inhalte entfernt, die Aktivierung erneut angeboten und verspätete Callbacks ignoriert. Bereits gestartete Drittanbieter-Skripte lassen sich dadurch nicht sicher rückgängig machen; der Entfernen-Button lädt weiterhin die gesamte Seite neu. Ein iframe-Load-Event beweist nicht, dass der Drittanbieter intern fehlerfrei dargestellt wird; deshalb bleibt der direkte Routenlink als Alternative verfügbar.
 
 `NODE_PATH=<QA-Ordner>/node_modules node scripts/test-ui-recovery.cjs` prüft mit jsdom 26.1.0 die Einwilligungsschranken, Ladefehler, Zeitüberschreitung, Wiederholung, veraltete Callbacks, Fokus und Willi-Fehlerzustände. Das ist eine DOM-Funktionsprüfung, keine visuelle Browser- oder Geräteprüfung. Testabhängigkeiten bleiben außerhalb der veröffentlichten Website.
+
+
+## Terminsuche, Kalenderdateien und Ergebnisfilter (06.10.2026)
+
+Die Terminübersicht durchsucht Titel, Beschreibung, Ort, Kategorie und angezeigte Datumswerte. Kategorie und Suchtext lassen sich kombinieren; passende Archivtreffer werden aufgeklappt. Ohne JavaScript bleibt die statische Terminliste sichtbar. Die Ergebnisübersicht bietet eine Textsuche sowie den Filter „Nur mit Ergebnislink“; es werden keine fehlenden Ergebnisse ergänzt oder behauptet.
+
+Jeder dynamisch angezeigte öffentliche Termin lässt sich lokal als `.ics` herunterladen. Der Export überträgt keine Daten an einen Kalenderdienst und legt selbst keinen Kalendereintrag an. Der Besucher importiert die Datei in seiner Kalender-App. Ganztägige Termine erhalten das exklusive Enddatum nach RFC 5545; Termine mit Uhrzeit werden in UTC exportiert. Unbekannte Orte und Dauern werden nicht erfunden. Der Import ist eine Momentaufnahme, kein automatisch aktualisiertes Abonnement.
+
+Dateien: `assets/js/event-calendar.js`, `assets/js/public-events.js`, `assets/js/results-search.js`. Kalender- und Suchlogik: `node scripts/test-calendar.cjs`. DOM-Funktionstest mit jsdom 26.1.0 im separaten QA-Ordner: `NODE_PATH=<QA-Ordner>/node_modules node scripts/test-event-tools.cjs`. Geprüft sind auch mehrtägige Termine, Sommerzeitwechsel, Schaltjahr, sichere Textausgabe, API-Ausfall und Filter-Rücksetzung. Diese Tests ersetzen keine visuelle Geräteprüfung oder einen echten Import in Apple Kalender/Outlook.
+
+Formatreferenz: https://www.rfc-editor.org/rfc/rfc5545

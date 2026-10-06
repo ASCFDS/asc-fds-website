@@ -1315,3 +1315,17 @@ button,input,textarea,select { font:inherit; }
 .map-preview.is-active [data-external-slot] { width:100%; }
 .map-preview.is-active iframe { width:100%; height:420px; }
 @media(max-width:480px) { .map-preview__stage { padding:1rem; min-height:440px; }.map-preview__consent { padding:1rem; } }
+
+/* Search controls retain the existing layout and work without third-party services. */
+.search-tools:not([hidden]) { display:flex; align-items:end; gap:1rem; flex-wrap:wrap; margin:1rem 0; }
+.search-tools > div { flex:1 1 220px; min-width:0; }
+.search-tools label { display:block; font-weight:600; margin-bottom:.4rem; }
+.search-tools input[type="search"], .search-tools select { width:100%; min-height:44px; padding:.8rem; font:inherit; font-size:16px; border:1px solid #aaa; border-radius:12px; background:#fff; color:#171717; }
+.search-tools .search-checkbox { display:flex; align-items:center; gap:.5rem; min-height:44px; margin:0; }
+.search-checkbox input { width:20px; height:20px; flex-shrink:0; }
+.search-count { flex-basis:100%; margin:0; font-size:.9rem; }
+.event-download { min-height:44px; text-align:left; }
+.calendar-note { font-size:.9rem; color:#555; }
+.search-tools[hidden], #results-body tr[hidden], #results-empty[hidden] { display:none !important; }
+
+.search-tools .text-button, .event-download { color:inherit; font:inherit; }

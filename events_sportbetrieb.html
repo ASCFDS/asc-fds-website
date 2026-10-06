@@ -10,10 +10,12 @@
     />
     <link rel="icon" type="image/png" href="assets/img/logo-dark.png" />
     <link rel="apple-touch-icon" href="assets/img/logo-dark.png" />
-    <link rel="stylesheet" href="assets/css/styles.css?v=20261003-map" />
+    <link rel="stylesheet" href="assets/css/styles.css?v=20261004-tools" />
     <script defer src="assets/js/main.js?v=20261004-ux"></script>
-    <script defer src="assets/js/event-model.js?v=20260927"></script>
-    <script defer src="assets/js/public-events.js?v=20260927"></script>
+    <script defer src="assets/js/event-model.js?v=20261004-tools"></script>
+    <script defer src="assets/js/event-calendar.js?v=20261004-tools"></script>
+    <script defer src="assets/js/public-events.js?v=20261004-tools"></script>
+    <script defer src="assets/js/results-search.js?v=20261004-tools"></script>
     <link
       rel="canonical"
       href="https://www.asc-fds.de/events_sportbetrieb.html"
@@ -134,12 +136,13 @@
             <h2 id="termine">Vereinstermine &amp; Veranstaltungen</h2>
           </div>
 
-          <div class="event-tools">
-            <label for="event-category">Termine filtern</label
-            ><select id="event-category">
-              <option value="">Alle Kategorien</option>
-            </select>
+          <div class="event-tools search-tools" id="event-tools" hidden>
+            <div><label for="event-search">Termine suchen</label><input id="event-search" type="search" placeholder="Veranstaltung, Ort oder Jahr" maxlength="120" aria-controls="events-list events-archive" /></div>
+            <div><label for="event-category">Kategorie</label><select id="event-category" aria-controls="events-list events-archive"><option value="">Alle Kategorien</option></select></div>
+            <button class="text-button" id="event-reset" type="button" hidden>Filter zurücksetzen</button>
+            <p class="search-count" id="events-count" role="status" aria-live="polite"></p>
           </div>
+          <p class="calendar-note">Kalender-Download: einmaliger Import in deine Kalender-App. Spätere Änderungen werden nicht automatisch übernommen.</p>
           <p id="events-status" role="status" aria-live="polite">
             Aktuelle Termine werden geladen …
           </p>
@@ -180,6 +183,13 @@
             <h2 id="ergebnisse">Aktuelle Ergebnisse zu unseren Wettkämpfen</h2>
           </div>
 
+          <div class="search-tools" id="results-tools" hidden>
+            <div><label for="results-search">Wettkämpfe und Ergebnisse suchen</label><input id="results-search" type="search" placeholder="Wettkampf, Disziplin, Ort oder Jahr" maxlength="120" aria-controls="results-body" /></div>
+            <label class="search-checkbox"><input id="results-available" type="checkbox" aria-controls="results-body" /> Nur mit Ergebnislink</label>
+            <button class="text-button" id="results-reset" type="button" hidden>Filter zurücksetzen</button>
+            <p class="search-count" id="results-count" role="status" aria-live="polite"></p>
+          </div>
+          <p id="results-empty" hidden>Keine passenden Wettkämpfe gefunden. Ändere den Suchbegriff oder setze die Filter zurück.</p>
           <div class="results-table-wrap">
             <table class="results-table results-table--enhanced">
               <caption class="sr-only">
@@ -195,10 +205,10 @@
                   <th>Dokument</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody id="results-body">
                 <!-- RESULTS START -->
 <tr data-result-start="2026-10-24" data-result-end="2026-10-25" data-result-status="report-pending"><td data-label="Datum">24.10.2026 – 25.10.2026</td><td data-label="Wettkampf">Deutsche Meisterschaft Dortmund</td><td data-label="Disziplin">Luftgewehr Auflage</td><td data-label="Ort">Dortmund</td><td data-label="Status"><span class="result-badge">Bevorstehend</span></td><td data-label="Dokument">Noch kein Ergebnislink</td></tr>
-<tr data-result-start="2026-10-01" data-result-end="2026-10-04" data-result-status="report-pending"><td data-label="Datum">01.10.2026 – 04.10.2026</td><td data-label="Wettkampf">Deutsche Meisterschaft Hannover</td><td data-label="Disziplin">Auflage-Disziplinen</td><td data-label="Ort">Hannover</td><td data-label="Status"><span class="result-badge">Bevorstehend</span></td><td data-label="Dokument">Noch kein Ergebnislink</td></tr>
+<tr data-result-start="2026-10-01" data-result-end="2026-10-04" data-result-status="report-pending"><td data-label="Datum">01.10.2026 – 04.10.2026</td><td data-label="Wettkampf">Deutsche Meisterschaft Hannover</td><td data-label="Disziplin">Auflage-Disziplinen</td><td data-label="Ort">Hannover</td><td data-label="Status"><span class="result-badge">Bericht folgt</span></td><td data-label="Dokument">Noch kein Ergebnislink</td></tr>
 <tr data-result-start="2026-09-24" data-result-end="2026-09-26" data-result-status="report-pending"><td data-label="Datum">24.09.2026 – 26.09.2026</td><td data-label="Wettkampf">Deutsche Meisterschaft München/Oktoberfest</td><td data-label="Disziplin">Armbrust 30m national</td><td data-label="Ort">München/Oktoberfest</td><td data-label="Status"><span class="result-badge">Bericht folgt</span></td><td data-label="Dokument">Noch kein Ergebnislink</td></tr>
 <tr data-result-start="2026-08-27" data-result-end="2026-08-30" data-result-status="report-pending"><td data-label="Datum">27.08.2026 – 30.08.2026</td><td data-label="Wettkampf">Weltcup-Finale Pärnu (EST)</td><td data-label="Disziplin">Feldarmbrust</td><td data-label="Ort">Pärnu (EST)</td><td data-label="Status"><span class="result-badge">Bericht folgt</span></td><td data-label="Dokument">Noch kein Ergebnislink</td></tr>
 <tr data-result-start="2026-08-20" data-result-end="2026-08-30" data-result-status="report-pending"><td data-label="Datum">20.08.2026 – 30.08.2026</td><td data-label="Wettkampf">Deutsche Meisterschaft München/Hochbrück</td><td data-label="Disziplin">Gewehr/Pistole/Armbrust</td><td data-label="Ort">München/Hochbrück</td><td data-label="Status"><span class="result-badge">Bericht folgt</span></td><td data-label="Dokument">Noch kein Ergebnislink</td></tr>

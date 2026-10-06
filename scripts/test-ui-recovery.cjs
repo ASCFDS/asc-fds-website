@@ -8,7 +8,7 @@ async function page(html){
  await tick();return dom;
 }
 (async()=>{
- for(const provider of ['maps','donation','membership']){
+ for(const provider of ['maps','donation','membership','webscore']){
   const dom=await page(`<div class="external-content" data-external="${provider}"><button data-external-load>Aktivieren</button><button data-external-revoke hidden>Entfernen</button><p data-external-status></p><div data-external-slot><template><p>Provider</p></template></div></div>`);
   const w=dom.window,d=w.document;let timeout;
   const original=w.setTimeout.bind(w);
@@ -17,6 +17,7 @@ async function page(html){
   const load=d.querySelector('[data-external-load]'),slot=d.querySelector('[data-external-slot]');
   assert.equal(slot.querySelector('script,iframe'),null,'No provider before consent');
   load.focus();load.click();const old=slot.querySelector('script,iframe');const late=old.onload;
+  if(provider==='webscore'){assert.equal(old.src,'https://webscore.disag.de/?search=ASC%20Freudenstadt');assert.equal(old.referrerPolicy,'no-referrer');assert(old.title.includes('ASC Freudenstadt'));}
   assert.equal(slot.getAttribute('aria-busy'),'true');timeout();
   assert.equal(load.disabled,false);assert.equal(slot.children.length,0);assert.equal(slot.getAttribute('aria-busy'),'false');
   load.click();late();assert.equal(load.hidden,false,'Old callback must not finish new attempt');

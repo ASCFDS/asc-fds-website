@@ -119,3 +119,9 @@ Termin- und Ergebnisfilter stehen in den URL-Parametern `termin`, `kategorie`, `
 ### Zuverlässige Terminaktualisierung (07.10.2026)
 
 Lokale Vereinsliste und öffentliche App-Termine werden unabhängig voneinander geladen. Bei Teilausfällen bleibt die erreichbare Quelle nutzbar; vorhandene Daten einer ausgefallenen Quelle bleiben bis zum nächsten erfolgreichen Abruf erhalten. „Termine aktualisieren“ lädt beide Quellen erneut. Der angezeigte Zeitpunkt ist der letzte erfolgreiche App-Abruf, nicht der redaktionelle Änderungsstand. Kategorien aus geteilten Links bleiben auch ohne passende Termine aktiv, statt unbemerkt alle Kategorien anzuzeigen.
+
+### DISAG WebScore (07.10.2026)
+
+Bereich `/events_sportbetrieb.html#webscore`: Einbettung erst nach Aktivierung; Direktlink bleibt jederzeit verfügbar. URL: `https://webscore.disag.de/?search=ASC%20Freudenstadt`. Der Parameter wurde im ausgelieferten HTML als `prefill_search` und im DISAG-Skript als DataTables-Suchwert bestätigt. Dies ist eine veränderbare Volltextsuche über Verein/Wettkampf, keine feste Vereins-ID. Im abgerufenen Datenbestand gab es bei der Einrichtung keinen Freudenstadt-Treffer. Keine fremden Ergebnisse werden kopiert oder als ASC-Ergebnisse ausgegeben.
+
+Bei der Prüfung waren weder X-Frame-Options noch CSP frame-ancestors gesetzt. Sollte DISAG die Einbettung später sperren, bleibt der Direktlink nutzbar. Browseranzeige und Live-Wettkampf wurden mangels verfügbarem Browser nicht visuell geprüft. Die eigene CSP erlaubt ausschließlich die zusätzliche Frame-Origin `https://webscore.disag.de`; keine DISAG-Skripte laufen direkt im ASC-Dokument. Aktivierung, Zeitüberschreitung, Wiederholung und URL sind im DOM-Test enthalten.

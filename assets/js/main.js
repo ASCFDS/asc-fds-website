@@ -328,19 +328,25 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           status.textContent = panel.dataset.external === "maps"
             ? "Karte aktiviert. Falls sie nicht angezeigt wird, nutze den Routenlink oberhalb."
-            : "Externer Dienst aktiviert. Falls kein Inhalt erscheint, kontaktiere uns bitte.";
+            : panel.dataset.external === "webscore"
+              ? "WebScore aktiviert. Wenn keine Anzeige erscheint, nutze den Direktlink. Den Suchfilter kannst du bei DISAG ändern."
+              : "Externer Dienst aktiviert. Falls kein Inhalt erscheint, kontaktiere uns bitte.";
           load.hidden = true;
           // Hiding the activation button must not lose keyboard focus.
           if (document.activeElement === load) revoke.focus({ preventScroll: true });
         }
       };
       const timeout = setTimeout(() => finish(true), 15000);
-      if (panel.dataset.external === "maps") {
+      if (["maps", "webscore"].includes(panel.dataset.external)) {
         const frame = document.createElement("iframe");
         frame.title = "Google Maps: Schützenhaus Erlenweg 29/1, Freudenstadt";
         frame.src = "https://www.google.com/maps?q=Erlenweg%2029%2F1%2C%2072250%20Freudenstadt&z=15&output=embed";
+        if (panel.dataset.external === "webscore") {
+          frame.title = "DISAG WebScore – Suche nach ASC Freudenstadt";
+          frame.src = "https://webscore.disag.de/?search=ASC%20Freudenstadt";
+        }
         frame.width = "100%";
-        frame.height = "320";
+        frame.height = panel.dataset.external === "webscore" ? "720" : "320";
         frame.referrerPolicy = "no-referrer";
         frame.onload = () => finish();
         frame.onerror = () => finish(true);

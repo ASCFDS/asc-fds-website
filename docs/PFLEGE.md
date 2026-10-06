@@ -115,3 +115,7 @@ Termin- und Ergebnisfilter stehen in den URL-Parametern `termin`, `kategorie`, `
 - `404.html` stellt hilfreiche interne Links bereit, verwendet ausschließlich absolute Asset-Pfade und wird von Cloudflare Pages für unbekannte Adressen mit Status 404 ausgeliefert. Grundlage: https://developers.cloudflare.com/pages/configuration/serving-pages/ . Suche und Fehlerseite sind `noindex,follow`.
 - Im Fußbereich stehen Suche, Rücksprung zum Inhalt und Drucken/PDF. Die Druckansicht blendet Navigation, Formulare, Einbettungen und Assistent aus; aktive Ergebnisfilter bleiben wirksam. PDF-Speicherung erfolgt über den Browserdialog, nicht über einen Serverdienst.
 - Willi unterstützt Strg/Command + Enter und Kopieren belegter Antworten samt Quellen. Ein gesperrter Zwischenablagezugriff zeigt einen manuellen Hinweis. Keine automatische Freigabe oder Übermittlung von Gesprächsdaten.
+
+### Zuverlässige Terminaktualisierung (07.10.2026)
+
+Lokale Vereinsliste und öffentliche App-Termine werden unabhängig voneinander geladen. Bei Teilausfällen bleibt die erreichbare Quelle nutzbar; vorhandene Daten einer ausgefallenen Quelle bleiben bis zum nächsten erfolgreichen Abruf erhalten. „Termine aktualisieren“ lädt beide Quellen erneut. Der angezeigte Zeitpunkt ist der letzte erfolgreiche App-Abruf, nicht der redaktionelle Änderungsstand. Kategorien aus geteilten Links bleiben auch ohne passende Termine aktiv, statt unbemerkt alle Kategorien anzuzeigen.

@@ -77,8 +77,9 @@
       filter.replaceChildren(
         new Option("Alle Kategorien", ""),
         ...options.map((c) => new Option(c, c)),
+        ...(selected && !options.includes(selected) ? [new Option(selected + " (aktuell keine Termine)", selected)] : []),
       );
-      filter.value = options.includes(selected) ? selected : "";
+      filter.value = selected;
     }
     const { upcoming, past } = model.split(
       rows.filter((r) => (!filter?.value || r.category === filter.value) && model.matches(search?.value || '', [r.title, r.description, r.location, r.category, dateOnly.format(new Date(r.startDate)), dateOnly.format(new Date(r.endDate))])),
@@ -113,39 +114,44 @@
     if (!response.ok) throw new Error("Termine nicht erreichbar");
     return response.json();
   }
+  let lastLiveUpdate = null;
+  const refreshButton = node('button', 'text-button', 'Termine aktualisieren');
+  refreshButton.type = 'button';
+  if (tools) tools.append(refreshButton);
   async function refresh() {
     if (busy) return;
     busy = true;
     retry.hidden = true;
-    list.setAttribute("aria-busy", "true");
-    try {
-      if (!manualLoaded) {
-        const data = await getJSON("/assets/data/events.json");
-        if (!Array.isArray(data)) throw new Error("Invalid local data");
-        manual = data;
-        manualLoaded = true;
-        render();
-      }
-      const data = await getJSON(
-        "https://europe-west3-asc-app-e25d6.cloudfunctions.net/publicEvents?limit=100",
-      );
-      const rows = Array.isArray(data) ? data : data.events;
-      if (!Array.isArray(rows) || rows.some((r) => !model.normalize(r)))
-        throw new Error("Invalid event response");
-      live = rows;
-      render();
-      status.textContent =
-        "Vereinstermine und öffentlich freigegebene Termine aus der ASC-App.";
-    } catch {
-      status.textContent = !manualLoaded
-        ? "Die Terminliste konnte nicht geladen werden. Bitte erneut versuchen oder beim Verein nachfragen."
-        : "Die App-Termine sind momentan nicht erreichbar. Vorhandene Vereinstermine bleiben sichtbar; kurzfristige Änderungen bitte beim Verein erfragen.";
-      retry.hidden = false;
-    } finally {
-      busy = false;
-      list.setAttribute("aria-busy", "false");
-    }
+    refreshButton.disabled = true;
+    refreshButton.textContent = 'Wird aktualisiert …';
+    list.setAttribute('aria-busy', 'true');
+    const outcomes = await Promise.allSettled([
+      getJSON('/assets/data/events.json').then(data => {
+        if (!Array.isArray(data) || data.some(r => !model.normalize(r))) throw Error('Invalid local data');
+        manual = data; manualLoaded = true; render();
+      }),
+      getJSON('https://europe-west3-asc-app-e25d6.cloudfunctions.net/publicEvents?limit=100').then(data => {
+        const rows = Array.isArray(data) ? data : data.events;
+        if (!Array.isArray(rows) || rows.some(r => !model.normalize(r))) throw Error('Invalid event response');
+        live = rows; lastLiveUpdate = new Date(); render();
+      }),
+    ]);
+    const localOK = outcomes[0].status === 'fulfilled';
+    const liveOK = outcomes[1].status === 'fulfilled';
+    if (localOK && liveOK) status.textContent = 'Vereinstermine und öffentlich freigegebene Termine aus der ASC-App.';
+    else if (!localOK && liveOK) status.textContent = 'Die Vereinsliste konnte nicht aktualisiert werden. Öffentliche App-Termine sind verfügbar; zuvor geladene Vereinstermine bleiben sichtbar.';
+    else if (localOK) status.textContent = 'Die App-Termine sind momentan nicht erreichbar. Vorhandene Termine bleiben sichtbar; kurzfristige Änderungen bitte beim Verein erfragen.';
+    else status.textContent = manualLoaded || lastLiveUpdate
+      ? 'Die Termine konnten nicht aktualisiert werden. Der zuletzt geladene Stand bleibt sichtbar.'
+      : 'Die Terminliste konnte nicht geladen werden. Bitte erneut versuchen oder beim Verein nachfragen.';
+    if (lastLiveUpdate) status.textContent += ' App-Termine zuletzt geladen: ' + timed.format(lastLiveUpdate) + ' Uhr.';
+    retry.hidden = localOK && liveOK;
+    busy = false;
+    refreshButton.disabled = false;
+    refreshButton.textContent = 'Termine aktualisieren';
+    list.setAttribute('aria-busy', 'false');
   }
+  refreshButton.addEventListener('click', refresh);
   function saveSelection() {
     const url = new URL(location.href);
     for (const [key, value] of [["termin", search?.value], ["kategorie", requestedCategory]]) {

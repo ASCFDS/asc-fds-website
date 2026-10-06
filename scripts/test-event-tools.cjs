@@ -34,6 +34,7 @@ const tick=()=>new Promise(r=>setImmediate(r));
  w.history.pushState(null,'','?termin=Ski&kategorie=Ausflug&ergebnis=unauffindbar');w.dispatchEvent(new w.PopStateEvent('popstate'));assert.equal(search.value,'Ski');assert.equal(filter.value,'Ausflug');assert.equal(d.querySelectorAll('#events-list .timeline-item').length,1);assert.equal(visible().length,0);assert.equal(available.checked,false);
  dom.window.close();
  const offline=new JSDOM(fs.readFileSync('events_sportbetrieb.html','utf8'),{url:'https://asc-fds.de/events_sportbetrieb.html',runScripts:'outside-only'});
+ offline.window.TextEncoder=TextEncoder;
  offline.window.fetch=async()=>{throw Error('offline');};
  for(const file of ['event-model.js','event-calendar.js','public-events.js'])offline.window.eval(fs.readFileSync('assets/js/'+file,'utf8'));
  await tick();await tick();assert(offline.window.document.querySelector('#events-status').textContent.includes('Terminliste konnte nicht geladen'));assert.equal(offline.window.document.querySelector('#events-retry').hidden,false);offline.window.close();

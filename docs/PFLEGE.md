@@ -108,3 +108,10 @@ Formatreferenz: https://www.rfc-editor.org/rfc/rfc5545
 ### Teilbare Suchauswahl (06.10.2026)
 
 Termin- und Ergebnisfilter stehen in den URL-Parametern `termin`, `kategorie`, `ergebnis` und `berichte=1`. Die Schaltfläche „Link zur Auswahl kopieren“ kopiert die aktuelle Auswahl einschließlich Abschnitt. Ohne Zwischenablagezugriff erscheint ein markiertes Textfeld zum manuellen Kopieren. Zurücksetzen entfernt die jeweiligen Parameter; andere Parameter bleiben erhalten. Suchbegriffe sind dadurch Teil des Links und können beim Öffnen in Serverprotokollen erscheinen. Keine persönlichen Daten als Suchbegriff verwenden.
+
+### Website-Suche, Fehlerseite und Druckansicht (07.10.2026)
+
+- `node scripts/build-assets.js` erzeugt nach den Seiteninhalten mit `scripts/build-search.py` den lokalen Suchindex aus acht öffentlichen Inhaltsseiten. Python 3 ist dafür erforderlich, zusätzliche Pakete nicht. Nach Inhaltsänderungen Build ausführen und `assets/data/search-index.json` mit veröffentlichen. Die Suche unter `/suche.html` lädt den Index erst bei einer Anfrage, erfasst keine Nutzerstatistik und verwendet keinen externen Suchdienst. Öffentliche App-Termine bleiben in der separaten Terminsuche.
+- `404.html` stellt hilfreiche interne Links bereit, verwendet ausschließlich absolute Asset-Pfade und wird von Cloudflare Pages für unbekannte Adressen mit Status 404 ausgeliefert. Grundlage: https://developers.cloudflare.com/pages/configuration/serving-pages/ . Suche und Fehlerseite sind `noindex,follow`.
+- Im Fußbereich stehen Suche, Rücksprung zum Inhalt und Drucken/PDF. Die Druckansicht blendet Navigation, Formulare, Einbettungen und Assistent aus; aktive Ergebnisfilter bleiben wirksam. PDF-Speicherung erfolgt über den Browserdialog, nicht über einen Serverdienst.
+- Willi unterstützt Strg/Command + Enter und Kopieren belegter Antworten samt Quellen. Ein gesperrter Zwischenablagezugriff zeigt einen manuellen Hinweis. Keine automatische Freigabe oder Übermittlung von Gesprächsdaten.

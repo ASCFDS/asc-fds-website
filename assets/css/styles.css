@@ -1329,3 +1329,26 @@ button,input,textarea,select { font:inherit; }
 .search-tools[hidden], #results-body tr[hidden], #results-empty[hidden] { display:none !important; }
 
 .search-tools .text-button, .event-download { color:inherit; font:inherit; }
+
+/* Search and paper views use existing public content. */
+.site-search-results { list-style:none; padding:0; max-width:75ch; }
+.site-search-results li { padding:1rem 0; border-bottom:1px solid #ccc; }
+.site-search-results h2 { font-size:1.3rem; margin:0; }
+.site-search-results a { text-decoration:underline; }
+.site-footer .text-button { color:inherit; text-align:left; }
+@media print {
+  @page { margin:15mm; }
+  html, body { background:white !important; color:black !important; font-size:11pt; }
+  .site-header, .site-footer, #assistant-root, .skip-link, .search-tools, .event-tools,
+  .event-download, .external-content, form, iframe { display:none !important; }
+  main, section, .panel, .card, .page-hero, .hero, .section-dark { background:white !important; color:black !important; box-shadow:none !important; }
+  .hero, .page-hero { min-height:0; padding:1rem 0; }
+  .section { padding:1rem 0; }
+  .container { width:100%; max-width:none; padding:0; }
+  h1,h2,h3,p,a,.eyebrow,.lead { color:black !important; }
+  a { text-decoration:underline; }
+  h1,h2,h3 { break-after:avoid; }
+  img, tr, .timeline-item { break-inside:avoid; }
+  table { width:100%; }
+  [hidden] { display:none !important; }
+}

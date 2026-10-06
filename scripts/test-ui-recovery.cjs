@@ -46,6 +46,11 @@ async function page(html){
  deferred=null;fail=false;d.querySelector('.willi-recovery button').click();await tick();
  assert.equal(status.textContent,'');input.value='Wann ist Training?';d.querySelector('form').dispatchEvent(new w.Event('submit',{cancelable:true}));await tick();
  assert(d.querySelector('.willi-answer').textContent.includes('18:30'));assert.equal(d.querySelector('[role=log]').getAttribute('aria-busy'),'false');
+ let copied='';Object.defineProperty(w.navigator,'clipboard',{value:{writeText:async text=>{copied=text;}}});
+ d.querySelector('.willi-answer button').click();await tick();assert(copied.includes('18:30'));assert(copied.includes('https://'));assert(status.textContent.includes('kopiert'));
+ w.navigator.clipboard.writeText=async()=>{throw Error('blocked');};d.querySelector('.willi-answer button').click();await tick();assert(status.textContent.includes('manuell'));
+ const before=d.querySelectorAll('.willi-answer').length;
+ input.value='Wann ist Training?';input.dispatchEvent(new w.KeyboardEvent('keydown',{key:'Enter',ctrlKey:true,bubbles:true,cancelable:true}));await tick();assert.equal(d.querySelectorAll('.willi-answer').length,before+1);
  const loadedCalls=calls;d.querySelector('.willi-icon-button').click();assert.equal(launch.getAttribute('aria-expanded'),'false');assert.equal(d.activeElement,launch);
  launch.click();await tick();assert.equal(calls,loadedCalls,'Reuse loaded knowledge');
  dom.window.close();console.log('PASS: consent, timeout, retry, stale callbacks, focus, touch opening, Willi offline/recovery and clear-during-request.');

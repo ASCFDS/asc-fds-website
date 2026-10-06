@@ -273,6 +273,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!document.activeElement.closest(".nav")) close();
     }, 0),
   );
+  window.matchMedia?.('(min-width: 981px)').addEventListener?.('change', close);
+  document.querySelectorAll('[data-print]').forEach(button => {
+    button.hidden = false;
+    button.addEventListener('click', () => window.print());
+  });
   const header = document.querySelector(".site-header");
   const scroll = () => header?.classList.toggle("is-scrolled", scrollY > 40);
   window.addEventListener("scroll", scroll, { passive: true });
